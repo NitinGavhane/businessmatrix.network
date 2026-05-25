@@ -29,10 +29,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <Link href="/directory/dashboard/matches" className="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:bg-slate-50 hover:text-slate-700 rounded-xl text-sm font-bold transition-all">
               <Users size={16} /> Smart Matches
             </Link>
-            <Link href="/directory/dashboard/messages" className="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:bg-slate-50 hover:text-slate-700 rounded-xl text-sm font-bold transition-all">
+            <Link href="/directory/dashboard/messages" className="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:bg-slate-50 hover:text-slate-700 rounded-xl text-sm font-bold transition-all" style={{ display: 'none' }}>
               <MessageSquare size={16} /> Messages
             </Link>
-            <Link href="/directory/dashboard/profile" className="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:bg-slate-50 hover:text-slate-700 rounded-xl text-sm font-bold transition-all">
+            <Link href="/directory/dashboard/profile" className="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:bg-slate-50 hover:text-slate-700 rounded-xl text-sm font-bold transition-all" style={{ display: 'none' }}>
               <Settings size={16} /> Business Profile
             </Link>
           </nav>
