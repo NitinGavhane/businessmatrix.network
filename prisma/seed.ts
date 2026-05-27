@@ -107,7 +107,7 @@ async function main() {
     data: {
       userId: user3.id,
       companyName: "GlobalFit Supplies",
-      type: "Supplier",
+      type: "Wholesaler",
       description: "End-to-end fitness equipment supplier for commercial and home gyms. Authorized dealer of top international brands.",
       location: "Dubai, UAE",
       city: "Dubai",

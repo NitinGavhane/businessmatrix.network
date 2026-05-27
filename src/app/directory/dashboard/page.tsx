@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Plus, Building2, Handshake, Network, ArrowRight, Sparkles, Edit3, Save, X, ShoppingCart, Package } from "lucide-react";
+import { Plus, Building2, Handshake, Network, ArrowRight, Sparkles, Edit3, Save, X, ShoppingCart, Package, User } from "lucide-react";
 import Link from "next/link";
 
 type Requirement = {
@@ -19,14 +19,13 @@ type MatchInfo = {
   location: string;
 };
 
-const DEFAULT_BUYING = ["Electronics Components", "Packaging Materials"];
-const DEFAULT_SELLING = ["Manufacturing Services", "OEM Assembly"];
-
 type DashboardData = {
   profileViews: number;
   newMatches: number;
   activeRequirements: Requirement[];
   topMatches: MatchInfo[];
+  buyingProducts: string[];
+  sellingProducts: string[];
   user: {
     name: string | null;
     companyName: string | null;
@@ -38,8 +37,8 @@ export default function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false);
-  const [buyingItems, setBuyingItems] = useState<string[]>(DEFAULT_BUYING);
-  const [sellingItems, setSellingItems] = useState<string[]>(DEFAULT_SELLING);
+  const [buyingItems, setBuyingItems] = useState<string[]>([]);
+  const [sellingItems, setSellingItems] = useState<string[]>([]);
   const [newBuying, setNewBuying] = useState("");
   const [newSelling, setNewSelling] = useState("");
 
@@ -48,10 +47,8 @@ export default function DashboardPage() {
       .then((r) => r.json())
       .then((d) => {
         setData(d);
-        if (d?.user?.companyName) {
-          setBuyingItems(d.activeRequirements.filter((r: Requirement) => r.type === "Ask").map((r: Requirement) => r.title) || DEFAULT_BUYING);
-          setSellingItems(d.activeRequirements.filter((r: Requirement) => r.type === "Give").map((r: Requirement) => r.title) || DEFAULT_SELLING);
-        }
+        setBuyingItems(d?.buyingProducts || []);
+        setSellingItems(d?.sellingProducts || []);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -105,25 +102,12 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-3xl font-black text-slate-900 mb-2">Dashboard</h1>
           <p className="text-slate-500">
-            Welcome{data?.user?.name ? ` back, ${data.user.name}` : " back"}. Here's your business at a glance.
+            Welcome{data?.user?.name ? ` Back, ${data.user.name}` : " Back"}. Here's Your Business at a Glance.
           </p>
         </div>
-        <div className="flex gap-2">
-          {editMode ? (
-            <>
-              <button onClick={handleSave} className="btn-premium btn-premium-primary py-2.5 px-4 text-xs">
-                <Save size={14} /> Save Changes
-              </button>
-              <button onClick={() => setEditMode(false)} className="btn-premium btn-premium-secondary py-2.5 px-4 text-xs">
-                <X size={14} /> Cancel
-              </button>
-            </>
-          ) : (
-            <button onClick={() => setEditMode(true)} className="btn-premium btn-premium-primary py-2.5 px-4 text-xs">
-              <Edit3 size={14} /> Edit Live
-            </button>
-          )}
-        </div>
+        <Link href="/directory/dashboard/profile" className="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition-all text-slate-500 hover:text-slate-700">
+          <User size={18} />
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -160,7 +144,7 @@ export default function DashboardPage() {
             ) : (
               <>
                 <p className="text-xs text-indigo-200 leading-relaxed mb-4">Upgrade to connect directly with matches and start trading.</p>
-                <button className="mt-auto self-start px-4 py-2 bg-white text-indigo-600 rounded-lg text-xs font-bold transition-all hover:bg-indigo-50">Upgrade Account</button>
+                <button className="mt-auto self-start px-4 py-2 bg-white text-indigo-600 rounded-lg text-xs font-bold transition-all hover:bg-indigo-50" style={{ display: 'none' }}>Upgrade Account</button>
               </>
             )}
           </div>
@@ -172,7 +156,7 @@ export default function DashboardPage() {
           <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2">
               <ShoppingCart size={16} style={{ color: 'var(--brand-primary)' }} />
-              <h2 className="text-lg font-black text-slate-900">What I Buy</h2>
+              <h2 className="text-lg font-black text-slate-900">Actively Buying</h2>
             </div>
             <span className="text-xs font-bold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full">{buyingItems.length} items</span>
           </div>
@@ -199,7 +183,14 @@ export default function DashboardPage() {
                     <span className="text-sm font-medium text-slate-700">{item}</span>
                   </div>
                 ))}
-                {buyingItems.length === 0 && <p className="text-sm text-slate-400">No items listed. Click Edit Live to add what you buy.</p>}
+                {buyingItems.length === 0 && <p className="text-sm text-slate-400">No items listed.</p>}
+              </div>
+            )}
+            {!editMode && (
+              <div className="mt-4 flex justify-end">
+                <button onClick={() => setEditMode(true)} className="text-xs font-medium flex items-center gap-1 text-indigo-600 hover:text-indigo-800">
+                  <Edit3 size={14} /> Edit
+                </button>
               </div>
             )}
           </div>
@@ -209,7 +200,7 @@ export default function DashboardPage() {
           <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-2">
               <Package size={16} style={{ color: 'var(--green)' }} />
-              <h2 className="text-lg font-black text-slate-900">What I Sell</h2>
+              <h2 className="text-lg font-black text-slate-900">Actively Selling</h2>
             </div>
             <span className="text-xs font-bold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full">{sellingItems.length} items</span>
           </div>
@@ -236,10 +227,74 @@ export default function DashboardPage() {
                     <span className="text-sm font-medium text-slate-700">{item}</span>
                   </div>
                 ))}
-                {sellingItems.length === 0 && <p className="text-sm text-slate-400">No items listed. Click Edit Live to add what you sell.</p>}
+                {sellingItems.length === 0 && <p className="text-sm text-slate-400">No items listed.</p>}
+              </div>
+            )}
+            {!editMode && (
+              <div className="mt-4 flex justify-end">
+                <button onClick={() => setEditMode(true)} className="text-xs font-medium flex items-center gap-1 text-indigo-600 hover:text-indigo-800">
+                  <Edit3 size={14} /> Edit
+                </button>
               </div>
             )}
           </div>
+        </div>
+      </div>
+
+      <div className="card-premium overflow-hidden animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+        <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
+          <div>
+            <h2 className="text-lg font-black text-slate-900">Active Requirements</h2>
+            <p className="text-xs text-slate-500 mt-1">Your Give & Ask listings</p>
+          </div>
+          <Link href="/directory/dashboard/requirements/new" className="btn-premium btn-premium-primary py-2.5 px-4 text-xs">
+            <Plus size={14} /> Add New
+          </Link>
+        </div>
+        <div className="p-5">
+          {data?.activeRequirements && data.activeRequirements.length > 0 ? (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2 h-2 rounded-full" style={{ background: 'var(--brand-primary)' }} />
+                  <h3 className="text-sm font-bold text-slate-700">Ask (I Need)</h3>
+                </div>
+                <div className="space-y-3">
+                  {data.activeRequirements.filter((r) => r.type === "Ask").map((req) => (
+                    <div key={req.id} className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                      <h4 className="font-bold text-slate-900 text-sm mb-1">{req.title.slice(0, 60)}</h4>
+                      <p className="text-xs text-slate-500">{req.description}</p>
+                    </div>
+                  ))}
+                  {data.activeRequirements.filter((r) => r.type === "Ask").length === 0 && (
+                    <p className="text-xs text-slate-400">No Ask requirements yet.</p>
+                  )}
+                </div>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2 h-2 rounded-full" style={{ background: 'var(--green)' }} />
+                  <h3 className="text-sm font-bold text-slate-700">Give (I Offer)</h3>
+                </div>
+                <div className="space-y-3">
+                  {data.activeRequirements.filter((r) => r.type === "Give").map((req) => (
+                    <div key={req.id} className="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                      <h4 className="font-bold text-slate-900 text-sm mb-1">{req.title.slice(0, 60)}</h4>
+                      <p className="text-xs text-slate-500">{req.description}</p>
+                    </div>
+                  ))}
+                  {data.activeRequirements.filter((r) => r.type === "Give").length === 0 && (
+                    <p className="text-xs text-slate-400">No Give requirements yet.</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="p-6 text-center text-sm text-slate-400">
+              <p>No active requirements yet.</p>
+              <Link href="/directory/dashboard/requirements/new" className="text-indigo-600 font-bold mt-2 inline-block">Post your first Give or Ask</Link>
+            </div>
+          )}
         </div>
       </div>
 
@@ -277,44 +332,6 @@ export default function DashboardPage() {
           ) : (
             <div className="p-6 text-center text-sm text-slate-400">
               <p>No matches yet. Update your requirements to get matched.</p>
-              <Link href="/directory/dashboard/requirements/new" className="text-indigo-600 font-bold mt-2 inline-block">Add a Give or Ask</Link>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="card-premium overflow-hidden animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-        <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
-          <div>
-            <h2 className="text-lg font-black text-slate-900">Active Requirements</h2>
-            <p className="text-xs text-slate-500 mt-1">Your Give & Ask listings</p>
-          </div>
-          <Link href="/directory/dashboard/requirements/new" className="btn-premium btn-premium-primary py-2.5 px-4 text-xs">
-            <Plus size={14} /> Add New
-          </Link>
-        </div>
-        <div className="divide-y" style={{ borderColor: 'var(--border)' }}>
-          {data?.activeRequirements && data.activeRequirements.length > 0 ? (
-            data.activeRequirements.map((req) => (
-              <div key={req.id} className="p-5 flex items-start justify-between hover:bg-slate-50 transition-colors">
-                <div className="flex gap-4">
-                  <div className="px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest shrink-0 h-fit" style={{ background: req.type === "Give" ? 'var(--green-light)' : 'rgba(99, 102, 241, 0.1)', color: req.type === "Give" ? 'var(--green)' : 'var(--brand-primary)' }}>
-                    {req.type}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-slate-900 text-sm mb-1">{req.title.slice(0, 60)}</h3>
-                    <p className="text-xs text-slate-500 max-w-lg">{req.description}</p>
-                  </div>
-                </div>
-                <button className="text-xs font-bold flex items-center gap-1 hover:underline" style={{ color: 'var(--brand-primary)' }}>
-                  Edit <ArrowRight size={12} />
-                </button>
-              </div>
-            ))
-          ) : (
-            <div className="p-6 text-center text-sm text-slate-400">
-              <p>No active requirements yet.</p>
-              <Link href="/directory/dashboard/requirements/new" className="text-indigo-600 font-bold mt-2 inline-block">Post your first Give or Ask</Link>
             </div>
           )}
         </div>

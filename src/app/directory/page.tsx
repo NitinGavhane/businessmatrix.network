@@ -1,32 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Building2, MapPin, CheckCircle, ArrowRight, Search, Filter, Star, Globe, Zap } from "lucide-react";
+import { Building2, MapPin, CheckCircle, ArrowRight, Search, Star, Zap } from "lucide-react";
 import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Business Directory — BusinessMatrix",
-  description: "Browse verified global businesses. Find wholesalers, manufacturers, suppliers and service providers.",
+  description: "Browse verified global businesses. Find manufacturers, wholesalers and service providers.",
 };
 
 const typeColors: Record<string, { bg: string, color: string, border: string }> = {
   "Manufacturer":            { bg: "rgba(99, 102, 241, 0.1)", color: "var(--brand-primary)", border: "rgba(99, 102, 241, 0.1)" },
   "Wholesale Distributor":   { bg: "var(--gold-light)", color: "var(--gold)", border: "var(--gold-light)" },
   "Wholesaler":              { bg: "var(--gold-light)", color: "var(--gold)", border: "var(--gold-light)" },
-  "Supplier":                { bg: "var(--green-light)", color: "var(--green)", border: "var(--green-light)" },
-  "Exporter":                { bg: "rgba(14, 165, 233, 0.1)", color: "#0ea5e9", border: "rgba(14, 165, 233, 0.1)" },
   "Service Provider":        { bg: "rgba(139, 92, 246, 0.1)", color: "#8b5cf6", border: "rgba(139, 92, 246, 0.1)" },
   "Retailer":                { bg: "rgba(236, 72, 153, 0.1)", color: "#ec4899", border: "rgba(236, 72, 153, 0.1)" },
 };
 
-const filterChips = ["All", "Manufacturer", "Wholesale", "Supplier", "Exporter", "Retailer", "Service Provider"];
+const filterChips = ["All", "Manufacturer", "Wholesaler", "Retailer", "Service Provider"];
 
 function getColor(type: string): string {
   const colors: Record<string, string> = {
     Manufacturer: "from-indigo-500 to-indigo-700",
     "Wholesale Distributor": "from-emerald-500 to-emerald-700",
     Wholesaler: "from-emerald-500 to-emerald-700",
-    Supplier: "from-amber-500 to-amber-600",
-    Exporter: "from-rose-500 to-rose-700",
     "Service Provider": "from-sky-500 to-sky-700",
     Retailer: "from-violet-500 to-violet-700",
   };
@@ -56,17 +52,15 @@ export default async function DirectoryPage() {
     <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
       <section className="bg-slate-900 pt-32 pb-16 px-6">
         <div className="container max-w-6xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold uppercase tracking-widest mb-5 text-slate-400">
-            <Globe size={11} /> Global Business Directory
-          </div>
+
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-8">
             <div>
               <h1 className="text-4xl md:text-5xl font-black text-white mb-3 leading-tight">
                 Find Authentic<br /><span className="text-indigo-400">Business Partners</span>
               </h1>
-              <p className="text-slate-400 text-base max-w-lg">Verified businesses from 50+ countries.</p>
+              <p className="text-slate-400 text-base max-w-lg">Verified businesses from across the globe.</p>
             </div>
-            <Link href="/directory/auth/login" className="btn-premium btn-premium-primary shrink-0">
+            <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary shrink-0">
               <Zap size={15} /> List Your Business
             </Link>
           </div>
@@ -76,9 +70,7 @@ export default async function DirectoryPage() {
               <Search size={16} className="text-slate-500 shrink-0" />
               <input type="text" placeholder="Search businesses, products, services..." className="bg-transparent text-white placeholder-slate-500 text-sm outline-none w-full" />
             </div>
-            <button className="flex items-center gap-2 px-4 py-3 bg-white/10 border border-white/15 rounded-xl text-sm font-semibold text-slate-300 hover:bg-white/20 transition-all">
-              <Filter size={14} /> Filters
-            </button>
+
           </div>
 
           <div className="mt-12 p-1 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
@@ -142,9 +134,9 @@ export default async function DirectoryPage() {
         <div className="mt-14 p-10 bg-slate-900 rounded-2xl text-white text-center">
           <Building2 size={36} className="mx-auto mb-4 text-indigo-400" />
           <h2 className="text-2xl font-black mb-2">Is Your Business Listed?</h2>
-          <p className="text-slate-400 mb-6 max-w-md mx-auto text-sm">Join 10,000+ businesses. Get discovered globally.</p>
-          <Link href="/directory/auth/login" className="inline-flex items-center gap-2 px-7 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-sm transition-all">
-            <Zap size={15} /> List Your Business Free
+          <p className="text-slate-400 mb-6 max-w-md mx-auto text-sm">Get discovered globally.</p>
+          <Link href="/directory/auth/signup" className="inline-flex items-center gap-2 px-7 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-sm transition-all">
+            <Zap size={15} /> List Your Business
           </Link>
         </div>
       </div>

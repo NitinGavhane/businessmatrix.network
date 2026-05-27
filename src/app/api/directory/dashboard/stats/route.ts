@@ -54,6 +54,8 @@ export async function GET() {
       profileViews,
       newMatches: matchesCount,
       activeRequirements: activeReqs,
+      buyingProducts: user?.profile?.buyingProducts || [],
+      sellingProducts: user?.profile?.sellingProducts || [],
       user: {
         name: user?.name,
         companyName: user?.profile?.companyName,

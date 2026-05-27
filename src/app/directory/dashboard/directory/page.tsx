@@ -90,7 +90,7 @@ export default function DirectoryListingPage() {
             <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
               <div>
                 <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full" style={{ background: 'var(--green)' }} /> Buying
+                  <span className="w-2 h-2 rounded-full" style={{ background: 'var(--green)' }} /> Actively Buying
                 </h2>
                 <p className="text-xs text-slate-500 mt-1">Suppliers for your requirements</p>
               </div>
@@ -155,7 +155,7 @@ export default function DirectoryListingPage() {
             <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
               <div>
                 <h2 className="text-lg font-black text-slate-900 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full" style={{ background: 'var(--brand-primary)' }} /> Selling
+                  <span className="w-2 h-2 rounded-full" style={{ background: 'var(--brand-primary)' }} /> Actively Selling
                 </h2>
                 <p className="text-xs text-slate-500 mt-1">Prospective clients interested</p>
               </div>

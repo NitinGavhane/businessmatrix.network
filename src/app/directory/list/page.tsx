@@ -36,7 +36,7 @@ export default function ListBusinessPage() {
     networkingInterest: "",
   });
 
-  const businessTypes = ["Manufacturer", "Wholesale Distributor", "Supplier", "Exporter", "Service Provider", "Retailer"];
+  const businessTypes = ["Manufacturer", "Wholesaler", "Service Provider", "Retailer"];
 
   const update = (field: string, value: any) => setForm({ ...form, [field]: value });
 

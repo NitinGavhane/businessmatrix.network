@@ -11,13 +11,30 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const passwordRules = {
+    minLength: password.length >= 8,
+    hasUpper: /[A-Z]/.test(password),
+    hasLower: /[a-z]/.test(password),
+    hasNumber: /[0-9]/.test(password),
+    hasSpecial: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+  };
+
+  const passwordsMatch = password === confirmPassword;
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    if (!passwordsMatch) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch("/api/auth/register", {
@@ -62,8 +79,7 @@ export default function SignupPage() {
               <Building2 size={28} />
             </div>
           </Link>
-          <h1 className="text-3xl font-black text-slate-900">Create Account</h1>
-          <p className="text-slate-500 mt-2">Join BusinessMatrix global directory</p>
+          <h1 className="text-3xl font-black text-slate-900">Join BusinessMatrix.network</h1>
         </div>
 
         <div className="card-premium p-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
@@ -94,8 +110,27 @@ export default function SignupPage() {
                 <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input-premium pl-11" required minLength={8} />
               </div>
+              {password && (
+                <div className="mt-3 space-y-1.5">
+                  <div className={`text-xs ${passwordRules.minLength ? 'text-green-600' : 'text-slate-400'}`}>{passwordRules.minLength ? '✓' : '○'} At least 8 characters</div>
+                  <div className={`text-xs ${passwordRules.hasUpper ? 'text-green-600' : 'text-slate-400'}`}>{passwordRules.hasUpper ? '✓' : '○'} One uppercase letter</div>
+                  <div className={`text-xs ${passwordRules.hasLower ? 'text-green-600' : 'text-slate-400'}`}>{passwordRules.hasLower ? '✓' : '○'} One lowercase letter</div>
+                  <div className={`text-xs ${passwordRules.hasNumber ? 'text-green-600' : 'text-slate-400'}`}>{passwordRules.hasNumber ? '✓' : '○'} One number</div>
+                  <div className={`text-xs ${passwordRules.hasSpecial ? 'text-green-600' : 'text-slate-400'}`}>{passwordRules.hasSpecial ? '✓' : '○'} One special character</div>
+                </div>
+              )}
             </div>
-            <button type="submit" disabled={loading} className="btn-premium btn-premium-primary w-full py-3.5">
+            <div>
+              <label className="label-premium">Confirm Password</label>
+              <div className="relative">
+                <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="input-premium pl-11" required />
+              </div>
+              {confirmPassword && !passwordsMatch && (
+                <p className="text-xs text-red-500 mt-1">Passwords do not match</p>
+              )}
+            </div>
+            <button type="submit" disabled={loading || (!!password && !passwordsMatch)} className="btn-premium btn-premium-primary w-full py-3.5">
               {loading ? "Creating Account..." : "Create Account"} <ArrowRight size={16} />
             </button>
           </form>
