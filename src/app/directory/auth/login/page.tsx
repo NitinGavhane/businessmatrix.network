@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Lock, ArrowRight, Globe } from "lucide-react";
+import { Mail, Lock, ArrowRight } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -38,10 +38,6 @@ export default function LoginPage() {
     } else {
       router.push("/directory/dashboard");
     }
-  };
-
-  const handleGoogleLogin = () => {
-    signIn("google", { callbackUrl: "/directory/dashboard" });
   };
 
   return (
@@ -91,16 +87,7 @@ export default function LoginPage() {
               </button>
             </form>
 
-            <div className="mt-8 relative">
-              <div className="absolute inset-0 flex items-center"><div className="w-full border-t" style={{ borderColor: 'var(--border)' }}></div></div>
-              <div className="relative flex justify-center">
-                <span className="bg-white px-4 label-premium">Or continue with</span>
-              </div>
-            </div>
 
-            <button onClick={handleGoogleLogin} type="button" className="btn-premium btn-premium-secondary w-full mt-8 py-3.5">
-              <Globe size={18} className="text-blue-500" /> Sign in with Google
-            </button>
           </div>
         </div>
 

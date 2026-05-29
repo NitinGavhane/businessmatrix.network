@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Lock, User, ArrowRight, Globe } from "lucide-react";
+import { Mail, Lock, User, ArrowRight } from "lucide-react";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -61,10 +61,6 @@ export default function SignupPage() {
       setError("Something went wrong. Please try again.");
       setLoading(false);
     }
-  };
-
-  const handleGoogleSignup = () => {
-    signIn("google", { callbackUrl: "/directory/onboarding" });
   };
 
   return (
@@ -134,14 +130,7 @@ export default function SignupPage() {
             </button>
           </form>
 
-          <div className="mt-8 relative">
-            <div className="absolute inset-0 flex items-center"><div className="w-full border-t" style={{ borderColor: 'var(--border)' }}></div></div>
-            <div className="relative flex justify-center"><span className="bg-white px-4 label-premium">Or continue with</span></div>
-          </div>
 
-          <button onClick={handleGoogleSignup} type="button" className="btn-premium btn-premium-secondary w-full mt-8 py-3.5">
-            <Globe size={18} className="text-blue-500" /> Sign up with Google
-          </button>
         </div>
 
         <p className="text-center text-sm text-slate-500 mt-8 font-medium">
