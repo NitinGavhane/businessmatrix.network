@@ -11,7 +11,7 @@ export async function GET() {
     }
 
     const [totalUsers, totalProfiles, totalRequirements, totalMatches] = await Promise.all([
-      prisma.directoryUser.count(),
+      prisma.directoryUser.count({ where: { role: "USER" } }),
       prisma.businessProfile.count(),
       prisma.requirement.count(),
       prisma.match.count(),

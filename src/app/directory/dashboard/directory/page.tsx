@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MessageSquare, Eye, Lock, Crown, MapPin } from "lucide-react";
+import { Eye, Lock, Crown, MapPin } from "lucide-react";
 
 type Profile = {
   id: string;
@@ -119,9 +119,6 @@ export default function DirectoryListingPage() {
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded-lg">{s.category}</span>
                     <div className="flex gap-1.5">
-                      <button className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] font-bold bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors">
-                        <MessageSquare size={10} /> Chat
-                      </button>
                       <button className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">
                         <Eye size={10} /> View
                       </button>
@@ -184,9 +181,6 @@ export default function DirectoryListingPage() {
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded-lg">{c.category}</span>
                     <div className="flex gap-1.5">
-                      <button className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] font-bold bg-indigo-50 text-indigo-600 hover:bg-indigo-100 transition-colors">
-                        <MessageSquare size={10} /> Chat
-                      </button>
                       <button className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[10px] font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">
                         <Eye size={10} /> View
                       </button>

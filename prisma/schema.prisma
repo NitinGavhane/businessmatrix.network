@@ -38,6 +38,7 @@ model DirectoryUser {
   passwordHash  String?
   role          Role      @default(USER)
   isPremium     Boolean   @default(false)
+  premiumExpiresAt DateTime?
   image         String?
   emailVerified DateTime?
   accounts      Account[]

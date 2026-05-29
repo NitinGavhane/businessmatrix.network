@@ -5,6 +5,21 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/db";
 import bcrypt from "bcryptjs";
 
+async function checkAndDowngradePremium(userId: string) {
+  const user = await prisma.directoryUser.findUnique({
+    where: { id: userId },
+    select: { isPremium: true, premiumExpiresAt: true },
+  });
+  if (user?.isPremium && user.premiumExpiresAt && user.premiumExpiresAt < new Date()) {
+    await prisma.directoryUser.update({
+      where: { id: userId },
+      data: { isPremium: false, premiumExpiresAt: null },
+    });
+    return false;
+  }
+  return user?.isPremium ?? false;
+}
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   session: {
@@ -46,12 +61,14 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid email or password");
         }
 
+        const isPremium = await checkAndDowngradePremium(user.id);
+
         return {
           id: user.id,
           name: user.name,
           email: user.email,
           image: user.image,
-          isPremium: user.isPremium,
+          isPremium,
           role: user.role,
         };
       },
@@ -63,6 +80,10 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.isPremium = (user as any).isPremium;
         token.role = (user as any).role;
+      }
+      if (token.id) {
+        const isPremium = await checkAndDowngradePremium(token.id as string);
+        token.isPremium = isPremium;
       }
       if (trigger === "update" && session?.isPremium !== undefined) {
         token.isPremium = session.isPremium;

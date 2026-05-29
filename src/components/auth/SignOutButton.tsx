@@ -10,7 +10,10 @@ interface Props {
 export default function SignOutButton({ className = "" }: Props) {
   return (
     <button
-      onClick={() => signOut({ callbackUrl: "/directory/auth/login" })}
+      onClick={async () => {
+        await signOut({ redirect: false });
+        window.location.replace("/directory/auth/login");
+      }}
       className={`flex items-center gap-3 px-3 py-2 w-full text-slate-400 hover:text-rose-500 rounded-xl text-sm font-bold transition-all ${className}`}
     >
       <LogOut size={16} /> Sign Out
