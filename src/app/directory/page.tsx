@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const typeColors: Record<string, { bg: string, color: string, border: string }> = {
-  "Manufacturer":            { bg: "rgba(99, 102, 241, 0.1)", color: "var(--brand-primary)", border: "rgba(99, 102, 241, 0.1)" },
+  "Manufacturer":            { bg: "rgba(64, 96, 144, 0.1)", color: "var(--brand-primary)", border: "rgba(64, 96, 144, 0.1)" },
   "Wholesale Distributor":   { bg: "var(--gold-light)", color: "var(--gold)", border: "var(--gold-light)" },
   "Wholesaler":              { bg: "var(--gold-light)", color: "var(--gold)", border: "var(--gold-light)" },
   "Service Provider":        { bg: "rgba(139, 92, 246, 0.1)", color: "#8b5cf6", border: "rgba(139, 92, 246, 0.1)" },
@@ -20,7 +20,7 @@ const filterChips = ["All", "Manufacturer", "Wholesaler", "Retailer", "Service P
 
 function getColor(type: string): string {
   const colors: Record<string, string> = {
-    Manufacturer: "from-indigo-500 to-indigo-700",
+    Manufacturer: "from-indigo-600 to-indigo-800",
     "Wholesale Distributor": "from-emerald-500 to-emerald-700",
     Wholesaler: "from-emerald-500 to-emerald-700",
     "Service Provider": "from-sky-500 to-sky-700",

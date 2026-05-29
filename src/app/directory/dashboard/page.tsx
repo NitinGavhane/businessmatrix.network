@@ -114,7 +114,7 @@ export default function DashboardPage() {
         <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="card-premium p-5 flex flex-col animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(99, 102, 241, 0.1)' }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(64, 96, 144, 0.1)' }}>
                 <Network size={18} style={{ color: 'var(--brand-primary)' }} />
               </div>
               <h3 className="text-sm font-bold text-slate-700">Profile Views</h3>
@@ -135,7 +135,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden p-5 rounded-2xl flex flex-col text-white animate-fade-in-up" style={{ animationDelay: '0.3s', background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)', boxShadow: '0 12px 24px -4px rgba(99, 102, 241, 0.3)' }}>
+        <div className="relative overflow-hidden p-5 rounded-2xl flex flex-col text-white animate-fade-in-up" style={{ animationDelay: '0.3s', background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)', boxShadow: '0 12px 24px -4px rgba(64, 96, 144, 0.3)' }}>
           <div className="absolute top-0 right-0 p-4 opacity-20"><Building2 size={64} /></div>
           <div className="relative z-10 flex flex-col h-full">
             <h3 className="text-sm font-bold text-indigo-100 mb-2">{data?.user?.companyName || "Your Network"}</h3>

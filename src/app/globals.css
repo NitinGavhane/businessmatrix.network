@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --color-indigo-50: #EDF2F7;
+  --color-indigo-100: #D6E2ED;
+  --color-indigo-200: #B0C8DB;
+  --color-indigo-300: #86AAC7;
+  --color-indigo-400: #6090B3;
+  --color-indigo-500: #4D7AA0;
+  --color-indigo-600: #406090;
+  --color-indigo-700: #345075;
+  --color-indigo-800: #28405E;
+  --color-indigo-900: #1C3045;
+}
+
 @layer base {
   :root {
     --bg-primary: hsl(220, 33%, 98%);
@@ -9,11 +22,11 @@
     --text-primary: #0f172a;
     --text-secondary: #475569;
     --text-muted: #94a3b8;
-    --brand-primary: #6366f1;
-    --brand-secondary: #4f46e5;
-    --brand-accent: #818cf8;
-    --gold: #d97706;
-    --gold-light: #fef3c7;
+    --brand-primary: #406090;
+    --brand-secondary: #2E4A6E;
+    --brand-accent: #D0B060;
+    --gold: #C4A050;
+    --gold-light: #F5EDD6;
     --green: #10b981;
     --green-light: #ecfdf5;
     --red: #ef4444;
@@ -25,7 +38,7 @@
     --shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
     --shadow-md: 0 12px 24px -4px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
     --shadow-lg: 0 20px 40px -8px rgba(0, 0, 0, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.06);
-    --accent-glow: rgba(99, 102, 241, 0.15);
+    --accent-glow: rgba(64, 96, 144, 0.15);
   }
 
   * {
@@ -115,7 +128,7 @@
 .card-premium:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(99, 102, 241, 0.2);
+  border-color: rgba(64, 96, 144, 0.2);
 }
 
 .btn-premium {
@@ -135,12 +148,12 @@
 .btn-premium-primary {
   background: var(--brand-primary);
   color: white;
-  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+  box-shadow: 0 4px 14px 0 rgba(64, 96, 144, 0.39);
 }
 
 .btn-premium-primary:hover {
   background: var(--brand-secondary);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+  box-shadow: 0 6px 20px rgba(64, 96, 144, 0.45);
   transform: translateY(-2px);
 }
 
@@ -153,7 +166,7 @@
 .btn-premium-secondary:hover {
   border-color: var(--brand-primary);
   color: var(--brand-primary);
-  background: rgba(99, 102, 241, 0.04);
+  background: rgba(64, 96, 144, 0.04);
   transform: translateY(-1px);
 }
 
@@ -178,7 +191,7 @@
 .input-premium:focus {
   background: white;
   border-color: var(--brand-primary);
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+  box-shadow: 0 0 0 4px rgba(64, 96, 144, 0.08);
   transform: translateY(-1px);
 }
 

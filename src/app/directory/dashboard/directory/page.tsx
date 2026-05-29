@@ -134,7 +134,7 @@ export default function DirectoryListingPage() {
                   <div className="flex items-center justify-center gap-2 text-slate-500 mb-3">
                     <Lock size={14} /> <span className="text-xs font-medium">{suppliers.length - visibleCount} more suppliers locked</span>
                   </div>
-                  <button className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all" style={{ background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' }}>Unlock All Contacts</button>
+                  <button className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all" style={{ background: 'linear-gradient(135deg, var(--brand-accent) 0%, var(--gold) 100%)' }}>Unlock All Contacts</button>
                 </div>
               )}
             </div>
@@ -143,7 +143,7 @@ export default function DirectoryListingPage() {
 
         <div className="lg:col-span-2 flex items-center justify-center">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-3 gradient-brand" style={{ boxShadow: '0 8px 20px rgba(99, 102, 241, 0.3)' }}>
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-3 gradient-brand" style={{ boxShadow: '0 8px 20px rgba(64, 96, 144, 0.3)' }}>
               <span className="text-2xl font-black text-white">{suppliers.length + clients.length}</span>
             </div>
             <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">Total Matches</p>

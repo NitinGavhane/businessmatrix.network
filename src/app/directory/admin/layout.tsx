@@ -16,7 +16,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             </div>
           </Link>
           <nav className="space-y-1.5">
-            <Link href="/directory/admin" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all" style={{ background: 'rgba(99, 102, 241, 0.1)', color: 'var(--brand-primary)' }}>
+            <Link href="/directory/admin" className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-bold transition-all" style={{ background: 'rgba(64, 96, 144, 0.1)', color: 'var(--brand-primary)' }}>
               <LayoutDashboard size={16} /> Dashboard
             </Link>
             <Link href="/directory/admin/profile" className="flex items-center gap-3 px-3 py-2.5 text-slate-500 hover:bg-slate-50 hover:text-slate-700 rounded-xl text-sm font-bold transition-all">

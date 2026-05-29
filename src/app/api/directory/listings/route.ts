@@ -39,7 +39,7 @@ export async function GET() {
 
 function getColor(type: string): string {
   const colors: Record<string, string> = {
-    Manufacturer: "from-indigo-500 to-indigo-700",
+    Manufacturer: "from-indigo-600 to-indigo-800",
     "Wholesale Distributor": "from-emerald-500 to-emerald-700",
     Wholesaler: "from-emerald-500 to-emerald-700",
     "Service Provider": "from-sky-500 to-sky-700",
