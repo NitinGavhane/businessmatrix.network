@@ -40,7 +40,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={44} height={44} className="rounded-xl shrink-0 shadow-lg" />
             <div>
               <h2 className="font-black text-slate-900 text-sm leading-tight">Admin</h2>
-              <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
+              <span className="text-xs font-bold uppercase tracking-widest" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
             </div>
           </Link>
           <nav className="space-y-1.5">

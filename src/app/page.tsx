@@ -10,7 +10,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
             <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={36} height={36} className="rounded-xl" />
-            <span className="font-black text-xs" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
+            <span className="font-black text-sm" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
           </Link>
           <div className="flex items-center gap-4">
             <Link href="/directory" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">Directory</Link>
@@ -147,7 +147,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={28} height={28} className="rounded-lg" />
-            <span className="font-black text-[10px]" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
+            <span className="font-black text-xs" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
           </div>
           <div className="flex items-center gap-6 text-xs font-bold text-slate-500">
             <Link href="/directory">Directory</Link>

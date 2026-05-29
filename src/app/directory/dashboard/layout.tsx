@@ -41,12 +41,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className="p-6">
           <Link href="/directory/dashboard" className="flex items-center gap-3 mb-8">
             <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={44} height={44} className="rounded-xl shrink-0 shadow-lg" style={{ boxShadow: '0 4px 14px rgba(64, 96, 144, 0.3)' }} />
-            <div>
-              <h2 className="font-black text-[10px] leading-tight" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</h2>
-              <div className="flex items-center gap-1.5 mt-0.5">
-                <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--gold)' }}>Network</span>
-              </div>
-            </div>
+            <span className="font-black text-xs leading-tight" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix.network</span>
           </Link>
 
           <nav className="space-y-1.5">

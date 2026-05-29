@@ -102,7 +102,7 @@ export default function OnboardingPage() {
   const [form, setForm] = useState({
     businessName: "",
     businessType: "Manufacturer",
-    ownerName: "",
+    mobile: "",
     city: "",
     state: "",
     country: "",
@@ -203,8 +203,8 @@ export default function OnboardingPage() {
                 </select>
               </div>
               <div>
-                <label className="label-premium">Owner/Contact Name</label>
-                <input value={form.ownerName} onChange={(e) => setForm({ ...form, ownerName: e.target.value })} className="input-premium" />
+                <label className="label-premium">Phone Number</label>
+                <input type="tel" value={form.mobile} onChange={(e) => setForm({ ...form, mobile: e.target.value })} className="input-premium" placeholder="e.g., +91 98765 43210" />
               </div>
               <div className="grid grid-cols-3 gap-4">
                 <div>
