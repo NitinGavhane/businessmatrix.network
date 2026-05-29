@@ -39,6 +39,7 @@ model DirectoryUser {
   role          Role      @default(USER)
   isPremium     Boolean   @default(false)
   premiumExpiresAt DateTime?
+  suspended     Boolean   @default(false)
   image         String?
   emailVerified DateTime?
   accounts      Account[]

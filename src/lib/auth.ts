@@ -51,6 +51,10 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid email or password");
         }
 
+        if (user.suspended) {
+          throw new Error("Account suspended. Contact admin.");
+        }
+
         const isValid = await bcrypt.compare(credentials.password, user.passwordHash);
         if (!isValid) {
           throw new Error("Invalid email or password");

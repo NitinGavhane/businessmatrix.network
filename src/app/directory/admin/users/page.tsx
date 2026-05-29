@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
-import { Search, Crown, Mail, Phone, MapPin, Building2, Tag, CheckCircle, Calendar, Download, Key } from "lucide-react";
+import { Search, Crown, Mail, Phone, MapPin, Building2, Tag, CheckCircle, Calendar, Download, Key, Ban, Trash2 } from "lucide-react";
 
 type Requirement = {
   id: string;
@@ -46,6 +46,7 @@ type DirectoryUser = {
   role: string;
   isPremium: boolean;
   premiumExpiresAt: string | null;
+  suspended: boolean;
   createdAt: string;
   profile: BusinessProfile | null;
 };
@@ -68,7 +69,7 @@ function csvEscape(val: string | null | undefined): string {
 
 function downloadCSV(users: DirectoryUser[]) {
   const headers = [
-    "Name", "Email", "Phone", "Role", "Premium", "Premium Expiry",
+    "Name", "Email", "Phone", "Role", "Suspended", "Premium", "Premium Expiry",
     "Company", "Type", "Category", "Location", "City", "State", "Country",
     "Owner", "Contact Person", "Description", "Products & Services",
     "Years Active", "Scale", "Turnover", "Website", "Verified",
@@ -78,6 +79,7 @@ function downloadCSV(users: DirectoryUser[]) {
 
   const rows = users.map((u) => [
     u.name, u.email, u.phone, u.role,
+    u.suspended ? "Yes" : "No",
     u.isPremium ? "Yes" : "No",
     u.premiumExpiresAt ? new Date(u.premiumExpiresAt).toLocaleDateString() : "",
     u.profile?.companyName, u.profile?.type, u.profile?.category,
@@ -113,6 +115,10 @@ export default function AdminUsersPage() {
   const [resetUserId, setResetUserId] = useState<string | null>(null);
   const [resetPassword, setResetPassword] = useState("");
   const [resetMsg, setResetMsg] = useState("");
+  const [suspendConfirmId, setSuspendConfirmId] = useState<string | null>(null);
+  const [suspendValue, setSuspendValue] = useState(false);
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   const fetchUsers = useCallback(async (q: string) => {
@@ -183,6 +189,29 @@ export default function AdminUsersPage() {
     }
   };
 
+  const handleSuspend = async (userId: string) => {
+    setUsers((prev) =>
+      prev.map((u) => (u.id === userId ? { ...u, suspended: !u.suspended } : u))
+    );
+    try {
+      await fetch(`/api/directory/admin/users/${userId}/suspend`, { method: "PATCH" });
+    } catch (err) {
+      setUsers((prev) =>
+        prev.map((u) => (u.id === userId ? { ...u, suspended: !u.suspended } : u))
+      );
+    }
+  };
+
+  const handleDelete = async (userId: string) => {
+    setDeleting(true);
+    const res = await fetch(`/api/directory/admin/users/${userId}/delete`, { method: "DELETE" });
+    if (res.ok) {
+      setUsers((prev) => prev.filter((u) => u.id !== userId));
+    }
+    setDeleting(false);
+    setDeleteConfirmId(null);
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     fetchUsers(search);
@@ -248,6 +277,9 @@ export default function AdminUsersPage() {
                       <span className="font-black text-slate-900 text-sm truncate">{user.name || "Unnamed"}</span>
                       {user.role === "ADMIN" && (
                         <span className="text-[9px] font-black uppercase tracking-widest text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">Admin</span>
+                      )}
+                      {user.suspended && (
+                        <span className="text-[9px] font-black uppercase tracking-widest text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">Suspended</span>
                       )}
                       {user.isPremium && (
                         <Crown size={13} className="text-amber-500 shrink-0" />
@@ -422,12 +454,28 @@ export default function AdminUsersPage() {
                     </div>
                   )}
 
-                  <div className="pt-3 border-t border-slate-100">
+                  <div className="pt-3 border-t border-slate-100 flex flex-wrap gap-2">
                     <button
                       onClick={(e) => { e.stopPropagation(); setResetUserId(user.id); setResetPassword(""); setResetMsg(""); }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all"
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 transition-all"
                     >
                       <Key size={13} /> Reset Password
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setSuspendConfirmId(user.id); setSuspendValue(user.suspended); }}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
+                        user.suspended
+                          ? "text-emerald-600 hover:bg-emerald-50 border-emerald-200 hover:border-emerald-300"
+                          : "text-amber-600 hover:bg-amber-50 border-slate-200 hover:border-amber-200"
+                      }`}
+                    >
+                      <Ban size={13} /> {user.suspended ? "Unsuspend" : "Suspend"}
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setDeleteConfirmId(user.id); }}
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all"
+                    >
+                      <Trash2 size={13} /> Delete
                     </button>
                   </div>
                 </div>
@@ -436,12 +484,28 @@ export default function AdminUsersPage() {
               {expandedId === user.id && !user.profile && (
                 <div className="px-5 pb-5 border-t border-slate-100 pt-4 space-y-4">
                   <p className="text-xs text-slate-400 text-center py-4">No business profile submitted yet</p>
-                  <div className="pt-3 border-t border-slate-100">
+                  <div className="pt-3 border-t border-slate-100 flex flex-wrap gap-2">
                     <button
                       onClick={(e) => { e.stopPropagation(); setResetUserId(user.id); setResetPassword(""); setResetMsg(""); }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all"
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 transition-all"
                     >
                       <Key size={13} /> Reset Password
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setSuspendConfirmId(user.id); setSuspendValue(user.suspended); }}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
+                        user.suspended
+                          ? "text-emerald-600 hover:bg-emerald-50 border-emerald-200 hover:border-emerald-300"
+                          : "text-amber-600 hover:bg-amber-50 border-slate-200 hover:border-amber-200"
+                      }`}
+                    >
+                      <Ban size={13} /> {user.suspended ? "Unsuspend" : "Suspend"}
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setDeleteConfirmId(user.id); }}
+                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all"
+                    >
+                      <Trash2 size={13} /> Delete
                     </button>
                   </div>
                 </div>
@@ -486,6 +550,72 @@ export default function AdminUsersPage() {
                 style={{ background: 'var(--brand-primary)' }}
               >
                 Update Password
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {suspendConfirmId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm" onClick={() => setSuspendConfirmId(null)}>
+          <div className="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-sm mx-4" onClick={(e) => e.stopPropagation()}>
+            <div className="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center mx-auto mb-4">
+              <Ban size={24} className="text-amber-600" />
+            </div>
+            <h3 className="text-lg font-black text-slate-900 mb-2 text-center">
+              {suspendValue ? "Unsuspend User Account?" : "Suspend User Account?"}
+            </h3>
+            <p className="text-xs text-slate-500 text-center mb-6 leading-relaxed">
+              {suspendValue
+                ? "This will restore access for this user. They will be able to sign in and use the platform normally."
+                : "This will prevent the user from signing in and accessing the platform until unsuspended."}
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setSuspendConfirmId(null)}
+                className="flex-1 py-3 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={async () => { await handleSuspend(suspendConfirmId); setSuspendConfirmId(null); }}
+                className={`flex-1 py-3 rounded-xl text-xs font-bold text-white transition-all ${
+                  suspendValue
+                    ? "bg-emerald-600 hover:bg-emerald-700"
+                    : "bg-amber-600 hover:bg-amber-700"
+                }`}
+              >
+                {suspendValue ? "Unsuspend" : "Suspend"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {deleteConfirmId && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm" onClick={() => { if (!deleting) setDeleteConfirmId(null); }}>
+          <div className="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-sm mx-4" onClick={(e) => e.stopPropagation()}>
+            <div className="w-12 h-12 rounded-2xl bg-rose-100 flex items-center justify-center mx-auto mb-4">
+              <Trash2 size={24} className="text-rose-600" />
+            </div>
+            <h3 className="text-lg font-black text-slate-900 mb-2 text-center">Delete User Account?</h3>
+            <p className="text-xs text-slate-500 text-center mb-6 leading-relaxed">
+              This action cannot be undone. All user data including their profile, requirements, and messages will be permanently deleted.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => setDeleteConfirmId(null)}
+                disabled={deleting}
+                className="flex-1 py-3 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-all"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => handleDelete(deleteConfirmId)}
+                disabled={deleting}
+                className="flex-1 py-3 rounded-xl text-xs font-bold text-white bg-rose-600 hover:bg-rose-700 transition-all disabled:opacity-50"
+              >
+                {deleting ? "Deleting..." : "Delete Account"}
               </button>
             </div>
           </div>
