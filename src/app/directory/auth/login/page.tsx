@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
-import { Building2, Mail, Lock, ArrowRight, Globe } from "lucide-react";
+import { Mail, Lock, ArrowRight, Globe } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -53,9 +54,7 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-md">
         <div className="text-center mb-10 animate-fade-in-up">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20 gradient-brand">
-              <Building2 size={28} className="text-white" />
-            </div>
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={56} height={56} className="rounded-2xl shadow-lg shadow-indigo-500/20" />
           </Link>
           <h1 className="text-4xl font-black text-slate-900 mb-3 tracking-tight">Welcome Back</h1>
           <p className="text-slate-500 text-base">Sign in to BusinessMatrix</p>

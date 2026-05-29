@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
-import { Building2, Mail, Lock, User, ArrowRight, Globe } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, Globe } from "lucide-react";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -75,9 +76,7 @@ export default function SignupPage() {
       <div className="relative z-10 w-full max-w-md">
         <div className="text-center mb-10 animate-fade-in-up">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg gradient-brand" style={{ boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)' }}>
-              <Building2 size={28} />
-            </div>
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={56} height={56} className="rounded-2xl shadow-lg" style={{ boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)' }} />
           </Link>
           <h1 className="text-3xl font-black text-slate-900">Join BusinessMatrix.network</h1>
         </div>

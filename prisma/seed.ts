@@ -85,7 +85,7 @@ async function main() {
   const profile2 = await prisma.businessProfile.create({
     data: {
       userId: user2.id,
-      companyName: "Mumbai Trade Hub",
+      companyName: "Mumbai Hub",
       type: "Wholesale Distributor",
       description: "Premium FMCG distributor serving 500+ retail chains across India. Specializing in imported and domestic food products.",
       location: "Mumbai, India",

@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Building2 } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 const suggestions = [
   "Raw materials", "Electronics", "Packaging", "Chemicals", "Textiles", "Machinery",
@@ -171,9 +172,7 @@ export default function OnboardingPage() {
     <div className="min-h-screen flex items-center justify-center px-6 py-12" style={{ background: 'var(--bg-primary)' }}>
       <div className="w-full max-w-2xl">
         <div className="text-center mb-10">
-          <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg mx-auto mb-6 gradient-brand">
-            <Building2 size={28} />
-          </div>
+          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={56} height={56} className="rounded-2xl shadow-lg mx-auto mb-6" />
           <h1 className="text-3xl font-black text-slate-900">Complete Your Profile</h1>
           <p className="text-slate-500 mt-2">Set up your business to start connecting</p>
         </div>

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { Building2, MessageSquare, ShieldCheck, Zap, Settings, Users, LayoutDashboard, Crown, List } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,12 +26,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <aside className="w-64 bg-white border-r hidden md:flex flex-col fixed top-0 bottom-0 left-0 z-40" style={{ borderColor: 'var(--border)' }}>
         <div className="p-6">
           <Link href="/" className="flex items-center gap-3 mb-8">
-            <div className="w-11 h-11 rounded-xl flex items-center justify-center text-white shrink-0 shadow-lg gradient-brand" style={{ boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)' }}>
-              <Building2 size={20} />
-            </div>
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={44} height={44} className="rounded-xl shrink-0 shadow-lg" style={{ boxShadow: '0 4px 14px rgba(99, 102, 241, 0.3)' }} />
             <div>
               <h2 className="font-black text-slate-900 text-sm leading-tight">BusinessMatrix</h2>
-              <div className="flex items-center gap-1.5 mt-1">
+              <div className="flex items-center gap-1.5 mt-0.5">
                 <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: 'var(--gold)' }}>Network</span>
               </div>
             </div>

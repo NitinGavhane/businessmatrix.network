@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Building2, Globe, Handshake, ArrowRight, Shield, Users, Zap, Sparkles, CheckCircle, MapPin } from "lucide-react";
 
@@ -8,9 +9,7 @@ export default function HomePage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b" style={{ borderColor: 'var(--border)' }}>
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl gradient-brand flex items-center justify-center">
-              <Building2 size={18} className="text-white" />
-            </div>
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={36} height={36} className="rounded-xl" />
             <span className="font-black text-slate-900 text-lg">BusinessMatrix</span>
           </Link>
           <div className="flex items-center gap-4">
@@ -32,7 +31,7 @@ export default function HomePage() {
             <Sparkles size={12} /> Global B2B Network
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.05] mb-6 tracking-tight">
-            Connect, Trade &<br />
+            Connect &<br />
             <span className="gradient-text">Grow Together</span>
           </h1>
           <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -83,7 +82,7 @@ export default function HomePage() {
             {[
               { icon: Building2, title: "Create Your Profile", desc: "List your business, products, and what you're looking for in a partner." },
               { icon: Zap, title: "AI Smart Matchmaking", desc: "Our algorithm finds the best matches based on your Give & Ask requirements." },
-              { icon: Handshake, title: "Connect & Trade", desc: "Chat directly with matched partners and start doing business." },
+              { icon: Handshake, title: "Connect & Grow", desc: "Chat directly with matched partners and start doing business." },
             ].map((feature) => (
               <div key={feature.title} className="card-premium p-8 text-center">
                 <div className="w-14 h-14 rounded-2xl gradient-brand flex items-center justify-center mx-auto mb-6">
@@ -110,7 +109,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { name: "Sunrise Electronics Co.", type: "Manufacturer", location: "Shenzhen, China", desc: "Leading OEM/ODM electronics manufacturer with 15+ years of experience." },
-              { name: "Mumbai Trade Hub", type: "Wholesale Distributor", location: "Mumbai, India", desc: "Premium FMCG distributor serving 500+ retail chains across India." },
+              { name: "Mumbai Hub", type: "Wholesale Distributor", location: "Mumbai, India", desc: "Premium FMCG distributor serving 500+ retail chains across India." },
               { name: "GlobalFit Supplies", type: "Wholesaler", location: "Dubai, UAE", desc: "End-to-end fitness equipment supplier for commercial and home gyms." },
             ].map((biz) => (
               <div key={biz.name} className="card-premium p-6">
@@ -147,9 +146,7 @@ export default function HomePage() {
       <footer className="py-12 px-6 border-t" style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}>
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg gradient-brand flex items-center justify-center">
-              <Building2 size={14} className="text-white" />
-            </div>
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={28} height={28} className="rounded-lg" />
             <span className="font-black text-slate-900">BusinessMatrix</span>
           </div>
           <div className="flex items-center gap-6 text-xs font-bold text-slate-500">

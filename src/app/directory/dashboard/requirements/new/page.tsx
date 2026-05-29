@@ -9,7 +9,7 @@ const tagSuggestions = [
   "bulk", "premium", "luxury", "handmade", "custom", "import", "export",
   "B2B", "B2C", "direct", "distributor", "manufacturer", "supplier",
   "private label", "white label", "raw", "finished", "sustainable",
-  "recycled", "biodegradable", "halal", "kosher", "fair trade",
+  "recycled", "biodegradable", "halal", "kosher",
   "high quality", "low cost", "fast delivery", "made to order",
 ];
 

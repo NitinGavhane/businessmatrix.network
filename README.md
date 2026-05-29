@@ -1,6 +1,6 @@
 # BusinessMatrix.network
 
-Global B2B Directory Listing Platform — Connect, Trade & Grow Together.
+Global B2B Directory Listing Platform — Connect & Grow Together.
 
 ## Overview
 
