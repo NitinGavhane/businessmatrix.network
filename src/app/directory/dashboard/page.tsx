@@ -98,14 +98,14 @@ export default function DashboardPage() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-8">
-      <div className="flex items-center justify-between animate-fade-in-up">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 animate-fade-in-up">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 mb-2">Dashboard</h1>
-          <p className="text-slate-500">
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 mb-1 sm:mb-2">Dashboard</h1>
+          <p className="text-sm sm:text-base text-slate-500">
             Welcome{data?.user?.name ? ` Back, ${data.user.name}` : " Back"}. Here's Your Business at a Glance.
           </p>
         </div>
-        <Link href="/directory/dashboard/profile" className="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition-all text-slate-500 hover:text-slate-700">
+        <Link href="/directory/dashboard/profile" className="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition-all text-slate-500 hover:text-slate-700 shrink-0 self-start sm:self-auto">
           <User size={18} />
         </Link>
       </div>
@@ -135,7 +135,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden p-5 rounded-2xl flex flex-col text-white animate-fade-in-up" style={{ animationDelay: '0.3s', background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)', boxShadow: '0 12px 24px -4px rgba(64, 96, 144, 0.3)' }}>
+        <div className="relative overflow-hidden p-5 rounded-2xl flex flex-col text-white animate-fade-in-up order-first lg:order-none" style={{ animationDelay: '0.3s', background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)', boxShadow: '0 12px 24px -4px rgba(64, 96, 144, 0.3)' }}>
           <div className="absolute top-0 right-0 p-4 opacity-20"><Building2 size={64} /></div>
           <div className="relative z-10 flex flex-col h-full">
             <h3 className="text-sm font-bold text-indigo-100 mb-2">{data?.user?.companyName || "Your Network"}</h3>
@@ -253,7 +253,7 @@ export default function DashboardPage() {
         </div>
         <div className="p-5">
           {data?.activeRequirements && data.activeRequirements.length > 0 ? (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-2 h-2 rounded-full" style={{ background: 'var(--brand-primary)' }} />

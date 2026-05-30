@@ -7,64 +7,64 @@ export default function HomePage() {
     <div className="min-h-screen">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b" style={{ borderColor: 'var(--border)' }}>
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2.5">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={36} height={36} className="rounded-xl" />
-            <span className="font-black text-sm" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={32} height={32} className="rounded-xl sm:w-9 sm:h-9" />
+            <span className="font-black text-xs sm:text-sm" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/directory" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">Directory</Link>
-            <Link href="/directory/auth/login" className="text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">Sign In</Link>
-            <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary py-2 px-5 text-xs">Register</Link>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link href="/directory" className="text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">Directory</Link>
+            <Link href="/directory/auth/login" className="text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">Sign In</Link>
+            <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary py-1.5 sm:py-2 px-3 sm:px-5 text-xs">Register</Link>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <section className="pt-32 pb-20 px-6 relative overflow-hidden">
+      <section className="pt-24 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] rounded-full opacity-[0.03] blur-[120px]" style={{ background: 'var(--brand-primary)' }} />
           <div className="absolute bottom-[-10%] right-[-5%] w-[40%]] h-[40%] rounded-full opacity-[0.03] blur-[120px]" style={{ background: 'var(--green)' }} />
         </div>
         <div className="max-w-6xl mx-auto text-center relative">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-sm font-bold text-indigo-700 mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-xs sm:text-sm font-bold text-indigo-700 mb-6 sm:mb-8">
             <Sparkles size={12} /> Global B2B Network
           </div>
-          <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.05] mb-6 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-slate-900 leading-[1.05] mb-4 sm:mb-6 tracking-tight">
             Connect &<br />
             <span className="gradient-text">Grow Together</span>
           </h1>
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-base sm:text-xl text-slate-500 max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed">
             Intelligent B2B Platform
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary px-8 py-4 text-base">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base">
               Join Now <ArrowRight size={18} />
             </Link>
-            <Link href="/directory" className="btn-premium btn-premium-secondary px-8 py-4 text-base">
+            <Link href="/directory" className="btn-premium btn-premium-secondary w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base">
               Browse Directory
             </Link>
           </div>
-          <div className="mt-16 flex items-center justify-center gap-8 text-base text-slate-400">
-            <span className="flex items-center gap-2"><CheckCircle size={18} className="text-green-500" /> Verified Businesses</span>
-            <span className="flex items-center gap-2"><CheckCircle size={18} className="text-green-500" /> AI Matchmaking</span>
-            <span className="flex items-center gap-2"><CheckCircle size={18} className="text-green-500" /> Direct Messaging</span>
+          <div className="mt-10 sm:mt-16 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-xs sm:text-base text-slate-400">
+            <span className="flex items-center gap-2"><CheckCircle size={18} className="text-green-500 shrink-0" /> Verified Businesses</span>
+            <span className="flex items-center gap-2"><CheckCircle size={18} className="text-green-500 shrink-0" /> AI Matchmaking</span>
+            <span className="flex items-center gap-2"><CheckCircle size={18} className="text-green-500 shrink-0" /> Direct Messaging</span>
           </div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="py-16 px-6">
+      <section className="py-12 sm:py-16 px-4 sm:px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-slate-900 rounded-3xl p-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="bg-slate-900 rounded-2xl sm:rounded-3xl p-6 sm:p-10 grid grid-cols-3 gap-6 sm:gap-8 text-center">
             {[
               ["50+", "Countries"],
               ["8", "Business Types"],
               ["95%", "Match Accuracy"],
             ].map(([val, label]) => (
               <div key={label}>
-                <div className="text-5xl font-black text-white mb-1">{val}</div>
-                <div className="text-sm font-bold text-slate-400 uppercase tracking-widest">{label}</div>
+                <div className="text-3xl sm:text-5xl font-black text-white mb-1">{val}</div>
+                <div className="text-[10px] sm:text-sm font-bold text-slate-400 uppercase tracking-widest">{label}</div>
               </div>
             ))}
           </div>
@@ -72,13 +72,13 @@ export default function HomePage() {
       </section>
 
       {/* Features */}
-      <section className="py-20 px-6" style={{ background: 'var(--bg-secondary)' }}>
+      <section className="py-16 sm:py-20 px-4 sm:px-6" style={{ background: 'var(--bg-secondary)' }}>
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-black text-slate-900 mb-4">How BusinessMatrix Works</h2>
-            <p className="text-lg text-slate-500 max-w-xl mx-auto">Connect with the right business partners through intelligent matching.</p>
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-3 sm:mb-4">How BusinessMatrix Works</h2>
+            <p className="text-sm sm:text-lg text-slate-500 max-w-xl mx-auto px-4">Connect with the right business partners through intelligent matching.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               { icon: Building2, title: "Create Your Profile", desc: "List your business, products, and what you're looking for in a partner." },
               { icon: Zap, title: "AI Smart Matchmaking", desc: "Our algorithm finds the best matches based on your Give & Ask requirements." },
@@ -97,16 +97,16 @@ export default function HomePage() {
       </section>
 
       {/* Directory Preview */}
-      <section className="py-20 px-6">
+      <section className="py-16 sm:py-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-0 mb-10 sm:mb-12">
             <div>
-              <h2 className="text-5xl font-black text-slate-900 mb-2">Featured Businesses</h2>
-              <p className="text-lg text-slate-500">Top verified businesses in the network</p>
+              <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-1 sm:mb-2">Featured Businesses</h2>
+              <p className="text-sm sm:text-lg text-slate-500">Top verified businesses in the network</p>
             </div>
-            <Link href="/directory" className="btn-premium btn-premium-primary">View All <ArrowRight size={16} /></Link>
+            <Link href="/directory" className="btn-premium btn-premium-primary self-start sm:self-auto">View All <ArrowRight size={16} /></Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             {[
               { name: "Sunrise Electronics Co.", type: "Manufacturer", location: "Shenzhen, China", desc: "Leading OEM/ODM electronics manufacturer with 15+ years of experience." },
               { name: "Mumbai Hub", type: "Wholesale Distributor", location: "Mumbai, India", desc: "Premium FMCG distributor serving 500+ retail chains across India." },
@@ -129,27 +129,27 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6" style={{ background: 'var(--bg-secondary)' }}>
+      <section className="py-16 sm:py-20 px-4 sm:px-6" style={{ background: 'var(--bg-secondary)' }}>
         <div className="max-w-3xl mx-auto text-center">
-          <div className="w-16 h-16 rounded-2xl gradient-brand flex items-center justify-center mx-auto mb-6 shadow-xl shadow-indigo-500/20">
-            <Globe size={28} className="text-white" />
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl gradient-brand flex items-center justify-center mx-auto mb-5 sm:mb-6 shadow-xl shadow-indigo-500/20">
+            <Globe size={24} className="text-white sm:w-7 sm:h-7" />
           </div>
-          <h2 className="text-5xl font-black text-slate-900 mb-4">Ready to Grow Your Network?</h2>
-          <p className="text-lg text-slate-500 mb-8 max-w-lg mx-auto">Join Existing Global business already connecting on BusinessMatrix.network</p>
-          <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary px-10 py-4 text-base">
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-3 sm:mb-4">Ready to Grow Your Network?</h2>
+          <p className="text-sm sm:text-lg text-slate-500 mb-6 sm:mb-8 max-w-lg mx-auto px-4">Join Existing Global business already connecting on BusinessMatrix.network</p>
+          <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary w-full sm:w-auto px-8 sm:px-10 py-3 sm:py-4 text-sm sm:text-base">
             Create Account <ArrowRight size={18} />
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t" style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}>
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer className="py-10 sm:py-12 px-4 sm:px-6 border-t" style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}>
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <div className="flex items-center gap-2">
             <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={28} height={28} className="rounded-lg" />
             <span className="font-black text-xs" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
           </div>
-          <div className="flex items-center gap-6 text-xs font-bold text-slate-500">
+          <div className="flex items-center gap-4 sm:gap-6 text-xs font-bold text-slate-500">
             <Link href="/directory">Directory</Link>
             <Link href="/directory/auth/login">Sign In</Link>
             <Link href="/directory/auth/signup">Join Now</Link>

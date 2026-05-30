@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { LayoutDashboard, Settings, Users as UsersIcon } from "lucide-react";
+import { LayoutDashboard, Settings, Users as UsersIcon, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -63,7 +63,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <SignOutButton />
         </div>
       </aside>
-      <main className="flex-1 md:ml-64 p-6 md:p-10 pt-24">{children}</main>
+      <main className="flex-1 md:ml-64 p-4 sm:p-6 md:p-10 pt-20 md:pt-24 pb-24 md:pb-10">{children}</main>
+
+      {/* Mobile Bottom Nav */}
+      <nav className="mobile-nav">
+        {navLinks.map((link) => {
+          const active = isActive(link.href);
+          return (
+            <Link key={link.href} href={link.href} className={active ? "active" : ""}>
+              <link.icon size={20} />
+              <span>{link.label}</span>
+            </Link>
+          );
+        })}
+        <SignOutButton mobile />
+      </nav>
     </div>
   );
 }

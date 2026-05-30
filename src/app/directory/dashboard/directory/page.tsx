@@ -85,7 +85,7 @@ export default function DirectoryListingPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5 order-1">
           <div className="card-premium overflow-hidden">
             <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
               <div>
@@ -138,7 +138,7 @@ export default function DirectoryListingPage() {
           </div>
         </div>
 
-        <div className="lg:col-span-2 flex items-center justify-center">
+        <div className="lg:col-span-2 flex items-center justify-center order-first lg:order-none mb-4 lg:mb-0">
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-3 gradient-brand" style={{ boxShadow: '0 8px 20px rgba(64, 96, 144, 0.3)' }}>
               <span className="text-2xl font-black text-white">{suppliers.length + clients.length}</span>
@@ -147,7 +147,7 @@ export default function DirectoryListingPage() {
           </div>
         </div>
 
-        <div className="lg:col-span-5">
+        <div className="lg:col-span-5 order-2">
           <div className="card-premium overflow-hidden">
             <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
               <div>

@@ -57,8 +57,8 @@ export default function MatchesPage() {
     <div className="max-w-5xl mx-auto space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 mb-2 flex items-center gap-3">
-            Smart Matches <Sparkles size={24} className="text-violet-500" />
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 mb-1 sm:mb-2 flex items-center gap-2 sm:gap-3">
+            Smart Matches <Sparkles size={20} className="sm:w-6 sm:h-6 text-violet-500" />
           </h1>
           <p className="text-slate-500">AI-curated business partners based on your Give & Ask requirements.</p>
         </div>
@@ -79,9 +79,9 @@ export default function MatchesPage() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {matches.map((match) => (
-          <div key={match.id} className="bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/30 overflow-hidden flex flex-col group relative">
+          <div key={match.id} className="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/30 overflow-hidden flex flex-col group relative">
             <div className="absolute top-0 right-0 p-4 z-10">
               <div className="bg-violet-600 text-white text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full shadow-lg">{match.score}% Match</div>
             </div>
@@ -94,7 +94,7 @@ export default function MatchesPage() {
               </div>
             </div>
 
-            <div className="p-6 pt-10 flex-1 flex flex-col">
+            <div className="p-4 sm:p-6 pt-8 sm:pt-10 flex-1 flex flex-col">
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="font-black text-slate-900 text-lg">{match.companyName}</h3>
                 <CheckCircle2 size={14} className="text-emerald-500" />
@@ -129,7 +129,7 @@ export default function MatchesPage() {
           </div>
         ))}
 
-        <div className="bg-slate-900 rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-8">
+        <div className="bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-6 sm:p-8">
           <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 to-slate-900/20" />
           <div className="relative z-10">
             <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-amber-500/20 mx-auto mb-6">

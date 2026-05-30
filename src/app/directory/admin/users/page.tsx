@@ -218,13 +218,13 @@ export default function AdminUsersPage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-3xl font-black text-slate-900">Users</h1>
+    <div className="max-w-6xl mx-auto space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+        <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Users</h1>
         <div className="flex items-center gap-3">
           <button
             onClick={() => downloadCSV(users)}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all"
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-all"
           >
             <Download size={14} /> Download CSV
           </button>
@@ -265,15 +265,15 @@ export default function AdminUsersPage() {
           {users.map((user) => (
             <div key={user.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm">
               <div
-                className="p-5 flex items-center justify-between cursor-pointer hover:bg-slate-50/50 transition-colors"
+                className="p-4 sm:p-5 flex items-center justify-between cursor-pointer hover:bg-slate-50/50 transition-colors"
                 onClick={() => setExpandedId(expandedId === user.id ? null : user.id)}
               >
-                <div className="flex items-center gap-4 min-w-0">
-                  <div className="w-11 h-11 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 font-black shrink-0">
+                <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 font-black shrink-0">
                     {user.name ? user.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase() : "??"}
                   </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-1.5 flex-wrap">
                       <span className="font-black text-slate-900 text-sm truncate">{user.name || "Unnamed"}</span>
                       {user.role === "ADMIN" && (
                         <span className="text-[9px] font-black uppercase tracking-widest text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">Admin</span>
@@ -288,23 +288,23 @@ export default function AdminUsersPage() {
                         <CheckCircle size={13} className="text-emerald-500 shrink-0" />
                       )}
                     </div>
-                    <div className="flex items-center gap-3 mt-0.5 text-xs text-slate-400">
-                      {user.email && <span>{user.email}</span>}
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-3 mt-0.5 text-xs text-slate-400 truncate">
+                      {user.email && <span className="truncate">{user.email}</span>}
                       {user.profile?.companyName && (
-                        <span className="flex items-center gap-1">
-                          <Building2 size={11} /> {user.profile.companyName}
+                        <span className="flex items-center gap-1 truncate">
+                          <Building2 size={11} className="shrink-0" /> <span className="truncate">{user.profile.companyName}</span>
                         </span>
                       )}
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 shrink-0">
+                <div className="flex items-center gap-2 sm:gap-3 shrink-0 ml-2">
                   {user.premiumExpiresAt && (
-                    <span className="text-[9px] text-slate-400 font-medium">
+                    <span className="text-[9px] text-slate-400 font-medium hidden sm:inline">
                       Exp: {new Date(user.premiumExpiresAt).toLocaleDateString()}
                     </span>
                   )}
-                  <span className="text-[10px] text-slate-400 font-medium">{new Date(user.createdAt).toLocaleDateString()}</span>
+                  <span className="text-[10px] text-slate-400 font-medium hidden sm:inline">{new Date(user.createdAt).toLocaleDateString()}</span>
                   <div className="relative" ref={pickerRef}>
                     <button
                       onClick={(e) => {
@@ -315,13 +315,13 @@ export default function AdminUsersPage() {
                           setPickerUserId(pickerUserId === user.id ? null : user.id);
                         }
                       }}
-                      className={`relative w-11 h-6 rounded-full transition-all duration-200 ${
+                      className={`relative w-10 h-5 sm:w-11 sm:h-6 rounded-full transition-all duration-200 ${
                         user.isPremium ? "bg-amber-400" : "bg-slate-200"
                       }`}
                     >
                       <span
-                        className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform duration-200 ${
-                          user.isPremium ? "translate-x-5" : "translate-x-0"
+                        className={`absolute top-0.5 left-0.5 w-4 h-4 sm:w-5 sm:h-5 bg-white rounded-full shadow-sm transition-transform duration-200 ${
+                          user.isPremium ? "translate-x-[18px] sm:translate-x-5" : "translate-x-0"
                         }`}
                       />
                     </button>
@@ -344,7 +344,7 @@ export default function AdminUsersPage() {
 
               {expandedId === user.id && user.profile && (
                 <div className="px-5 pb-5 border-t border-slate-100 pt-4 space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                     <InfoField icon={Building2} label="Company" value={user.profile.companyName} />
                     <InfoField icon={Tag} label="Type" value={user.profile.type} />
                     <InfoField icon={MapPin} label="Location" value={[user.profile.city, user.profile.state, user.profile.country].filter(Boolean).join(", ") || user.profile.location} />
@@ -454,28 +454,28 @@ export default function AdminUsersPage() {
                     </div>
                   )}
 
-                  <div className="pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+                  <div className="pt-3 border-t border-slate-100 flex flex-wrap gap-1.5 sm:gap-2">
                     <button
                       onClick={(e) => { e.stopPropagation(); setResetUserId(user.id); setResetPassword(""); setResetMsg(""); }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 transition-all"
+                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 transition-all"
                     >
-                      <Key size={13} /> Reset Password
+                      <Key size={12} className="sm:w-[13px] sm:h-[13px]" /> Reset Password
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); setSuspendConfirmId(user.id); setSuspendValue(user.suspended); }}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
+                      className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold border transition-all ${
                         user.suspended
                           ? "text-emerald-600 hover:bg-emerald-50 border-emerald-200 hover:border-emerald-300"
                           : "text-amber-600 hover:bg-amber-50 border-slate-200 hover:border-amber-200"
                       }`}
                     >
-                      <Ban size={13} /> {user.suspended ? "Unsuspend" : "Suspend"}
+                      <Ban size={12} className="sm:w-[13px] sm:h-[13px]" /> {user.suspended ? "Unsuspend" : "Suspend"}
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); setDeleteConfirmId(user.id); }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all"
+                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all"
                     >
-                      <Trash2 size={13} /> Delete
+                      <Trash2 size={12} className="sm:w-[13px] sm:h-[13px]" /> Delete
                     </button>
                   </div>
                 </div>
@@ -484,28 +484,28 @@ export default function AdminUsersPage() {
               {expandedId === user.id && !user.profile && (
                 <div className="px-5 pb-5 border-t border-slate-100 pt-4 space-y-4">
                   <p className="text-xs text-slate-400 text-center py-4">No business profile submitted yet</p>
-                  <div className="pt-3 border-t border-slate-100 flex flex-wrap gap-2">
+                  <div className="pt-3 border-t border-slate-100 flex flex-wrap gap-1.5 sm:gap-2">
                     <button
                       onClick={(e) => { e.stopPropagation(); setResetUserId(user.id); setResetPassword(""); setResetMsg(""); }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 transition-all"
+                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 transition-all"
                     >
-                      <Key size={13} /> Reset Password
+                      <Key size={12} className="sm:w-[13px] sm:h-[13px]" /> Reset Password
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); setSuspendConfirmId(user.id); setSuspendValue(user.suspended); }}
-                      className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
+                      className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold border transition-all ${
                         user.suspended
                           ? "text-emerald-600 hover:bg-emerald-50 border-emerald-200 hover:border-emerald-300"
                           : "text-amber-600 hover:bg-amber-50 border-slate-200 hover:border-amber-200"
                       }`}
                     >
-                      <Ban size={13} /> {user.suspended ? "Unsuspend" : "Suspend"}
+                      <Ban size={12} className="sm:w-[13px] sm:h-[13px]" /> {user.suspended ? "Unsuspend" : "Suspend"}
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); setDeleteConfirmId(user.id); }}
-                      className="flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all"
+                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold text-rose-600 hover:bg-rose-50 border border-slate-200 hover:border-rose-200 transition-all"
                     >
-                      <Trash2 size={13} /> Delete
+                      <Trash2 size={12} className="sm:w-[13px] sm:h-[13px]" /> Delete
                     </button>
                   </div>
                 </div>

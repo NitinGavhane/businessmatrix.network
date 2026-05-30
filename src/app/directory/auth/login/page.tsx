@@ -41,23 +41,23 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-12 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full opacity-[0.04] blur-[120px]" style={{ background: 'var(--brand-primary)' }} />
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full opacity-[0.04] blur-[120px]" style={{ background: 'var(--green)' }} />
       </div>
 
       <div className="relative z-10 w-full max-w-md">
-        <div className="text-center mb-10 animate-fade-in-up">
+        <div className="text-center mb-8 sm:mb-10 animate-fade-in-up">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={56} height={56} className="rounded-2xl shadow-lg shadow-indigo-500/20" />
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg shadow-indigo-500/20" />
           </Link>
-          <h1 className="text-4xl font-black text-slate-900 mb-3 tracking-tight">Welcome Back</h1>
-          <p className="text-slate-500 text-base">Sign in to BusinessMatrix</p>
+          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3 tracking-tight">Welcome Back</h1>
+          <p className="text-sm sm:text-base text-slate-500">Sign in to BusinessMatrix</p>
         </div>
 
         <div className="card-premium animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          <div className="p-8">
+          <div className="p-5 sm:p-8">
             {error && (
               <div className="mb-6 p-4 rounded-xl text-xs font-bold text-center border" style={{ background: 'var(--red-light)', borderColor: 'var(--red)', color: 'var(--red)' }}>
                 {error}

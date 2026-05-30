@@ -31,8 +31,8 @@ export default function AdminDashboardPage() {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto space-y-8">
-      <h1 className="text-3xl font-black text-slate-900">Admin Dashboard</h1>
+    <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8">
+      <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Admin Dashboard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card) => (
           <div key={card.label} className="card-premium p-5">

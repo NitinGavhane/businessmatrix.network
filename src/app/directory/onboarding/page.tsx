@@ -169,24 +169,24 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-12" style={{ background: 'var(--bg-primary)' }}>
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12" style={{ background: 'var(--bg-primary)' }}>
       <div className="w-full max-w-2xl">
-        <div className="text-center mb-10">
-          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={56} height={56} className="rounded-2xl shadow-lg mx-auto mb-6" />
-          <h1 className="text-3xl font-black text-slate-900">Complete Your Profile</h1>
-          <p className="text-slate-500 mt-2">Set up your business to start connecting</p>
+        <div className="text-center mb-8 sm:mb-10">
+          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg mx-auto mb-6" />
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Complete Your Profile</h1>
+          <p className="text-sm sm:text-base text-slate-500 mt-2">Set up your business to start connecting</p>
         </div>
 
-        <div className="flex items-center gap-2 mb-8 justify-center">
+        <div className="flex items-center gap-2 mb-6 sm:mb-8 justify-center">
           {[1, 2].map((s) => (
             <div key={s} className="flex items-center gap-2">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black ${step >= s ? "bg-indigo-600 text-white" : "bg-slate-200 text-slate-500"}`}>{s}</div>
-              {s < 2 && <div className={`w-12 h-1 rounded ${step > s ? "bg-indigo-600" : "bg-slate-200"}`} />}
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-black ${step >= s ? "bg-indigo-600 text-white" : "bg-slate-200 text-slate-500"}`}>{s}</div>
+              {s < 2 && <div className={`w-8 sm:w-12 h-1 rounded ${step > s ? "bg-indigo-600" : "bg-slate-200"}`} />}
             </div>
           ))}
         </div>
 
-        <div className="card-premium p-8">
+        <div className="card-premium p-5 sm:p-8">
           {step === 1 && (
             <div className="space-y-5">
               <h2 className="text-xl font-black text-slate-900">Basic Business Information</h2>
@@ -206,7 +206,7 @@ export default function OnboardingPage() {
                 <label className="label-premium">Phone Number</label>
                 <input type="tel" value={form.mobile} onChange={(e) => setForm({ ...form, mobile: e.target.value })} className="input-premium" placeholder="e.g., +91 98765 43210" />
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="label-premium">Country</label>
                   <select value={form.country} onChange={(e) => { setForm({ ...form, country: e.target.value, state: "", city: "" }); }} className="input-premium">

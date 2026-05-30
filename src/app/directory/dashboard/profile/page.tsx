@@ -54,22 +54,22 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
-      <h1 className="text-3xl font-black text-slate-900">Business Profile</h1>
+    <div className="max-w-3xl mx-auto space-y-6 sm:space-y-8">
+      <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Business Profile</h1>
 
-      <div className="flex gap-2 border-b pb-2" style={{ borderColor: 'var(--border)' }}>
+      <div className="flex gap-1 sm:gap-2 border-b pb-2 overflow-x-auto no-scrollbar -mx-4 sm:mx-0 px-4 sm:px-0" style={{ borderColor: 'var(--border)' }}>
         {[
           { key: "account", label: "Account Info", icon: User },
           { key: "business", label: "Business Profile", icon: Building2 },
           { key: "password", label: "Change Password", icon: Lock },
         ].map((tab) => (
-          <button key={tab.key} onClick={() => setActiveTab(tab.key as any)} className={`flex items-center gap-2 px-4 py-2.5 rounded-t-xl text-xs font-bold transition-all ${activeTab === tab.key ? "bg-white text-indigo-600 border-t border-l border-r" : "text-slate-500 hover:text-slate-700"}`} style={activeTab === tab.key ? { borderColor: 'var(--border)' } : {}}>
+          <button key={tab.key} onClick={() => setActiveTab(tab.key as any)} className={`shrink-0 flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 rounded-t-xl text-[10px] sm:text-xs font-bold transition-all ${activeTab === tab.key ? "bg-white text-indigo-600 border-t border-l border-r" : "text-slate-500 hover:text-slate-700"}`} style={activeTab === tab.key ? { borderColor: 'var(--border)' } : {}}>
             <tab.icon size={14} /> {tab.label}
           </button>
         ))}
       </div>
 
-      <div className="card-premium p-8">
+      <div className="card-premium p-5 sm:p-8">
         {message && (
           <div className={`mb-6 p-4 rounded-xl text-xs font-bold text-center border ${message.includes("success") ? "bg-emerald-50 text-emerald-700 border-emerald-200" : "bg-red-50 text-red-700 border-red-200"}`}>
             {message}
@@ -107,7 +107,7 @@ export default function ProfilePage() {
               <label className="label-premium">Description</label>
               <textarea value={businessData.description || ""} onChange={(e) => setBusinessData({ ...businessData, description: e.target.value })} className="input-premium h-24 resize-none" />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="label-premium">City</label>
                 <input value={businessData.city || ""} onChange={(e) => setBusinessData({ ...businessData, city: e.target.value })} className="input-premium" />

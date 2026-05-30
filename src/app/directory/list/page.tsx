@@ -74,25 +74,25 @@ export default function ListBusinessPage() {
   }
 
   return (
-    <div className="min-h-screen py-20 px-6" style={{ background: 'var(--bg-primary)' }}>
+    <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6" style={{ background: 'var(--bg-primary)' }}>
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-10">
-          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={56} height={56} className="rounded-2xl shadow-lg mx-auto mb-6" />
-          <h1 className="text-3xl font-black text-slate-900">List Your Business</h1>
-          <p className="text-slate-500 mt-2">Join the global B2B network</p>
+        <div className="text-center mb-8 sm:mb-10">
+          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg mx-auto mb-6" />
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900">List Your Business</h1>
+          <p className="text-sm sm:text-base text-slate-500 mt-2">Join the global B2B network</p>
         </div>
 
-        <div className="flex items-center justify-center gap-2 mb-10">
+        <div className="flex items-center justify-center gap-1 sm:gap-2 mb-8 sm:mb-10 overflow-x-auto no-scrollbar -mx-4 sm:mx-0 px-4 sm:px-0">
           {STEPS.map((s, i) => (
-            <div key={s} className="flex items-center gap-2">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-black ${step >= i ? "bg-indigo-600 text-white" : "bg-slate-200 text-slate-500"}`}>{i + 1}</div>
-              <span className={`text-xs font-bold hidden sm:inline ${step >= i ? "text-slate-900" : "text-slate-400"}`}>{s}</span>
-              {i < STEPS.length - 1 && <div className={`w-8 h-0.5 sm:w-12 ${step > i ? "bg-indigo-600" : "bg-slate-200"}`} />}
+            <div key={s} className="flex items-center gap-1 sm:gap-2 shrink-0">
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-black ${step >= i ? "bg-indigo-600 text-white" : "bg-slate-200 text-slate-500"}`}>{i + 1}</div>
+              <span className={`text-[10px] sm:text-xs font-bold hidden sm:inline ${step >= i ? "text-slate-900" : "text-slate-400"}`}>{s}</span>
+              {i < STEPS.length - 1 && <div className={`w-6 h-0.5 sm:w-12 ${step > i ? "bg-indigo-600" : "bg-slate-200"}`} />}
             </div>
           ))}
         </div>
 
-        <div className="card-premium p-8">
+        <div className="card-premium p-5 sm:p-8">
           {step === 0 && (
             <div className="space-y-5">
               <h2 className="text-xl font-black text-slate-900">Basic Information</h2>
@@ -102,7 +102,7 @@ export default function ListBusinessPage() {
               </div>
               <div>
                 <label className="label-premium">Business Type</label>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {businessTypes.map((t) => (
                     <button key={t} type="button" onClick={() => update("businessType", form.businessType.includes(t) ? form.businessType.filter((x) => x !== t) : [...form.businessType, t])} className={`px-4 py-2 rounded-xl text-xs font-bold border-2 transition-all ${form.businessType.includes(t) ? "border-indigo-600 bg-indigo-50 text-indigo-700" : "border-slate-200 text-slate-500"}`}>
                       {t}
@@ -110,7 +110,7 @@ export default function ListBusinessPage() {
                   ))}
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="label-premium">Country</label>
                   <input value={form.country} onChange={(e) => update("country", e.target.value)} className="input-premium" />
@@ -124,7 +124,7 @@ export default function ListBusinessPage() {
                 <label className="label-premium">Contact Person</label>
                 <input value={form.contactPerson} onChange={(e) => update("contactPerson", e.target.value)} className="input-premium" />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="label-premium">Phone</label>
                   <input value={form.phone} onChange={(e) => update("phone", e.target.value)} className="input-premium" />
@@ -148,7 +148,7 @@ export default function ListBusinessPage() {
                 <label className="label-premium">Products & Services</label>
                 <textarea value={form.productsServices} onChange={(e) => update("productsServices", e.target.value)} className="input-premium h-20 resize-none" />
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="label-premium">Scale</label>
                   <select value={form.scale} onChange={(e) => update("scale", e.target.value)} className="input-premium">

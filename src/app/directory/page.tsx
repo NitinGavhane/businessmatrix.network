@@ -50,35 +50,34 @@ export default async function DirectoryPage() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
-      <section className="bg-slate-900 pt-32 pb-16 px-6">
+      <section className="bg-slate-900 pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6">
         <div className="container max-w-6xl">
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 mb-6 sm:mb-8">
             <div>
-              <h1 className="text-4xl md:text-5xl font-black text-white mb-3 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-3 leading-tight">
                 Find Authentic<br /><span className="text-indigo-400">Business Partners</span>
               </h1>
-              <p className="text-slate-400 text-base max-w-lg">Verified businesses from across the globe.</p>
+              <p className="text-slate-400 text-sm sm:text-base max-w-lg">Verified businesses from across the globe.</p>
             </div>
-            <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary shrink-0">
+            <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary shrink-0 self-start lg:self-auto">
               <Zap size={15} /> List Your Business
             </Link>
           </div>
 
-          <div className="flex gap-3 max-w-2xl">
+          <div className="flex flex-col sm:flex-row gap-3 max-w-2xl">
             <div className="flex-1 flex items-center gap-3 bg-white/10 border border-white/15 rounded-xl px-4 py-3">
               <Search size={16} className="text-slate-500 shrink-0" />
               <input type="text" placeholder="Search businesses, products, services..." className="bg-transparent text-white placeholder-slate-500 text-sm outline-none w-full" />
             </div>
-
           </div>
 
-          <div className="mt-12 p-1 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-            <div className="bg-slate-900/50 rounded-xl px-6 py-5 flex flex-wrap items-center justify-between gap-6">
+          <div className="mt-8 sm:mt-12 p-1 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
+            <div className="bg-slate-900/50 rounded-xl px-4 sm:px-6 py-4 sm:py-5 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-center sm:text-left">
               {[["10,000+", "Businesses"], ["50+", "Countries"], ["8", "Business Types"], ["Verified", "Authenticity"]].map(([v, l]) => (
                 <div key={l} className="flex flex-col">
-                  <span className="text-xl font-black text-white">{v}</span>
-                  <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">{l}</span>
+                  <span className="text-base sm:text-xl font-black text-white">{v}</span>
+                  <span className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-widest">{l}</span>
                 </div>
               ))}
             </div>
@@ -86,10 +85,10 @@ export default async function DirectoryPage() {
         </div>
       </section>
 
-      <div className="container max-w-6xl py-10 px-6">
-        <div className="flex flex-wrap gap-2 mb-8">
+      <div className="container max-w-6xl py-8 sm:py-10 px-4 sm:px-6">
+        <div className="flex gap-2 mb-6 sm:mb-8 overflow-x-auto no-scrollbar pb-1 -mx-4 sm:mx-0 px-4 sm:px-0">
           {filterChips.map((type) => (
-            <button key={type} className={`px-4 py-2 rounded-full text-xs font-bold border transition-all ${type === "All" ? "bg-indigo-600 text-white border-indigo-600" : "bg-white text-slate-600 border-slate-200 hover:border-indigo-300 hover:text-indigo-600"}`}>
+            <button key={type} className={`shrink-0 px-4 py-2 rounded-full text-xs font-bold border transition-all ${type === "All" ? "bg-indigo-600 text-white border-indigo-600" : "bg-white text-slate-600 border-slate-200 hover:border-indigo-300 hover:text-indigo-600"}`}>
               {type}
             </button>
           ))}
@@ -131,7 +130,7 @@ export default async function DirectoryPage() {
           ))}
         </div>
 
-        <div className="mt-14 p-10 bg-slate-900 rounded-2xl text-white text-center">
+        <div className="mt-10 sm:mt-14 p-6 sm:p-10 bg-slate-900 rounded-2xl text-white text-center">
           <Building2 size={36} className="mx-auto mb-4 text-indigo-400" />
           <h2 className="text-2xl font-black mb-2">Is Your Business Listed?</h2>
           <p className="text-slate-400 mb-6 max-w-md mx-auto text-sm">Get discovered globally.</p>

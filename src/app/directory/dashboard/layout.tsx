@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Building2, MessageSquare, ShieldCheck, Zap, Settings, Users, LayoutDashboard, Crown, List } from "lucide-react";
+import { Building2, MessageSquare, ShieldCheck, Zap, Settings, Users, LayoutDashboard, Crown, List, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -12,7 +12,7 @@ const navLinks = [
   { href: "/directory/dashboard/directory", label: "Directory", icon: List },
   { href: "/directory/dashboard/matches", label: "Smart Matches", icon: Users },
   { href: "/directory/dashboard/messages", label: "Messages", icon: MessageSquare, hidden: true },
-  { href: "/directory/dashboard/profile", label: "Business Profile", icon: Settings },
+  { href: "/directory/dashboard/profile", label: "Profile", icon: Settings },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -77,9 +77,23 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </aside>
 
-      <main className="flex-1 md:ml-64 p-6 md:p-10 pt-24">
+      <main className="flex-1 md:ml-64 p-4 sm:p-6 md:p-10 pt-20 md:pt-24 pb-24 md:pb-10">
         {children}
       </main>
+
+      {/* Mobile Bottom Nav */}
+      <nav className="mobile-nav">
+        {navLinks.filter((l) => !l.hidden).map((link) => {
+          const active = isActive(link.href);
+          return (
+            <Link key={link.href} href={link.href} className={active ? "active" : ""}>
+              <link.icon size={20} />
+              <span>{link.label}</span>
+            </Link>
+          );
+        })}
+        <SignOutButton mobile />
+      </nav>
     </div>
   );
 }

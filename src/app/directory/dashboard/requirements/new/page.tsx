@@ -202,12 +202,12 @@ export default function NewRequirementPage() {
         <ArrowLeft size={16} /> Back
       </button>
 
-      <h1 className="text-3xl font-black text-slate-900">New Requirement</h1>
+      <h1 className="text-2xl sm:text-3xl font-black text-slate-900">New Requirement</h1>
 
-      <form onSubmit={(e) => { e.preventDefault(); setShowConfirm(true); }} className="card-premium p-8 space-y-6">
+      <form onSubmit={(e) => { e.preventDefault(); setShowConfirm(true); }} className="card-premium p-5 sm:p-8 space-y-5 sm:space-y-6">
         <div>
           <label className="label-premium">Type</label>
-          <div className="flex gap-3">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
             <button type="button" onClick={() => setType("GIVE")} className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${type === "GIVE" ? "border-emerald-500 bg-emerald-50 text-emerald-700" : "border-slate-200 text-slate-500"}`}>
               Give (I Offer)
             </button>

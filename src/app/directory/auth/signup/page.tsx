@@ -64,20 +64,20 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 py-12" style={{ background: 'var(--bg-primary)' }}>
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12" style={{ background: 'var(--bg-primary)' }}>
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full opacity-[0.04] blur-[120px]" style={{ background: 'var(--brand-primary)' }} />
       </div>
 
       <div className="relative z-10 w-full max-w-md">
-        <div className="text-center mb-10 animate-fade-in-up">
+        <div className="text-center mb-8 sm:mb-10 animate-fade-in-up">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={56} height={56} className="rounded-2xl shadow-lg" style={{ boxShadow: '0 4px 14px rgba(64, 96, 144, 0.3)' }} />
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg" style={{ boxShadow: '0 4px 14px rgba(64, 96, 144, 0.3)' }} />
           </Link>
-          <h1 className="text-3xl font-black text-slate-900">Join BusinessMatrix.network</h1>
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Join BusinessMatrix.network</h1>
         </div>
 
-        <div className="card-premium p-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+        <div className="card-premium p-5 sm:p-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           {error && (
             <div className="mb-6 p-4 rounded-xl text-xs font-bold text-center" style={{ background: 'var(--red-light)', border: '1px solid var(--red)', color: 'var(--red)' }}>
               {error}
