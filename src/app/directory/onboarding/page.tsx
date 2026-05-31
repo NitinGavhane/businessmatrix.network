@@ -82,7 +82,8 @@ function SuggestionInput({ value, onChange, placeholder, label }: { value: strin
               key={s}
               type="button"
               onMouseDown={() => select(s)}
-              className={`w-full text-left px-4 py-2 text-sm font-medium ${i === focusedIdx ? "bg-indigo-50 text-indigo-700" : "text-slate-600 hover:bg-slate-50"}`}
+              className={`w-full text-left px-4 py-2 text-sm font-medium ${i === focusedIdx ? "text-white" : "text-slate-600 hover:bg-slate-50"}`}
+              style={i === focusedIdx ? { background: '#1A6FD4' } : {}}
             >{s}</button>
           ))}
         </div>
@@ -180,8 +181,8 @@ export default function OnboardingPage() {
         <div className="flex items-center gap-2 mb-6 sm:mb-8 justify-center">
           {[1, 2].map((s) => (
             <div key={s} className="flex items-center gap-2">
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-black ${step >= s ? "bg-indigo-600 text-white" : "bg-slate-200 text-slate-500"}`}>{s}</div>
-              {s < 2 && <div className={`w-8 sm:w-12 h-1 rounded ${step > s ? "bg-indigo-600" : "bg-slate-200"}`} />}
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-black ${step >= s ? "text-white" : "bg-slate-200 text-slate-500"}`} style={step >= s ? { background: '#1A6FD4' } : {}}>{s}</div>
+              {s < 2 && <div className={`w-8 sm:w-12 h-1 rounded ${step > s ? "" : "bg-slate-200"}`} style={step > s ? { background: '#1A6FD4' } : {}} />}
             </div>
           ))}
         </div>

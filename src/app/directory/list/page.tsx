@@ -85,9 +85,9 @@ export default function ListBusinessPage() {
         <div className="flex items-center justify-center gap-1 sm:gap-2 mb-8 sm:mb-10 overflow-x-auto no-scrollbar -mx-4 sm:mx-0 px-4 sm:px-0">
           {STEPS.map((s, i) => (
             <div key={s} className="flex items-center gap-1 sm:gap-2 shrink-0">
-              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-black ${step >= i ? "bg-indigo-600 text-white" : "bg-slate-200 text-slate-500"}`}>{i + 1}</div>
+              <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-black ${step >= i ? "text-white" : "bg-slate-200 text-slate-500"}`} style={step >= i ? { background: '#1A6FD4' } : {}}>{i + 1}</div>
               <span className={`text-[10px] sm:text-xs font-bold hidden sm:inline ${step >= i ? "text-slate-900" : "text-slate-400"}`}>{s}</span>
-              {i < STEPS.length - 1 && <div className={`w-6 h-0.5 sm:w-12 ${step > i ? "bg-indigo-600" : "bg-slate-200"}`} />}
+              {i < STEPS.length - 1 && <div className={`w-6 h-0.5 sm:w-12 ${step > i ? "" : "bg-slate-200"}`} style={step > i ? { background: '#1A6FD4' } : {}} />}
             </div>
           ))}
         </div>
@@ -104,7 +104,7 @@ export default function ListBusinessPage() {
                 <label className="label-premium">Business Type</label>
                 <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {businessTypes.map((t) => (
-                    <button key={t} type="button" onClick={() => update("businessType", form.businessType.includes(t) ? form.businessType.filter((x) => x !== t) : [...form.businessType, t])} className={`px-4 py-2 rounded-xl text-xs font-bold border-2 transition-all ${form.businessType.includes(t) ? "border-indigo-600 bg-indigo-50 text-indigo-700" : "border-slate-200 text-slate-500"}`}>
+                    <button key={t} type="button" onClick={() => update("businessType", form.businessType.includes(t) ? form.businessType.filter((x) => x !== t) : [...form.businessType, t])} className={`px-4 py-2 rounded-xl text-xs font-bold border-2 transition-all ${form.businessType.includes(t) ? "text-white border-[#1A6FD4]" : "border-slate-200 text-slate-500"}`} style={form.businessType.includes(t) ? { background: '#1A6FD4', borderColor: '#1A6FD4' } : {}}>
                       {t}
                     </button>
                   ))}

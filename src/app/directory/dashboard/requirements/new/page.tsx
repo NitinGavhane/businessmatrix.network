@@ -82,12 +82,13 @@ function TagInput({ value, onChange }: { value: string; onChange: (v: string) =>
       {open && matches.length > 0 && (
         <div className="absolute z-20 top-full mt-1 w-full bg-white border rounded-xl shadow-xl max-h-48 overflow-y-auto" style={{ borderColor: 'var(--border)' }}>
           {matches.map((s, i) => (
-            <button
-              key={s}
-              type="button"
-              onMouseDown={() => select(s)}
-              className={`w-full text-left px-4 py-2 text-sm font-medium ${i === focusedIdx ? "bg-indigo-50 text-indigo-700" : "text-slate-600 hover:bg-slate-50"}`}
-            >{s}</button>
+              <button
+                key={s}
+                type="button"
+                onMouseDown={() => select(s)}
+                className={`w-full text-left px-4 py-2 text-sm font-medium ${i === focusedIdx ? "text-white" : "text-slate-600 hover:bg-slate-50"}`}
+                style={i === focusedIdx ? { background: '#1A6FD4' } : {}}
+              >{s}</button>
           ))}
         </div>
       )}
@@ -151,12 +152,13 @@ function CategoryInput({ value, onChange }: { value: string; onChange: (v: strin
       {open && matches.length > 0 && (
         <div className="absolute z-20 top-full mt-1 w-full bg-white border rounded-xl shadow-xl max-h-48 overflow-y-auto" style={{ borderColor: 'var(--border)' }}>
           {matches.map((s, i) => (
-            <button
-              key={s}
-              type="button"
-              onMouseDown={() => select(s)}
-              className={`w-full text-left px-4 py-2 text-sm font-medium ${i === focusedIdx ? "bg-indigo-50 text-indigo-700" : "text-slate-600 hover:bg-slate-50"}`}
-            >{s}</button>
+              <button
+                key={s}
+                type="button"
+                onMouseDown={() => select(s)}
+                className={`w-full text-left px-4 py-2 text-sm font-medium ${i === focusedIdx ? "text-white" : "text-slate-600 hover:bg-slate-50"}`}
+                style={i === focusedIdx ? { background: '#1A6FD4' } : {}}
+              >{s}</button>
           ))}
         </div>
       )}
@@ -211,7 +213,7 @@ export default function NewRequirementPage() {
             <button type="button" onClick={() => setType("GIVE")} className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${type === "GIVE" ? "border-emerald-500 bg-emerald-50 text-emerald-700" : "border-slate-200 text-slate-500"}`}>
               Give (I Offer)
             </button>
-            <button type="button" onClick={() => setType("ASK")} className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${type === "ASK" ? "border-indigo-500 bg-indigo-50 text-indigo-700" : "border-slate-200 text-slate-500"}`}>
+            <button type="button" onClick={() => setType("ASK")} className={`flex-1 py-3 rounded-xl text-sm font-bold border-2 transition-all ${type === "ASK" ? "text-white border-[#1A6FD4]" : "border-slate-200 text-slate-500"}`} style={type === "ASK" ? { background: '#1A6FD4', borderColor: '#1A6FD4' } : {}}>
               Ask (I Need)
             </button>
           </div>
@@ -246,7 +248,7 @@ export default function NewRequirementPage() {
             </div>
             <div className="flex gap-3 mt-6">
               <button onClick={() => setShowConfirm(false)} className="flex-1 py-3 rounded-xl text-sm font-bold border-2 border-slate-200 text-slate-600 hover:bg-slate-50">Cancel</button>
-              <button onClick={handleSubmit} disabled={loading} className="flex-1 py-3 rounded-xl text-sm font-bold bg-indigo-600 text-white hover:bg-indigo-500 flex items-center justify-center gap-2">
+              <button onClick={handleSubmit} disabled={loading} className="flex-1 py-3 rounded-xl text-sm font-bold text-white flex items-center justify-center gap-2" style={{ background: '#1A6FD4' }}>
                 {loading ? "Posting..." : <><Check size={16} /> Confirm & Post</>}
               </button>
             </div>

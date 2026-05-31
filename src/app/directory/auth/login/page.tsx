@@ -41,19 +41,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full opacity-[0.04] blur-[120px]" style={{ background: 'var(--brand-primary)' }} />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full opacity-[0.04] blur-[120px]" style={{ background: 'var(--green)' }} />
-      </div>
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
+      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
 
       <div className="relative z-10 w-full max-w-md">
         <div className="text-center mb-8 sm:mb-10 animate-fade-in-up">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg shadow-indigo-500/20" />
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg" style={{ boxShadow: '0 4px 14px rgba(0,0,0,0.25)' }} />
           </Link>
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3 tracking-tight">Welcome Back</h1>
-          <p className="text-sm sm:text-base text-slate-500">Sign in to BusinessMatrix.Network</p>
+          <h1 className="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">Welcome Back</h1>
+          <p className="text-sm sm:text-base text-white/70">Sign in to BusinessMatrix.Network</p>
         </div>
 
         <div className="card-premium animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
@@ -91,9 +88,9 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <p className="text-center text-sm text-slate-500 mt-8 font-medium animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <p className="text-center text-sm text-white/70 mt-8 font-medium animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           Don't have an account?{" "}
-          <Link href="/directory/auth/signup" className="font-bold" style={{ color: 'var(--brand-primary)' }}>Create Account</Link>
+          <Link href="/directory/auth/signup" className="font-bold" style={{ color: '#C9A84C' }}>Create Account</Link>
         </p>
       </div>
     </div>

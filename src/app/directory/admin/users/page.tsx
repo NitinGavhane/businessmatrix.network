@@ -241,7 +241,7 @@ export default function AdminUsersPage() {
           placeholder="Search by name, email, phone, company, type, location, category, requirements..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-all"
+          className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-900 focus:outline-none transition-all" style={{ borderColor: '#E5E5E5' }}
         />
       </form>
 
@@ -269,7 +269,7 @@ export default function AdminUsersPage() {
                 onClick={() => setExpandedId(expandedId === user.id ? null : user.id)}
               >
                 <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
-                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 font-black shrink-0">
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center text-white font-black shrink-0" style={{ background: '#1A6FD4' }}>
                     {user.name ? user.name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase() : "??"}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -331,7 +331,10 @@ export default function AdminUsersPage() {
                           <button
                             key={d.key}
                             onClick={(e) => { e.stopPropagation(); handleTogglePremium(user.id, d.key); }}
-                            className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors"
+                            className="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:text-white transition-colors"
+                            style={{ background: 'transparent' }}
+                            onMouseOver={(e) => { e.currentTarget.style.background = '#1A6FD4'; e.currentTarget.style.color = 'white'; }}
+                            onMouseOut={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = ''; }}
                           >
                             {d.label}
                           </button>
@@ -359,7 +362,7 @@ export default function AdminUsersPage() {
                   {user.profile.website && (
                     <div>
                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">Website</p>
-                      <a href={user.profile.website} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-indigo-600 hover:underline">{user.profile.website}</a>
+                      <a href={user.profile.website} target="_blank" rel="noopener noreferrer" className="text-xs font-bold hover:underline" style={{ color: '#1A6FD4' }}>{user.profile.website}</a>
                     </div>
                   )}
 
@@ -382,7 +385,7 @@ export default function AdminUsersPage() {
                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Key Markets</p>
                       <div className="flex flex-wrap gap-1.5">
                         {user.profile.keyMarkets.map((m) => (
-                          <span key={m} className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">{m}</span>
+                          <span key={m} className="text-[10px] font-bold px-2 py-0.5 rounded-full text-white" style={{ background: '#1A6FD4' }}>{m}</span>
                         ))}
                       </div>
                     </div>
@@ -431,8 +434,8 @@ export default function AdminUsersPage() {
                           <div key={req.id} className="bg-slate-50 rounded-xl p-3 border border-slate-100">
                             <div className="flex items-center gap-2 mb-1.5">
                               <span className={`text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded ${
-                                req.type === "GIVE" ? "bg-emerald-100 text-emerald-700" : "bg-indigo-100 text-indigo-700"
-                              }`}>
+                                req.type === "GIVE" ? "bg-emerald-100 text-emerald-700" : "text-white"
+                              }`} style={req.type !== "GIVE" ? { background: '#1A6FD4' } : {}}>
                                 {req.type}
                               </span>
                               <span className="text-[10px] font-bold text-slate-500">{req.category}</span>
@@ -457,13 +460,16 @@ export default function AdminUsersPage() {
                   <div className="pt-3 border-t border-slate-100 flex flex-wrap gap-1.5 sm:gap-2">
                     <button
                       onClick={(e) => { e.stopPropagation(); setResetUserId(user.id); setResetPassword(""); setResetMsg(""); }}
-                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 transition-all"
+                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-200 transition-all"
+                      style={{ borderColor: '#E5E5E5' }}
+                      onMouseOver={(e) => { e.currentTarget.style.background = '#1A6FD4'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = '#1A6FD4'; }}
+                      onMouseOut={(e) => { e.currentTarget.style.background = ''; e.currentTarget.style.color = ''; e.currentTarget.style.borderColor = '#E5E5E5'; }}
                     >
                       <Key size={12} className="sm:w-[13px] sm:h-[13px]" /> Reset Password
                     </button>
                     <button
                       onClick={(e) => { e.stopPropagation(); setSuspendConfirmId(user.id); setSuspendValue(user.suspended); }}
-                      className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold border transition-all ${
+                      className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold border border-slate-200 transition-all ${
                         user.suspended
                           ? "text-emerald-600 hover:bg-emerald-50 border-emerald-200 hover:border-emerald-300"
                           : "text-amber-600 hover:bg-amber-50 border-slate-200 hover:border-amber-200"
@@ -487,7 +493,10 @@ export default function AdminUsersPage() {
                   <div className="pt-3 border-t border-slate-100 flex flex-wrap gap-1.5 sm:gap-2">
                     <button
                       onClick={(e) => { e.stopPropagation(); setResetUserId(user.id); setResetPassword(""); setResetMsg(""); }}
-                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 transition-all"
+                      className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-[10px] sm:text-xs font-bold text-slate-500 border border-slate-200 transition-all"
+                      style={{ borderColor: '#E5E5E5' }}
+                      onMouseOver={(e) => { e.currentTarget.style.background = '#1A6FD4'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = '#1A6FD4'; }}
+                      onMouseOut={(e) => { e.currentTarget.style.background = ''; e.currentTarget.style.color = ''; e.currentTarget.style.borderColor = '#E5E5E5'; }}
                     >
                       <Key size={12} className="sm:w-[13px] sm:h-[13px]" /> Reset Password
                     </button>
@@ -534,7 +543,8 @@ export default function AdminUsersPage() {
               value={resetPassword}
               onChange={(e) => setResetPassword(e.target.value)}
               placeholder="New password (min 6 characters)"
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 transition-all mb-4"
+              className="w-full px-4 py-3 bg-slate-50 border rounded-xl text-sm font-medium text-slate-900 focus:outline-none transition-all mb-4"
+              style={{ borderColor: '#E5E5E5' }}
               autoFocus
             />
             <div className="flex gap-3">

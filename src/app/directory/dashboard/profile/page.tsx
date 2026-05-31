@@ -63,7 +63,7 @@ export default function ProfilePage() {
           { key: "business", label: "Business Profile", icon: Building2 },
           { key: "password", label: "Change Password", icon: Lock },
         ].map((tab) => (
-          <button key={tab.key} onClick={() => setActiveTab(tab.key as any)} className={`shrink-0 flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 rounded-t-xl text-[10px] sm:text-xs font-bold transition-all ${activeTab === tab.key ? "bg-white text-indigo-600 border-t border-l border-r" : "text-slate-500 hover:text-slate-700"}`} style={activeTab === tab.key ? { borderColor: 'var(--border)' } : {}}>
+          <button key={tab.key} onClick={() => setActiveTab(tab.key as any)} className={`shrink-0 flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2.5 rounded-t-xl text-[10px] sm:text-xs font-bold transition-all ${activeTab === tab.key ? "bg-white border-t border-l border-r" : "text-slate-500 hover:text-slate-700"}`} style={activeTab === tab.key ? { borderColor: 'var(--border)', color: '#1A6FD4' } : {}}>
             <tab.icon size={14} /> {tab.label}
           </button>
         ))}

@@ -135,16 +135,16 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden p-5 rounded-2xl flex flex-col text-white animate-fade-in-up order-first lg:order-none" style={{ animationDelay: '0.3s', background: 'linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%)', boxShadow: '0 12px 24px -4px rgba(64, 96, 144, 0.3)' }}>
+        <div className="relative overflow-hidden p-5 rounded-2xl flex flex-col text-white animate-fade-in-up order-first lg:order-none" style={{ animationDelay: '0.3s', background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)', boxShadow: '0 12px 24px -4px rgba(61, 90, 122, 0.3)' }}>
           <div className="absolute top-0 right-0 p-4 opacity-20"><Building2 size={64} /></div>
           <div className="relative z-10 flex flex-col h-full">
-            <h3 className="text-sm font-bold text-indigo-100 mb-2">{data?.user?.companyName || "Your Network"}</h3>
+            <h3 className="text-sm font-bold text-white/80 mb-2">{data?.user?.companyName || "Your Network"}</h3>
             {data?.user?.isPremium ? (
-              <p className="text-xs text-indigo-200 leading-relaxed mb-4">Premium access active. Connect directly with your matches.</p>
+              <p className="text-xs text-white/70 leading-relaxed mb-4">Premium access active. Connect directly with your matches.</p>
             ) : (
               <>
-                <p className="text-xs text-indigo-200 leading-relaxed mb-4">Upgrade to connect directly with matches and start trading.</p>
-                <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="mt-auto self-start px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-900 rounded-lg text-xs font-bold transition-all">Upgrade to Premium</button>
+                <p className="text-xs text-white/70 leading-relaxed mb-4">Upgrade to connect directly with matches and start trading.</p>
+                <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="mt-auto self-start px-4 py-2 rounded-lg text-xs font-bold transition-all" style={{ background: '#C9A84C', color: '#FFFFFF' }}>Upgrade to Premium</button>
               </>
             )}
           </div>
@@ -188,7 +188,7 @@ export default function DashboardPage() {
             )}
             {!editMode && (
               <div className="mt-4 flex justify-end">
-                <button onClick={() => setEditMode(true)} className="text-xs font-medium flex items-center gap-1 text-indigo-600 hover:text-indigo-800">
+                <button onClick={() => setEditMode(true)} className="text-xs font-medium flex items-center gap-1" style={{ color: '#1A6FD4' }}>
                   <Edit3 size={14} /> Edit
                 </button>
               </div>
@@ -232,7 +232,7 @@ export default function DashboardPage() {
             )}
             {!editMode && (
               <div className="mt-4 flex justify-end">
-                <button onClick={() => setEditMode(true)} className="text-xs font-medium flex items-center gap-1 text-indigo-600 hover:text-indigo-800">
+                <button onClick={() => setEditMode(true)} className="text-xs font-medium flex items-center gap-1" style={{ color: '#1A6FD4' }}>
                   <Edit3 size={14} /> Edit
                 </button>
               </div>
@@ -292,7 +292,7 @@ export default function DashboardPage() {
           ) : (
             <div className="p-6 text-center text-sm text-slate-400">
               <p>No active requirements yet.</p>
-              <Link href="/directory/dashboard/requirements/new" className="text-indigo-600 font-bold mt-2 inline-block">Post your first Give or Ask</Link>
+              <Link href="/directory/dashboard/requirements/new" className="font-bold mt-2 inline-block" style={{ color: '#1A6FD4' }}>Post your first Give or Ask</Link>
             </div>
           )}
         </div>

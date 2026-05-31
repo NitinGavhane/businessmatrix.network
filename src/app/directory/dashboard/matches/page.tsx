@@ -91,7 +91,7 @@ export default function MatchesPage() {
 
             <div className="h-24 bg-gradient-to-br from-slate-900 to-slate-800 relative">
               <div className="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-2xl p-1 shadow-md">
-                <div className="w-full h-full bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600 font-black">
+                <div className="w-full h-full rounded-xl flex items-center justify-center text-white font-black" style={{ background: '#1A6FD4' }}>
                   {match.companyName.split(' ').map((w) => w[0]).join('').slice(0, 2)}
                 </div>
               </div>
@@ -125,7 +125,7 @@ export default function MatchesPage() {
                 <p className="text-xs text-violet-600 font-bold bg-violet-50 p-2.5 rounded-lg border border-violet-100">{match.reasoning}</p>
               </div>
 
-              <button className="mt-auto w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+              <button className="mt-auto w-full py-3 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5" style={{ background: '#1A6FD4' }}>
                 <Handshake size={14} /> Connect & Chat
               </button>
             </div>
@@ -133,17 +133,16 @@ export default function MatchesPage() {
         ))}
 
         {isPremium === false && (
-          <div className="bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-6 sm:p-8">
-            <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 to-slate-900/20" />
+          <div className="bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-6 sm:p-8" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
             <div className="relative z-10">
-              <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-amber-500/20 mx-auto mb-6">
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-xl mx-auto mb-6" style={{ background: '#C9A84C' }}>
                 <Zap size={32} />
               </div>
               <h3 className="font-black text-white text-xl mb-3">Unlock More Matches</h3>
-              <p className="text-xs text-slate-400 leading-relaxed mb-6">
+              <p className="text-xs text-white/70 leading-relaxed mb-6">
                 Upgrade to Premium to see all your AI matches and get direct chat access.
               </p>
-              <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-900 rounded-xl text-sm font-black transition-all">Upgrade to Premium</button>
+              <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-3.5 rounded-xl text-sm font-black transition-all hover:-translate-y-0.5" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>Upgrade to Premium</button>
             </div>
           </div>
         )}
