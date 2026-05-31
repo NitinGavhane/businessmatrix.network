@@ -50,45 +50,35 @@ export default async function DirectoryPage() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
-      <section className="bg-slate-900 pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6">
+      <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
         <div className="container max-w-6xl">
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 mb-6 sm:mb-8">
             <div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-3 leading-tight">
-                Find Authentic<br /><span className="text-indigo-400">Business Partners</span>
+                Find Authentic<br /><span style={{ color: '#C9A84C' }}>Business Partners</span>
               </h1>
-              <p className="text-slate-400 text-sm sm:text-base max-w-lg">Verified businesses from across the globe.</p>
+              <p className="text-white/70 text-sm sm:text-base max-w-lg">Verified businesses from across the globe.</p>
             </div>
-            <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary shrink-0 self-start lg:self-auto">
-              <Zap size={15} /> List Your Business
+            <Link href="/directory/auth/signup" className="inline-block font-bold text-[14px] tracking-wide px-7 py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shrink-0 self-start lg:self-auto" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>
+              <Zap size={15} className="inline-block mr-1.5 -mt-0.5" /> List Your Business
             </Link>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 max-w-2xl">
             <div className="flex-1 flex items-center gap-3 bg-white/10 border border-white/15 rounded-xl px-4 py-3">
-              <Search size={16} className="text-slate-500 shrink-0" />
-              <input type="text" placeholder="Search businesses, products, services..." className="bg-transparent text-white placeholder-slate-500 text-sm outline-none w-full" />
+              <Search size={16} className="text-white/50 shrink-0" />
+              <input type="text" placeholder="Search businesses, products, services..." className="bg-transparent text-white placeholder-white/50 text-sm outline-none w-full" />
             </div>
           </div>
 
-          <div className="mt-8 sm:mt-12 p-1 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-            <div className="bg-slate-900/50 rounded-xl px-4 sm:px-6 py-4 sm:py-5 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 text-center sm:text-left">
-              {[["10,000+", "Businesses"], ["50+", "Countries"], ["8", "Business Types"], ["Verified", "Authenticity"]].map(([v, l]) => (
-                <div key={l} className="flex flex-col">
-                  <span className="text-base sm:text-xl font-black text-white">{v}</span>
-                  <span className="text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-widest">{l}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
       <div className="container max-w-6xl py-8 sm:py-10 px-4 sm:px-6">
         <div className="flex gap-2 mb-6 sm:mb-8 overflow-x-auto no-scrollbar pb-1 -mx-4 sm:mx-0 px-4 sm:px-0">
           {filterChips.map((type) => (
-            <button key={type} className={`shrink-0 px-4 py-2 rounded-full text-xs font-bold border transition-all ${type === "All" ? "bg-indigo-600 text-white border-indigo-600" : "bg-white text-slate-600 border-slate-200 hover:border-indigo-300 hover:text-indigo-600"}`}>
+            <button key={type} className={`shrink-0 px-4 py-2 rounded-full text-xs font-bold border transition-all ${type === "All" ? "text-white border-[#1A6FD4]" : "bg-white text-slate-600 border-[#E5E5E5] hover:border-[#1A6FD4] hover:text-[#1A6FD4]"}`} style={type === "All" ? { background: '#1A6FD4', borderColor: '#1A6FD4' } : {}}>
               {type}
             </button>
           ))}
@@ -96,13 +86,13 @@ export default async function DirectoryPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {listings.map((biz) => (
-            <article key={biz.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-              <div className={`h-1.5 bg-gradient-to-r ${biz.color}`} />
+            <article key={biz.id} className="bg-white rounded-[6px] border border-[#E5E5E5] shadow-[0_2px_12px_rgba(0,0,0,0.08)] hover:shadow-[0_6px_24px_rgba(0,0,0,0.14)] hover:-translate-y-0.5 transition-all duration-200 overflow-hidden">
+              <div className={`h-1 bg-gradient-to-r ${biz.color}`} />
               <div className="p-5">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${biz.color} flex items-center justify-center text-white font-black text-base shrink-0`}>{biz.name[0]}</div>
                   {biz.verified && (
-                    <div className="flex items-center gap-1 px-2 py-1 bg-emerald-50 border border-emerald-100 rounded-full text-[10px] font-bold text-emerald-700">
+                    <div className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-bold" style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.2)', color: '#10b981' }}>
                       <CheckCircle size={10} /> Verified
                     </div>
                   )}
@@ -123,18 +113,18 @@ export default async function DirectoryPage() {
                     <span className="flex items-center gap-1"><Star size={11} className="text-amber-400 fill-amber-400" /> {biz.rating}</span>
                     <span>{biz.yearsActive}y</span>
                   </div>
-                  <button className="flex items-center gap-1 text-xs font-bold text-indigo-600 hover:gap-2 transition-all">View Details <ArrowRight size={12} /></button>
+                  <button className="flex items-center gap-1 text-xs font-bold hover:gap-2 transition-all" style={{ color: '#1A6FD4' }}>View Details <ArrowRight size={12} /></button>
                 </div>
               </div>
             </article>
           ))}
         </div>
 
-        <div className="mt-10 sm:mt-14 p-6 sm:p-10 bg-slate-900 rounded-2xl text-white text-center">
-          <Building2 size={36} className="mx-auto mb-4 text-indigo-400" />
+        <div className="mt-10 sm:mt-14 p-6 sm:p-10 rounded-[6px] text-white text-center" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
+          <Building2 size={36} className="mx-auto mb-4" style={{ color: '#C9A84C' }} />
           <h2 className="text-2xl font-black mb-2">Is Your Business Listed?</h2>
-          <p className="text-slate-400 mb-6 max-w-md mx-auto text-sm">Get discovered globally.</p>
-          <Link href="/directory/auth/signup" className="inline-flex items-center gap-2 px-7 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-sm transition-all">
+          <p className="text-white/70 mb-6 max-w-md mx-auto text-sm">Get discovered globally.</p>
+          <Link href="/directory/auth/signup" className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-sm transition-all duration-200 hover:-translate-y-0.5" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>
             <Zap size={15} /> List Your Business
           </Link>
         </div>
