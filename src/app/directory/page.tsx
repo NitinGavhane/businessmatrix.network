@@ -4,7 +4,7 @@ import { Building2, MapPin, CheckCircle, ArrowRight, Search, Star, Zap } from "l
 import { prisma } from "@/lib/db";
 
 export const metadata: Metadata = {
-  title: "Business Directory — BusinessMatrix",
+  title: "Business Directory — BusinessMatrix.Network",
   description: "Browse verified global businesses. Find manufacturers, wholesalers and service providers.",
 };
 

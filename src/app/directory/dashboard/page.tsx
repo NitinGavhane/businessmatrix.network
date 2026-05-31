@@ -144,7 +144,7 @@ export default function DashboardPage() {
             ) : (
               <>
                 <p className="text-xs text-indigo-200 leading-relaxed mb-4">Upgrade to connect directly with matches and start trading.</p>
-                <button className="mt-auto self-start px-4 py-2 bg-white text-indigo-600 rounded-lg text-xs font-bold transition-all hover:bg-indigo-50" style={{ display: 'none' }}>Upgrade Account</button>
+                <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="mt-auto self-start px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-900 rounded-lg text-xs font-bold transition-all">Upgrade to Premium</button>
               </>
             )}
           </div>

@@ -9,8 +9,8 @@ export default function HomePage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b" style={{ borderColor: 'var(--border)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={32} height={32} className="rounded-xl sm:w-9 sm:h-9" />
-            <span className="font-black text-xs sm:text-sm" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={32} height={32} className="rounded-xl sm:w-9 sm:h-9" />
+            <span className="font-black text-xs sm:text-sm" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix.Network</span>
           </Link>
           <div className="flex items-center gap-2 sm:gap-4">
             <Link href="/directory" className="text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-colors">Directory</Link>
@@ -75,7 +75,7 @@ export default function HomePage() {
       <section className="py-16 sm:py-20 px-4 sm:px-6" style={{ background: 'var(--bg-secondary)' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-3 sm:mb-4">How BusinessMatrix Works</h2>
+            <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-3 sm:mb-4">How BusinessMatrix.Network Works</h2>
             <p className="text-sm sm:text-lg text-slate-500 max-w-xl mx-auto px-4">Connect with the right business partners through intelligent matching.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
@@ -135,7 +135,7 @@ export default function HomePage() {
             <Globe size={24} className="text-white sm:w-7 sm:h-7" />
           </div>
           <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-3 sm:mb-4">Ready to Grow Your Network?</h2>
-          <p className="text-sm sm:text-lg text-slate-500 mb-6 sm:mb-8 max-w-lg mx-auto px-4">Join Existing Global business already connecting on BusinessMatrix.network</p>
+          <p className="text-sm sm:text-lg text-slate-500 mb-6 sm:mb-8 max-w-lg mx-auto px-4">Join Existing Global business already connecting on BusinessMatrix.Network</p>
           <Link href="/directory/auth/signup" className="btn-premium btn-premium-primary w-full sm:w-auto px-8 sm:px-10 py-3 sm:py-4 text-sm sm:text-base">
             Create Account <ArrowRight size={18} />
           </Link>
@@ -146,15 +146,15 @@ export default function HomePage() {
       <footer className="py-10 sm:py-12 px-4 sm:px-6 border-t" style={{ borderColor: 'var(--border)', background: 'var(--bg-card)' }}>
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <div className="flex items-center gap-2">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={28} height={28} className="rounded-lg" />
-            <span className="font-black text-xs" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix</span>
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={28} height={28} className="rounded-lg" />
+            <span className="font-black text-xs" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix.Network</span>
           </div>
           <div className="flex items-center gap-4 sm:gap-6 text-xs font-bold text-slate-500">
             <Link href="/directory">Directory</Link>
             <Link href="/directory/auth/login">Sign In</Link>
             <Link href="/directory/auth/signup">Join Now</Link>
           </div>
-          <p className="text-xs text-slate-400">&copy; 2026 BusinessMatrix. All rights reserved.</p>
+          <p className="text-xs text-slate-400">&copy; 2026 BusinessMatrix.Network. All rights reserved.</p>
         </div>
       </footer>
     </div>

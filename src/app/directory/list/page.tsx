@@ -66,7 +66,7 @@ export default function ListBusinessPage() {
             <Check size={32} style={{ color: 'var(--green)' }} />
           </div>
           <h1 className="text-3xl font-black text-slate-900 mb-3">Business Listed!</h1>
-          <p className="text-slate-500 mb-8">Your business is now live on BusinessMatrix. Start connecting with partners.</p>
+          <p className="text-slate-500 mb-8">Your business is now live on BusinessMatrix.Network. Start connecting with partners.</p>
           <button onClick={() => router.push("/directory/dashboard")} className="btn-premium btn-premium-primary">Go to Dashboard</button>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function ListBusinessPage() {
     <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6" style={{ background: 'var(--bg-primary)' }}>
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-8 sm:mb-10">
-          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg mx-auto mb-6" />
+          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg mx-auto mb-6" />
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900">List Your Business</h1>
           <p className="text-sm sm:text-base text-slate-500 mt-2">Join the global B2B network</p>
         </div>

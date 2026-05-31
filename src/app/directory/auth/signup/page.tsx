@@ -72,9 +72,9 @@ export default function SignupPage() {
       <div className="relative z-10 w-full max-w-md">
         <div className="text-center mb-8 sm:mb-10 animate-fade-in-up">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg" style={{ boxShadow: '0 4px 14px rgba(64, 96, 144, 0.3)' }} />
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg" style={{ boxShadow: '0 4px 14px rgba(64, 96, 144, 0.3)' }} />
           </Link>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Join BusinessMatrix.network</h1>
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Join BusinessMatrix.Network</h1>
         </div>
 
         <div className="card-premium p-5 sm:p-8 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>

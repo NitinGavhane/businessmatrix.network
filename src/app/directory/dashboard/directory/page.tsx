@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Eye, Lock, Crown, MapPin } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 type Profile = {
   id: string;
@@ -23,10 +24,11 @@ type MatchItem = {
 };
 
 export default function DirectoryListingPage() {
+  const { data: session } = useSession();
+  const isPremium = (session?.user as { isPremium?: boolean } | undefined)?.isPremium ?? false;
   const [suppliers, setSuppliers] = useState<MatchItem[]>([]);
   const [clients, setClients] = useState<MatchItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const isPremium = false;
   const visibleCount = 2;
 
   useEffect(() => {
@@ -131,7 +133,7 @@ export default function DirectoryListingPage() {
                   <div className="flex items-center justify-center gap-2 text-slate-500 mb-3">
                     <Lock size={14} /> <span className="text-xs font-medium">{suppliers.length - visibleCount} more suppliers locked</span>
                   </div>
-                  <button className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all" style={{ background: 'linear-gradient(135deg, var(--brand-accent) 0%, var(--gold) 100%)' }}>Unlock All Contacts</button>
+                  <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all" style={{ background: 'linear-gradient(135deg, var(--brand-accent) 0%, var(--gold) 100%)' }}>Unlock All Contacts</button>
                 </div>
               )}
             </div>

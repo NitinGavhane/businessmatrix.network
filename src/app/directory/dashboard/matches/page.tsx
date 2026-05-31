@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Handshake, Zap, Sparkles, MapPin, CheckCircle2, RefreshCw } from "lucide-react";
+import { useSession } from "next-auth/react";
 
 type MatchCard = {
   id: string;
@@ -15,6 +16,8 @@ type MatchCard = {
 };
 
 export default function MatchesPage() {
+  const { data: session } = useSession();
+  const isPremium = (session?.user as { isPremium?: boolean } | undefined)?.isPremium;
   const [matches, setMatches] = useState<MatchCard[]>([]);
   const [loading, setLoading] = useState(true);
   const [matchmaking, setMatchmaking] = useState(false);
@@ -129,19 +132,21 @@ export default function MatchesPage() {
           </div>
         ))}
 
-        <div className="bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-6 sm:p-8">
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 to-slate-900/20" />
-          <div className="relative z-10">
-            <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-amber-500/20 mx-auto mb-6">
-              <Zap size={32} />
+        {isPremium === false && (
+          <div className="bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-6 sm:p-8">
+            <div className="absolute inset-0 bg-gradient-to-b from-indigo-900/20 to-slate-900/20" />
+            <div className="relative z-10">
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-amber-500/20 mx-auto mb-6">
+                <Zap size={32} />
+              </div>
+              <h3 className="font-black text-white text-xl mb-3">Unlock More Matches</h3>
+              <p className="text-xs text-slate-400 leading-relaxed mb-6">
+                Upgrade to Premium to see all your AI matches and get direct chat access.
+              </p>
+              <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-900 rounded-xl text-sm font-black transition-all">Upgrade to Premium</button>
             </div>
-            <h3 className="font-black text-white text-xl mb-3">Unlock More Matches</h3>
-            <p className="text-xs text-slate-400 leading-relaxed mb-6">
-              Upgrade to Premium to see all your AI matches and get direct chat access.
-            </p>
-            <button className="w-full py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-900 rounded-xl text-sm font-black transition-all">Upgrade to Premium</button>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

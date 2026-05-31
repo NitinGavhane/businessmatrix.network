@@ -18,6 +18,8 @@ const navLinks = [
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { data: session } = useSession();
+  const isPremium = (session?.user as { isPremium?: boolean } | undefined)?.isPremium;
 
   useEffect(() => {
     import("next-auth/react").then(({ getSession }) => {
@@ -40,8 +42,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <aside className="w-64 bg-white border-r hidden md:flex flex-col fixed top-0 bottom-0 left-0 z-40" style={{ borderColor: 'var(--border)' }}>
         <div className="p-6">
           <Link href="/directory/dashboard" className="flex items-center gap-3 mb-8">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix" width={44} height={44} className="rounded-xl shrink-0 shadow-lg" style={{ boxShadow: '0 4px 14px rgba(64, 96, 144, 0.3)' }} />
-            <span className="font-black text-xs leading-tight" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix.network</span>
+            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={44} height={44} className="rounded-xl shrink-0 shadow-lg" style={{ boxShadow: '0 4px 14px rgba(64, 96, 144, 0.3)' }} />
+            <span className="font-black text-xs leading-tight" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix.Network</span>
           </Link>
 
           <nav className="space-y-1.5">
@@ -62,17 +64,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
 
         <div className="mt-auto p-6 border-t" style={{ borderColor: 'var(--border)' }}>
-          <div style={{ display: 'none' }}>
+          {isPremium === false && (
             <div className="p-4 rounded-xl text-white mb-4 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
               <div className="absolute top-0 right-0 p-3 opacity-10"><Crown size={48} /></div>
               <ShieldCheck size={20} className="mb-2" style={{ color: 'var(--gold)' }} />
               <h3 className="text-sm font-black mb-1">Upgrade to Premium</h3>
               <p className="text-[10px] text-slate-300 leading-relaxed mb-3">Unlock direct chat and AI matchmaking.</p>
-              <button className="w-full py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5" style={{ background: 'var(--brand-primary)', color: 'white' }}>
+              <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5" style={{ background: 'var(--brand-primary)', color: 'white' }}>
                 <Zap size={12} /> Upgrade Now
               </button>
             </div>
-          </div>
+          )}
           <SignOutButton />
         </div>
       </aside>
