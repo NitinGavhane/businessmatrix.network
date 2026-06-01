@@ -171,7 +171,7 @@ export default function HomePage() {
           <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 flex items-center justify-between shrink-0">
             <Link href="/" className="flex flex-col items-center gap-1">
               <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-16 sm:h-20 w-auto p-1" />
-              <span className="text-white text-[4px] sm:text-[4px] tracking-[0.15em] max-w-16 sm:max-w-20 text-center leading-tight">BUSINESSMATRIX.NETWORK</span>
+              <span className="text-white text-[7px] sm:text-[8px] tracking-[0.15em] text-center leading-tight">BUSINESSMATRIX.NETWORK</span>
             </Link>
             <div className="hidden md:flex items-center gap-4">
               <Link href="/directory" className="text-sm font-bold text-white/80 hover:text-white transition-colors">Directory</Link>
@@ -451,7 +451,7 @@ export default function HomePage() {
         <footer style={{ background: "#F0F0F0", borderTop: "4px solid #C9A84C" }}>
           <div className="max-w-6xl mx-auto px-6 sm:px-8 py-12">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 items-start">
-              <div className="flex flex-col items-center sm:items-start gap-2">
+              <div className="flex flex-col items-center gap-2">
                 <Image
                   src="/businessmatrix-logo-crop.png"
                   alt="BusinessMatrix.Network"
@@ -459,7 +459,7 @@ export default function HomePage() {
                   height={100}
                   className="h-20 sm:h-24 w-auto"
                 />
-                <span className="text-slate-500 text-[4px] sm:text-[5px] tracking-[0.18em] font-semibold max-w-20 sm:max-w-24 text-center leading-tight">BUSINESSMATRIX.NETWORK</span>
+                <span className="text-slate-500 text-[7px] sm:text-[8px] tracking-[0.18em] font-semibold text-center leading-tight">BUSINESSMATRIX.NETWORK</span>
               </div>
               <div className="text-center sm:text-left">
                 <h4 className="text-[11px] font-black text-slate-800 uppercase tracking-[0.12em] mb-3">Contact</h4>

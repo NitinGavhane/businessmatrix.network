@@ -57,7 +57,7 @@ export default async function DirectoryPage() {
         <div className="w-full px-6 sm:px-10 lg:px-16 py-6 flex items-center justify-between">
           <Link href="/" className="flex flex-col items-center gap-1">
               <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-16 sm:h-20 w-auto p-1" />
-              <span className="text-white text-[4px] sm:text-[4px] tracking-[0.15em] max-w-16 sm:max-w-20 text-center leading-tight">BUSINESSMATRIX.NETWORK</span>
+              <span className="text-white text-[7px] sm:text-[8px] tracking-[0.15em] text-center leading-tight">BUSINESSMATRIX.NETWORK</span>
           </Link>
           <Link href="/" className="text-sm font-bold text-white/80 hover:text-white transition-colors px-4 py-2 rounded-full border border-white/30 hover:border-white/60 transition-all">&larr; Back</Link>
         </div>
