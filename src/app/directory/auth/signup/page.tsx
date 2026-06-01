@@ -86,7 +86,7 @@ export default function SignupPage() {
       <div className="relative z-10 w-full max-w-md">
         <div className="text-center mb-8 sm:mb-10 animate-fade-in-up">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={560} height={150} className="h-32 sm:h-40 w-auto" />
+            <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={560} height={150} className="h-36 sm:h-40 w-auto" />
           </Link>
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Create an Account</h1>
           <p className="text-sm sm:text-base text-slate-500 mt-2">Join the network</p>

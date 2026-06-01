@@ -173,7 +173,7 @@ export default function OnboardingPage() {
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12" style={{ background: 'var(--bg-primary)' }}>
       <div className="w-full max-w-2xl">
         <div className="text-center mb-8 sm:mb-10">
-          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg mx-auto mb-6" />
+          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={64} height={64} className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl shadow-lg mx-auto mb-6" />
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Complete Your Profile</h1>
           <p className="text-sm sm:text-base text-slate-500 mt-2">Set up your business to start connecting</p>
         </div>

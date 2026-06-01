@@ -315,13 +315,13 @@ export default function AdminUsersPage() {
                           setPickerUserId(pickerUserId === user.id ? null : user.id);
                         }
                       }}
-                      className={`relative w-10 h-5 sm:w-11 sm:h-6 rounded-full transition-all duration-200 ${
+                      className={`relative w-12 h-6 sm:w-11 sm:h-6 rounded-full transition-all duration-200 ${
                         user.isPremium ? "bg-amber-400" : "bg-slate-200"
                       }`}
                     >
                       <span
-                        className={`absolute top-0.5 left-0.5 w-4 h-4 sm:w-5 sm:h-5 bg-white rounded-full shadow-sm transition-transform duration-200 ${
-                          user.isPremium ? "translate-x-[18px] sm:translate-x-5" : "translate-x-0"
+                        className={`absolute top-0.5 left-0.5 w-5 h-5 sm:w-5 sm:h-5 bg-white rounded-full shadow-sm transition-transform duration-200 ${
+                          user.isPremium ? "translate-x-[22px] sm:translate-x-5" : "translate-x-0"
                         }`}
                       />
                     </button>

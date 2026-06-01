@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Plus, Building2, Handshake, Network, ArrowRight, Sparkles, Edit3, Save, X, ShoppingCart, Package, User } from "lucide-react";
+import { Plus, Building2, Handshake, Network, ArrowRight, Sparkles, Edit3, Save, X, ShoppingCart, Package } from "lucide-react";
 import Link from "next/link";
 
 type Requirement = {
@@ -36,7 +36,7 @@ type DashboardData = {
 export default function DashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [editMode, setEditMode] = useState(false);
+  const [editingSection, setEditingSection] = useState<'buying' | 'selling' | null>(null);
   const [buyingItems, setBuyingItems] = useState<string[]>([]);
   const [sellingItems, setSellingItems] = useState<string[]>([]);
   const [newBuying, setNewBuying] = useState("");
@@ -63,7 +63,7 @@ export default function DashboardPage() {
         sellingProducts: sellingItems,
       }),
     });
-    setEditMode(false);
+    setEditingSection(null);
   };
 
   const addBuying = () => {
@@ -105,9 +105,6 @@ export default function DashboardPage() {
             Welcome{data?.user?.name ? ` Back, ${data.user.name}` : " Back"}. Here's Your Business at a Glance.
           </p>
         </div>
-        <Link href="/directory/dashboard/profile" className="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-100 hover:bg-slate-200 transition-all text-slate-500 hover:text-slate-700 shrink-0 self-start sm:self-auto">
-          <User size={18} />
-        </Link>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -151,91 +148,89 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="card-premium overflow-hidden animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            <div className={`grid ${editingSection ? 'grid-cols-1' : 'grid-cols-2'} gap-6`}>
+        <div className={`card-premium overflow-hidden animate-fade-in-up ${editingSection === 'selling' ? 'hidden' : ''}`} style={{ animationDelay: '0.4s' }}>
           <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
-            <div className="flex items-center gap-2">
-              <ShoppingCart size={16} style={{ color: 'var(--brand-primary)' }} />
-              <h2 className="text-lg font-black text-slate-900">Actively Buying</h2>
+            <div className="flex items-center gap-3">
+              <ShoppingCart size={22} style={{ color: 'var(--brand-primary)' }} />
+              <h2 className="text-sm sm:text-lg font-black text-slate-900">Actively Buying</h2>
             </div>
-            <span className="text-xs font-bold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full">{buyingItems.length} items</span>
           </div>
           <div className="p-5">
-            {editMode ? (
+            {editingSection === 'buying' ? (
               <div className="space-y-3">
                 {buyingItems.map((item, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full" style={{ background: 'var(--brand-primary)' }} />
-                    <input value={item} onChange={(e) => { const items = [...buyingItems]; items[i] = e.target.value; setBuyingItems(items); }} className="flex-1 input-premium py-2 text-sm" />
-                    <button onClick={() => removeBuying(i)} className="text-red-400 hover:text-red-600"><X size={14} /></button>
+                    <input value={item} onChange={(e) => { const items = [...buyingItems]; items[i] = e.target.value; setBuyingItems(items); }} className="flex-1 input-premium py-2.5 text-sm rounded-xl border border-slate-200 px-3" />
+                    <button onClick={() => removeBuying(i)} className="text-red-400 hover:text-red-600 p-1.5 rounded-lg hover:bg-red-50 transition-colors"><X size={16} /></button>
                   </div>
                 ))}
-                <div className="flex gap-2">
-                  <input value={newBuying} onChange={(e) => setNewBuying(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && addBuying()} placeholder="Add product..." className="flex-1 input-premium py-2 text-sm" />
-                  <button onClick={addBuying} className="btn-premium btn-premium-primary py-2 text-xs">+ Add</button>
+                <div className="flex gap-2 pt-1">
+                  <input value={newBuying} onChange={(e) => setNewBuying(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && addBuying()} placeholder="Add product..." className="flex-1 input-premium py-2.5 text-sm rounded-xl border border-slate-200 px-3" />
+                  <button onClick={addBuying} className="btn-premium btn-premium-primary p-2.5 rounded-xl"><Plus size={18} /></button>
+                  <button onClick={handleSave} className="p-2.5 rounded-xl text-white transition-colors" style={{ background: '#22C55E' }}><Save size={18} /></button>
                 </div>
               </div>
             ) : (
-              <div className="space-y-3">
-                {buyingItems.map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full" style={{ background: 'var(--brand-primary)' }} />
-                    <span className="text-sm font-medium text-slate-700">{item}</span>
-                  </div>
-                ))}
-                {buyingItems.length === 0 && <p className="text-sm text-slate-400">No items listed.</p>}
-              </div>
-            )}
-            {!editMode && (
-              <div className="mt-4 flex justify-end">
-                <button onClick={() => setEditMode(true)} className="text-xs font-medium flex items-center gap-1" style={{ color: '#1A6FD4' }}>
-                  <Edit3 size={14} /> Edit
-                </button>
-              </div>
+              <>
+                <div className="space-y-3">
+                  {buyingItems.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full" style={{ background: 'var(--brand-primary)' }} />
+                      <span className="text-sm font-medium text-slate-700">{item}</span>
+                    </div>
+                  ))}
+                  {buyingItems.length === 0 && <p className="text-sm text-slate-400">No items listed.</p>}
+                </div>
+                <div className="mt-4 flex justify-end">
+                  <button onClick={() => setEditingSection('buying')} className="p-2 rounded-lg hover:bg-slate-100 transition-colors" style={{ color: '#1A6FD4' }}>
+                    <Edit3 size={18} />
+                  </button>
+                </div>
+              </>
             )}
           </div>
         </div>
 
-        <div className="card-premium overflow-hidden animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+        <div className={`card-premium overflow-hidden animate-fade-in-up ${editingSection === 'buying' ? 'hidden' : ''}`} style={{ animationDelay: '0.5s' }}>
           <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
-            <div className="flex items-center gap-2">
-              <Package size={16} style={{ color: 'var(--green)' }} />
-              <h2 className="text-lg font-black text-slate-900">Actively Selling</h2>
+            <div className="flex items-center gap-3">
+              <Package size={22} style={{ color: 'var(--green)' }} />
+              <h2 className="text-sm sm:text-lg font-black text-slate-900">Actively Selling</h2>
             </div>
-            <span className="text-xs font-bold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full">{sellingItems.length} items</span>
           </div>
           <div className="p-5">
-            {editMode ? (
+            {editingSection === 'selling' ? (
               <div className="space-y-3">
                 {sellingItems.map((item, i) => (
                   <div key={i} className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full" style={{ background: 'var(--green)' }} />
-                    <input value={item} onChange={(e) => { const items = [...sellingItems]; items[i] = e.target.value; setSellingItems(items); }} className="flex-1 input-premium py-2 text-sm" />
-                    <button onClick={() => removeSelling(i)} className="text-red-400 hover:text-red-600"><X size={14} /></button>
+                    <input value={item} onChange={(e) => { const items = [...sellingItems]; items[i] = e.target.value; setSellingItems(items); }} className="flex-1 input-premium py-2.5 text-sm rounded-xl border border-slate-200 px-3" />
+                    <button onClick={() => removeSelling(i)} className="text-red-400 hover:text-red-600 p-1.5 rounded-lg hover:bg-red-50 transition-colors"><X size={16} /></button>
                   </div>
                 ))}
-                <div className="flex gap-2">
-                  <input value={newSelling} onChange={(e) => setNewSelling(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && addSelling()} placeholder="Add product..." className="flex-1 input-premium py-2 text-sm" />
-                  <button onClick={addSelling} className="btn-premium btn-premium-primary py-2 text-xs">+ Add</button>
+                <div className="flex gap-2 pt-1">
+                  <input value={newSelling} onChange={(e) => setNewSelling(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && addSelling()} placeholder="Add product..." className="flex-1 input-premium py-2.5 text-sm rounded-xl border border-slate-200 px-3" />
+                  <button onClick={addSelling} className="btn-premium btn-premium-primary p-2.5 rounded-xl"><Plus size={18} /></button>
+                  <button onClick={handleSave} className="p-2.5 rounded-xl text-white transition-colors" style={{ background: '#22C55E' }}><Save size={18} /></button>
                 </div>
               </div>
             ) : (
-              <div className="space-y-3">
-                {sellingItems.map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <span className="w-2 h-2 rounded-full" style={{ background: 'var(--green)' }} />
-                    <span className="text-sm font-medium text-slate-700">{item}</span>
-                  </div>
-                ))}
-                {sellingItems.length === 0 && <p className="text-sm text-slate-400">No items listed.</p>}
-              </div>
-            )}
-            {!editMode && (
-              <div className="mt-4 flex justify-end">
-                <button onClick={() => setEditMode(true)} className="text-xs font-medium flex items-center gap-1" style={{ color: '#1A6FD4' }}>
-                  <Edit3 size={14} /> Edit
-                </button>
-              </div>
+              <>
+                <div className="space-y-3">
+                  {sellingItems.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full" style={{ background: 'var(--green)' }} />
+                      <span className="text-sm font-medium text-slate-700">{item}</span>
+                    </div>
+                  ))}
+                  {sellingItems.length === 0 && <p className="text-sm text-slate-400">No items listed.</p>}
+                </div>
+                <div className="mt-4 flex justify-end">
+                  <button onClick={() => setEditingSection('selling')} className="p-2 rounded-lg hover:bg-slate-100 transition-colors" style={{ color: '#1A6FD4' }}>
+                    <Edit3 size={18} />
+                  </button>
+                </div>
+              </>
             )}
           </div>
         </div>
@@ -247,13 +242,13 @@ export default function DashboardPage() {
             <h2 className="text-lg font-black text-slate-900">Active Requirements</h2>
             <p className="text-xs text-slate-500 mt-1">Your Give & Ask listings</p>
           </div>
-          <Link href="/directory/dashboard/requirements/new" className="btn-premium btn-premium-primary py-2.5 px-4 text-xs">
-            <Plus size={14} /> Add New
+          <Link href="/directory/dashboard/requirements/new" className="btn-premium btn-premium-primary p-2 sm:py-2.5 sm:px-4 text-xs" title="Add New">
+            <Plus size={16} /><span className="hidden sm:inline sm:ml-1.5">Add New</span>
           </Link>
         </div>
         <div className="p-5">
           {data?.activeRequirements && data.activeRequirements.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-2 gap-6">
               <div>
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-2 h-2 rounded-full" style={{ background: 'var(--brand-primary)' }} />

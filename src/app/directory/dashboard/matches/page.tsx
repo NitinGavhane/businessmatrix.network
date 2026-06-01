@@ -125,9 +125,9 @@ export default function MatchesPage() {
                 <p className="text-xs text-violet-600 font-bold bg-violet-50 p-2.5 rounded-lg border border-violet-100">{match.reasoning}</p>
               </div>
 
-              <button className="mt-auto w-full py-3 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5" style={{ background: '#1A6FD4' }}>
-                <Handshake size={14} /> Connect & Chat
-              </button>
+              <a href="https://nas.com/acinnovationsandventures/events/1-to-1" target="_blank" rel="noopener noreferrer" className="mt-auto w-full py-3 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5" style={{ background: '#1A6FD4' }}>
+                <Handshake size={14} /> Connect
+              </a>
             </div>
           </div>
         ))}

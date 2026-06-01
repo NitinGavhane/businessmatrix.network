@@ -38,14 +38,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }
 
   return (
-    <div className="min-h-screen flex pt-[72px]" style={{ background: 'var(--bg-primary)' }}>
+    <div className="min-h-screen flex pt-14 md:pt-[72px]" style={{ background: 'var(--bg-primary)' }}>
       <aside className="w-64 bg-white border-r hidden md:flex flex-col fixed top-0 bottom-0 left-0 z-40" style={{ borderColor: 'var(--border)' }}>
-        <div className="p-6">
-          <Link href="/directory/dashboard" className="flex items-center gap-3 mb-8">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={44} height={44} className="rounded-xl shrink-0 shadow-lg" style={{ boxShadow: '0 4px 14px rgba(64, 96, 144, 0.3)' }} />
-            <span className="font-black text-xs leading-tight" style={{ color: 'var(--brand-primary)' }}>BusinessMatrix.Network</span>
+        <div>
+          <Link href="/directory/dashboard" className="flex items-center justify-center p-2">
+            <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={160} height={48} className="h-56 w-auto" />
           </Link>
-
+          <div className="px-6 pb-6">
           <nav className="space-y-1.5">
             {navLinks.map((link) => {
               const active = isActive(link.href);
@@ -61,6 +60,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               );
             })}
           </nav>
+        </div>
         </div>
 
         <div className="mt-auto p-6 border-t" style={{ borderColor: 'var(--border)' }}>
@@ -79,7 +79,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </aside>
 
-      <main className="flex-1 md:ml-64 p-4 sm:p-6 md:p-10 pt-20 md:pt-24 pb-24 md:pb-10">
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b flex items-center gap-3 px-4" style={{ borderColor: 'var(--border)', height: 56 }}>
+        <Link href="/directory/dashboard" className="flex items-center gap-2">
+          <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={160} height={48} className="h-14 w-auto" />
+        </Link>
+      </div>
+
+      <main className="flex-1 md:ml-64 p-4 sm:p-6 md:p-10 pb-24 md:pb-10">
         {children}
       </main>
 
