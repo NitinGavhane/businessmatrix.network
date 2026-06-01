@@ -56,7 +56,7 @@ export default async function DirectoryPage() {
       <section className="min-h-dvh flex flex-col" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
         <div className="w-full px-6 sm:px-10 lg:px-16 py-6 flex items-center justify-between">
           <Link href="/" className="flex flex-col items-center gap-1">
-              <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-16 sm:h-20 w-auto p-1" />
+              <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-20 sm:h-24 w-auto p-1" />
               <span className="text-white text-[9px] sm:text-[8px] tracking-[0.15em]">BUSINESSMATRIX.NETWORK</span>
           </Link>
           <Link href="/" className="text-sm font-bold text-white/80 hover:text-white transition-colors px-4 py-2 rounded-full border border-white/30 hover:border-white/60 transition-all">&larr; Back</Link>

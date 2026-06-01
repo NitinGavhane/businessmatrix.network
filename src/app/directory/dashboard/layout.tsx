@@ -79,13 +79,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
       </aside>
 
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b flex items-center gap-3 px-4" style={{ borderColor: 'var(--border)', height: 56 }}>
-        <Link href="/directory/dashboard" className="flex items-center gap-2">
-          <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={160} height={48} className="h-14 w-auto" />
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white flex items-center justify-center px-4" style={{ height: 100 }}>
+        <Link href="/directory/dashboard">
+          <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={440} height={140} className="h-40 w-auto" />
         </Link>
       </div>
 
-      <main className="flex-1 md:ml-64 p-4 sm:p-6 md:p-10 pb-24 md:pb-10">
+      <main className="flex-1 md:ml-64 p-4 sm:p-6 md:p-10 pb-24 md:pb-10 pt-[100px] md:pt-10">
         {children}
       </main>
 

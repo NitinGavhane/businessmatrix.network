@@ -108,7 +108,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="lg:col-span-2 grid grid-cols-2 gap-6">
           <div className="card-premium p-5 flex flex-col animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'rgba(64, 96, 144, 0.1)' }}>

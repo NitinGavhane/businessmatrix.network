@@ -77,7 +77,7 @@ export default function ListBusinessPage() {
     <div className="min-h-screen py-16 sm:py-20 px-4 sm:px-6" style={{ background: 'var(--bg-primary)' }}>
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-8 sm:mb-10">
-          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={64} height={64} className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl shadow-lg mx-auto mb-6" />
+          <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={80} height={80} className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl shadow-lg mx-auto mb-6" />
           <h1 className="text-2xl sm:text-3xl font-black text-slate-900">List Your Business</h1>
           <p className="text-sm sm:text-base text-slate-500 mt-2">Join the global B2B network</p>
         </div>

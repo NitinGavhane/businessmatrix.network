@@ -170,7 +170,7 @@ export default function HomePage() {
 
           <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 flex items-center justify-between shrink-0">
             <Link href="/" className="flex flex-col items-center gap-1">
-              <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-16 sm:h-20 w-auto p-1" />
+              <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-20 sm:h-24 w-auto p-1" />
               <span className="text-white text-[9px] sm:text-[8px] tracking-[0.15em]">BUSINESSMATRIX.NETWORK</span>
             </Link>
             <div className="hidden md:flex items-center gap-4">

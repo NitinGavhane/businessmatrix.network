@@ -17,7 +17,7 @@ export default function AdminDashboardPage() {
   if (loading) {
     return <div className="animate-pulse space-y-6">
       <div className="h-8 bg-slate-200 rounded w-48" />
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[1, 2, 3, 4].map((i) => <div key={i} className="h-28 bg-slate-100 rounded-2xl" />)}
       </div>
     </div>;
@@ -33,7 +33,7 @@ export default function AdminDashboardPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-6 sm:space-y-8">
       <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Admin Dashboard</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card) => (
           <div key={card.label} className="card-premium p-5">
             <div className="flex items-center gap-3 mb-4">

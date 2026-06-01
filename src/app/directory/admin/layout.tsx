@@ -61,13 +61,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <SignOutButton />
         </div>
       </aside>
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white border-b flex items-center px-4" style={{ borderColor: 'var(--border)', height: 56 }}>
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white flex items-center justify-center px-4" style={{ height: 100 }}>
         <Link href="/directory/admin">
-          <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={160} height={48} className="h-14 w-auto" />
+          <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={440} height={140} className="h-40 w-auto" />
         </Link>
       </div>
 
-      <main className="flex-1 md:ml-64 p-4 sm:p-6 md:p-10 pb-24 md:pb-10">{children}</main>
+      <main className="flex-1 md:ml-64 p-4 sm:p-6 md:p-10 pb-24 md:pb-10 pt-[100px] md:pt-10">{children}</main>
 
       {/* Mobile Bottom Nav */}
       <nav className="mobile-nav">
