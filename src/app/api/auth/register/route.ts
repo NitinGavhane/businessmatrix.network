@@ -31,8 +31,11 @@ export async function POST(req: Request) {
       success: true,
       user: { id: user.id, name: user.name, email: user.email },
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Registration error:", error);
+    if (error?.code?.startsWith?.("P")) {
+      return NextResponse.json({ error: "Database connection error. Please try again later." }, { status: 503 });
+    }
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

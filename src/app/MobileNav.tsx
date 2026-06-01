@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export default function MobileNav() {
+export default function MobileNav({ isDirectory }: { isDirectory?: boolean }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -17,9 +17,14 @@ export default function MobileNav() {
 
   const links = [
     {
-      href: "/directory",
-      label: "Directory",
-      svg: (
+      href: isDirectory ? "/" : "/directory",
+      label: isDirectory ? "Home" : "Directory",
+      svg: isDirectory ? (
+        <svg strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      ) : (
         <svg strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" stroke="currentColor" fill="none" viewBox="0 0 24 24">
           <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
         </svg>

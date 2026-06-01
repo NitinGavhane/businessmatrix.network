@@ -38,11 +38,17 @@ export default function SignupPage() {
     }
 
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 30000);
+
       const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
+        signal: controller.signal,
       });
+
+      clearTimeout(timeout);
 
       const data = await res.json();
 
@@ -52,13 +58,25 @@ export default function SignupPage() {
         return;
       }
 
-      await signIn("credentials", {
+      const result = await signIn("credentials", {
         email,
         password,
-        callbackUrl: "/directory/onboarding",
+        redirect: false,
       });
-    } catch {
-      setError("Something went wrong. Please try again.");
+
+      if (result?.error) {
+        setError(result.error);
+        setLoading(false);
+        return;
+      }
+
+      router.push("/directory/onboarding");
+    } catch (err: any) {
+      if (err?.name === "AbortError") {
+        setError("Request timed out. Database may be unreachable.");
+      } else {
+        setError(err?.message || "Something went wrong. Please try again.");
+      }
       setLoading(false);
     }
   };
@@ -86,21 +104,21 @@ export default function SignupPage() {
             <div>
               <label className="label-premium">Full Name</label>
               <div className="relative">
-                <User size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                {!name && <User size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />}
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="input-premium pl-11" required />
               </div>
             </div>
             <div>
               <label className="label-premium">Email Address</label>
               <div className="relative">
-                <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                {!email && <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />}
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="input-premium pl-11" required />
               </div>
             </div>
             <div>
               <label className="label-premium">Password</label>
               <div className="relative">
-                <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                {!password && <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />}
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input-premium pl-11" required minLength={8} />
               </div>
               {password && (
@@ -116,7 +134,7 @@ export default function SignupPage() {
             <div>
               <label className="label-premium">Confirm Password</label>
               <div className="relative">
-                <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                {!confirmPassword && <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />}
                 <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="input-premium pl-11" required />
               </div>
               {confirmPassword && !passwordsMatch && (

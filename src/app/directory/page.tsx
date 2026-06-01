@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Building2, MapPin, CheckCircle, ArrowRight, Search, Star, Zap } from "lucide-react";
+import { Building2, MapPin, CheckCircle, Search, Star, Zap } from "lucide-react";
 import { prisma } from "@/lib/db";
+import SiteHeader from "@/components/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Business Directory — BusinessMatrix.Network",
@@ -50,6 +51,7 @@ export default async function DirectoryPage() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
+      <SiteHeader />
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
         <div className="container max-w-6xl">
 
@@ -108,12 +110,9 @@ export default async function DirectoryPage() {
                     <span key={tag} className="px-2 py-0.5 bg-slate-100 rounded-full text-[10px] font-semibold text-slate-500">{tag}</span>
                   ))}
                 </div>
-                <div className="flex items-center justify-between pt-3 border-t border-slate-50">
-                  <div className="flex items-center gap-3 text-xs text-slate-400">
-                    <span className="flex items-center gap-1"><Star size={11} className="text-amber-400 fill-amber-400" /> {biz.rating}</span>
-                    <span>{biz.yearsActive}y</span>
-                  </div>
-                  <button className="flex items-center gap-1 text-xs font-bold hover:gap-2 transition-all" style={{ color: '#1A6FD4' }}>View Details <ArrowRight size={12} /></button>
+                <div className="flex items-center gap-3 text-xs text-slate-400 pt-3 border-t border-slate-50">
+                  <span className="flex items-center gap-1"><Star size={11} className="text-amber-400 fill-amber-400" /> {biz.rating}</span>
+                  <span>{biz.yearsActive}y</span>
                 </div>
               </div>
             </article>

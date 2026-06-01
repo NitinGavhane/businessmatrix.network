@@ -26,7 +26,7 @@ export default function LoginPage() {
     });
 
     if (result?.error) {
-      setError("Invalid email or password");
+      setError(result.error);
       setLoading(false);
       return;
     }
@@ -65,7 +65,7 @@ export default function LoginPage() {
               <div>
                 <label className="label-premium">Email Address</label>
                 <div className="relative">
-                  <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                  {!email && <Mail size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />}
                   <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="input-premium pl-11" required />
                 </div>
               </div>
@@ -75,7 +75,7 @@ export default function LoginPage() {
                   <Link href="#" className="text-xs font-bold" style={{ color: 'var(--brand-primary)' }}>Forgot?</Link>
                 </div>
                 <div className="relative">
-                  <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+                  {!password && <Lock size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />}
                   <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input-premium pl-11" required />
                 </div>
               </div>
