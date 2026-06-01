@@ -5,6 +5,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { Playfair_Display, Open_Sans } from "next/font/google";
 import MobileNav from "./MobileNav";
+import PhoneInput from "@/components/PhoneInput";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -153,10 +154,9 @@ export default function HomePage() {
 
         {/* ═══ HERO ═══ */}
         <section
-          className="relative overflow-hidden text-center lg:min-h-dvh lg:flex lg:flex-col lg:items-center lg:justify-center"
+          className="relative overflow-hidden text-center min-h-dvh flex flex-col items-center justify-center"
           style={{
             background: "linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)",
-            paddingBottom: "80px",
           }}
         >
           <div
@@ -168,7 +168,7 @@ export default function HomePage() {
             }}
           />
 
-          <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 flex items-center justify-between">
+          <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 flex items-center justify-between shrink-0">
             <Link href="/" className="flex flex-col items-center gap-1">
               <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-14 sm:h-20 w-auto p-1" />
               <span className="text-white text-[6px] sm:text-[8px] tracking-[0.15em]">BUSINESSMATRIX.NETWORK</span>
@@ -181,7 +181,7 @@ export default function HomePage() {
             <MobileNav />
           </div>
 
-          <div className="relative z-20 w-full max-w-[820px] mx-auto px-10 max-md:px-6 lg:py-12">
+          <div className="relative z-20 w-full max-w-[820px] mx-auto px-10 max-md:px-6 flex-1 flex flex-col items-center justify-center -mt-6 sm:-mt-8">
             <h1
               className="font-[var(--font-display)] font-extrabold leading-[1.12] tracking-tight mb-7 text-white"
               style={{ fontSize: "clamp(40px, 6vw, 76px)" }}
@@ -397,27 +397,7 @@ export default function HomePage() {
                 >
                   Phone
                 </label>
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-[14px] text-[#666666] pointer-events-none select-none">
-                    <svg
-                      viewBox="0 0 24 24"
-                      style={{ width: 16, height: 16, stroke: "currentColor", fill: "none", strokeWidth: 1.5 }}
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <line x1="2" y1="12" x2="22" y2="12" />
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                    </svg>
-                    ▾
-                  </span>
-                  <input
-                    type="tel"
-                    id="ph"
-                    name="phone"
-                    placeholder="Phone"
-                    className="w-full bg-white border border-[#CCCCCC] rounded-[4px] px-3.5 py-3 text-[15px] text-[#333333] outline-none transition-[border-color,box-shadow] duration-200 placeholder:text-[#AAAAAA] focus:border-[#1A6FD4] focus:shadow-[0_0_0_3px_rgba(26,111,212,0.12)]"
-                    style={{ paddingLeft: 58 }}
-                  />
-                </div>
+                <PhoneInput />
               </div>
             </div>
 
