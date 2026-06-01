@@ -41,18 +41,17 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 bg-white">
-
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8 sm:mb-10">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12" style={{ background: '#FFFFFF' }}>
+      <div className="relative z-10 w-full max-w-md">
+        <div className="text-center mb-8 sm:mb-10 animate-fade-in-up">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={200} height={56} className="h-auto" />
+            <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={560} height={150} className="h-32 sm:h-40 w-auto" />
           </Link>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-900 mb-3 tracking-tight">Welcome Back</h1>
-          <p className="text-sm sm:text-base text-slate-500">Sign in to BusinessMatrix.Network</p>
+          <p className="text-sm sm:text-base text-slate-500">Sign in to your account</p>
         </div>
 
-        <div className="card-premium">
+        <div className="card-premium animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           <div className="p-5 sm:p-8">
             {error && (
               <div className="mb-6 p-4 rounded-xl text-xs font-bold text-center border" style={{ background: 'var(--red-light)', borderColor: 'var(--red)', color: 'var(--red)' }}>
@@ -87,9 +86,9 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <p className="text-center text-sm text-slate-500 mt-8 font-medium">
+        <p className="text-center text-sm text-slate-500 mt-8 font-medium animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           Don't have an account?{" "}
-          <Link href="/directory/auth/signup" className="font-bold" style={{ color: '#C9A84C' }}>Create Account</Link>
+          <Link href="/directory/auth/signup" className="font-bold" style={{ color: '#1A6FD4' }}>Create Account</Link>
         </p>
       </div>
     </div>

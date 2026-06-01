@@ -82,17 +82,17 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 bg-white">
-
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8 sm:mb-10">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12" style={{ background: '#FFFFFF' }}>
+      <div className="relative z-10 w-full max-w-md">
+        <div className="text-center mb-8 sm:mb-10 animate-fade-in-up">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={200} height={56} className="h-auto" />
+            <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={560} height={150} className="h-32 sm:h-40 w-auto" />
           </Link>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Join BusinessMatrix.Network</h1>
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Create an Account</h1>
+          <p className="text-sm sm:text-base text-slate-500 mt-2">Join the network</p>
         </div>
 
-        <div className="bg-white rounded-[6px] border border-[#E5E5E5] p-5 sm:p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
+        <div className="bg-white rounded-[6px] border border-[#E5E5E5] p-5 sm:p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)] animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           {error && (
             <div className="mb-6 p-4 rounded-xl text-xs font-bold text-center" style={{ background: 'var(--red-light)', border: '1px solid var(--red)', color: 'var(--red)' }}>
               {error}
@@ -149,7 +149,7 @@ export default function SignupPage() {
         </div>
 
         <p className="text-center text-sm text-slate-500 mt-8 font-medium">
-          Already have an account? <Link href="/directory/auth/login" className="font-bold hover:underline" style={{ color: '#C9A84C' }}>Sign In</Link>
+          Already have an account? <Link href="/directory/auth/login" className="font-bold hover:underline" style={{ color: '#1A6FD4' }}>Sign In</Link>
         </p>
       </div>
     </div>
