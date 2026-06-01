@@ -82,18 +82,17 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-12 bg-white">
 
-      <div className="relative z-10 w-full max-w-md">
-        <div className="text-center mb-8 sm:mb-10 animate-fade-in-up">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8 sm:mb-10">
           <Link href="/" className="inline-flex items-center justify-center mb-6">
-            <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={48} height={48} className="sm:w-14 sm:h-14 rounded-2xl shadow-lg" style={{ boxShadow: '0 4px 14px rgba(64, 96, 144, 0.3)' }} />
+            <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={200} height={56} className="h-auto" />
           </Link>
-          <h1 className="text-2xl sm:text-3xl font-black text-white">Join BusinessMatrix.Network</h1>
+          <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Join BusinessMatrix.Network</h1>
         </div>
 
-        <div className="bg-white rounded-[6px] border border-[#E5E5E5] p-5 sm:p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)] animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+        <div className="bg-white rounded-[6px] border border-[#E5E5E5] p-5 sm:p-8 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
           {error && (
             <div className="mb-6 p-4 rounded-xl text-xs font-bold text-center" style={{ background: 'var(--red-light)', border: '1px solid var(--red)', color: 'var(--red)' }}>
               {error}
@@ -149,7 +148,7 @@ export default function SignupPage() {
 
         </div>
 
-        <p className="text-center text-sm text-white/70 mt-8 font-medium">
+        <p className="text-center text-sm text-slate-500 mt-8 font-medium">
           Already have an account? <Link href="/directory/auth/login" className="font-bold hover:underline" style={{ color: '#C9A84C' }}>Sign In</Link>
         </p>
       </div>
