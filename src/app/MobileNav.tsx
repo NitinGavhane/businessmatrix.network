@@ -1,19 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 export default function MobileNav({ isDirectory }: { isDirectory?: boolean }) {
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
-  }, [open]);
 
   const links = [
     {
@@ -73,18 +64,18 @@ export default function MobileNav({ isDirectory }: { isDirectory?: boolean }) {
           width: var(--diameter);
           height: var(--diameter);
           border-radius: calc(var(--diameter) / 2);
-          border: none;
+          border: 1.5px solid rgba(255,255,255,0.4);
           cursor: pointer;
           overflow: hidden;
           transition: var(--burger-transition);
           outline: 0.125em solid transparent;
           outline-offset: 0;
-          background: rgba(0,0,0,0.08);
+          background: rgba(255,255,255,0.12);
         }
         .gg-burger span {
           height: var(--line-height);
           width: var(--line-width);
-          background: #333;
+          background: #fff;
           border-radius: var(--line-radius);
           position: absolute;
           transition: var(--line-transition);
@@ -109,22 +100,20 @@ export default function MobileNav({ isDirectory }: { isDirectory?: boolean }) {
         .gg-burger:active { transform: scale(0.95); }
 
         .gg-popup {
-          position: fixed;
-          top: 68px;
-          left: 0;
+          position: absolute;
+          top: calc(100% + 8px);
           right: 0;
-          bottom: 0;
-          z-index: 100;
+          z-index: 999;
           visibility: hidden;
           opacity: 0;
-          transform: scale(0.96);
+          transform: translateY(-4px);
           transition: all 0.2s ease;
-          transform-origin: top right;
+          min-width: 200px;
         }
         .gg-popup.active {
           visibility: visible;
           opacity: 1;
-          transform: scale(1);
+          transform: translateY(0);
         }
 
         .gg-popup-inner {
@@ -133,7 +122,6 @@ export default function MobileNav({ isDirectory }: { isDirectory?: boolean }) {
           border-radius: 8px;
           box-shadow: 0 4px 20px rgba(0,0,0,0.15);
           padding: 8px;
-          margin: 8px 12px;
           font-family: inherit;
         }
 
@@ -173,11 +161,6 @@ export default function MobileNav({ isDirectory }: { isDirectory?: boolean }) {
           color: #666;
           transition: color 0.15s;
         }
-        .gg-popup-backdrop {
-          position: fixed;
-          inset: 0;
-          z-index: -1;
-        }
       `}</style>
 
       <div className="relative">
@@ -191,9 +174,8 @@ export default function MobileNav({ isDirectory }: { isDirectory?: boolean }) {
           <span></span>
         </button>
 
-        <div className={`gg-popup ${open ? "active" : ""}`}>
-          <div className="gg-popup-backdrop" onClick={() => setOpen(false)} />
-          <div className="gg-popup-inner relative z-10">
+        <div className={`gg-popup ${open ? "active" : ""}`} onClick={() => setOpen(false)}>
+          <div className="gg-popup-inner" onClick={(e) => e.stopPropagation()}>
             <ul>
               {links.map((link) => (
                 <li key={link.href}>
