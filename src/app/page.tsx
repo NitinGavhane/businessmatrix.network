@@ -170,8 +170,8 @@ export default function HomePage() {
 
           <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 flex items-center justify-between shrink-0">
             <Link href="/" className="flex flex-col items-center gap-1">
-              <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-20 sm:h-24 w-auto p-1" />
-              <span className="text-white text-[9px] sm:text-[8px] tracking-[0.15em]">BUSINESSMATRIX.NETWORK</span>
+              <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-16 sm:h-20 w-auto p-1" />
+              <span className="text-white text-[4px] sm:text-[4px] tracking-[0.15em] max-w-16 sm:max-w-20 text-center leading-tight">BUSINESSMATRIX.NETWORK</span>
             </Link>
             <div className="hidden md:flex items-center gap-4">
               <Link href="/directory" className="text-sm font-bold text-white/80 hover:text-white transition-colors">Directory</Link>
@@ -268,7 +268,7 @@ export default function HomePage() {
                 {events.map((event, i) => (
                   <div
                     key={event.title}
-                    className={`fade-in d${i + 1} card-premium bg-white border border-[#E5E5E5] rounded-[6px] pt-5 px-5 pb-0 shadow-[0_2px_12px_rgba(0,0,0,0.08)]`}
+                    className={`fade-in d${i + 1} card-premium bg-white border border-[#E5E5E5] rounded-[6px] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.08)]`}
                   >
                     <div className="font-bold text-[16px] text-[#1A1A1A] leading-[1.3] mb-[2px]">
                       {event.date}
@@ -300,23 +300,6 @@ export default function HomePage() {
                         }}
                       >
                         Register Now
-                      </a>
-                      <a
-                        href="https://www.google.com/maps/dir/?api=1&destination=Balkrishna+Sakharam+Dhole+Patil+Rd+Sangamvadi+Pune+Maharashtra+411001"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block -mx-5 mt-3 rounded-none overflow-hidden border-t border-[#DDDDDD] hover:border-t-[#1A6FD4] transition-colors"
-                        style={{ borderBottom: 'none', borderLeft: 'none', borderRight: 'none', height: 165 }}
-                      >
-                        <iframe
-                          src="https://maps.google.com/maps?q=Balkrishna+Sakharam+Dhole+Patil+Rd+Sangamvadi+Pune+411001&t=m&z=14&output=embed&iwloc=near"
-                          width="100%"
-                          height="200"
-                          style={{ border: 0, display: 'block', pointerEvents: 'none', marginTop: -35 }}
-                          loading="lazy"
-                          referrerPolicy="no-referrer-when-downgrade"
-                          title="Map"
-                        />
                       </a>
                     </div>
                   </div>
@@ -474,9 +457,9 @@ export default function HomePage() {
                   alt="BusinessMatrix.Network"
                   width={100}
                   height={100}
-                  className="h-24 sm:h-24 w-auto"
+                  className="h-20 sm:h-24 w-auto"
                 />
-                <span className="text-slate-500 text-[10px] sm:text-[9px] tracking-[0.18em] font-semibold">BUSINESSMATRIX.NETWORK</span>
+                <span className="text-slate-500 text-[4px] sm:text-[5px] tracking-[0.18em] font-semibold max-w-20 sm:max-w-24 text-center leading-tight">BUSINESSMATRIX.NETWORK</span>
               </div>
               <div className="text-center sm:text-left">
                 <h4 className="text-[11px] font-black text-slate-800 uppercase tracking-[0.12em] mb-3">Contact</h4>
