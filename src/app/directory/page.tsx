@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Building2, MapPin, CheckCircle, Search, Star, Zap } from "lucide-react";
 import { prisma } from "@/lib/db";
-import SiteHeader from "@/components/SiteHeader";
+
 
 export const metadata: Metadata = {
   title: "Business Directory — BusinessMatrix.Network",
@@ -51,34 +52,43 @@ export default async function DirectoryPage() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
-      <SiteHeader />
-      <section className="pt-24 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
-        <div className="container max-w-6xl">
+      <section className="min-h-dvh flex flex-col" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
+        <div className="w-full px-6 sm:px-10 lg:px-16 py-6 flex items-center justify-between">
+          <Link href="/" className="flex flex-col items-center gap-1">
+              <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-20 sm:h-24 w-auto p-1" />
+              <span className="text-white text-[6px] sm:text-[8px] tracking-[0.15em]">BUSINESSMATRIX.NETWORK</span>
+          </Link>
+          <Link href="/" className="text-sm font-bold text-white/80 hover:text-white transition-colors px-4 py-2 rounded-full border border-white/30 hover:border-white/60 transition-all">&larr; Back</Link>
+        </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 mb-6 sm:mb-8">
-            <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-3 leading-tight">
-                Find Authentic<br /><span style={{ color: '#C9A84C' }}>Business Partners</span>
-              </h1>
-              <p className="text-white/70 text-sm sm:text-base max-w-lg">Verified businesses from across the globe.</p>
+        <div className="flex-1 flex items-center px-4 sm:px-6 -mt-8 sm:-mt-12">
+          <div className="container max-w-6xl w-full">
+
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 sm:gap-8 mb-6 sm:mb-8">
+              <div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-3 leading-tight">
+                  Find Authentic<br /><span style={{ color: '#C9A84C' }}>Business Partners</span>
+                </h1>
+                <p className="text-white/70 text-sm sm:text-base max-w-lg">Verified businesses from across the globe.</p>
+              </div>
+              <Link href="/directory/auth/signup" className="inline-block font-bold text-[14px] tracking-wide px-7 py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shrink-0 self-start lg:self-auto" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>
+                <Zap size={15} className="inline-block mr-1.5 -mt-0.5" /> List Your Business
+              </Link>
             </div>
-            <Link href="/directory/auth/signup" className="inline-block font-bold text-[14px] tracking-wide px-7 py-3 rounded-full transition-all duration-200 hover:-translate-y-0.5 shrink-0 self-start lg:self-auto" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>
-              <Zap size={15} className="inline-block mr-1.5 -mt-0.5" /> List Your Business
-            </Link>
-          </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 max-w-2xl">
-            <div className="flex-1 flex items-center gap-3 bg-white/10 border border-white/15 rounded-xl px-4 py-3">
-              <Search size={16} className="text-white/50 shrink-0" />
-              <input type="text" placeholder="Search businesses, products, services..." className="bg-transparent text-white placeholder-white/50 text-sm outline-none w-full" />
+            <div className="flex flex-col sm:flex-row gap-3 max-w-2xl">
+              <div className="flex-1 flex items-center gap-3 bg-white/10 border border-white/15 rounded-xl px-4 py-3">
+                <Search size={16} className="text-white/50 shrink-0" />
+                <input type="text" placeholder="Search businesses, products, services..." className="bg-transparent text-white placeholder-white/50 text-sm outline-none w-full" />
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
 
       <div className="container max-w-6xl py-8 sm:py-10 px-4 sm:px-6">
-        <div className="flex gap-2 mb-6 sm:mb-8 overflow-x-auto no-scrollbar pb-1 -mx-4 sm:mx-0 px-4 sm:px-0">
+        <div className="flex gap-2 my-6 sm:my-8 overflow-x-auto no-scrollbar pb-1 -mx-4 sm:mx-0 px-4 sm:px-0">
           {filterChips.map((type) => (
             <button key={type} className={`shrink-0 px-4 py-2 rounded-full text-xs font-bold border transition-all ${type === "All" ? "text-white border-[#1A6FD4]" : "bg-white text-slate-600 border-[#E5E5E5] hover:border-[#1A6FD4] hover:text-[#1A6FD4]"}`} style={type === "All" ? { background: '#1A6FD4', borderColor: '#1A6FD4' } : {}}>
               {type}

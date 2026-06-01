@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { Playfair_Display, Open_Sans } from "next/font/google";
-import SiteHeader from "@/components/SiteHeader";
+import MobileNav from "./MobileNav";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -150,14 +150,12 @@ export default function HomePage() {
       `}</style>
 
       <div className={`min-h-screen ${playfair.variable} ${openSans.variable}`}>
-        <SiteHeader />
 
         {/* ═══ HERO ═══ */}
         <section
-          className="relative overflow-hidden text-center lg:min-h-dvh lg:flex lg:items-center lg:justify-center"
+          className="relative overflow-hidden text-center lg:min-h-dvh lg:flex lg:flex-col lg:items-center lg:justify-center"
           style={{
             background: "linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)",
-            paddingTop: "calc(68px + 72px)",
             paddingBottom: "80px",
           }}
         >
@@ -169,6 +167,20 @@ export default function HomePage() {
               backgroundSize: "32px 32px",
             }}
           />
+
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 flex items-center justify-between">
+            <Link href="/" className="flex flex-col items-center gap-1">
+              <Image src="/businessmatrix-logo-crop.png" alt="BusinessMatrix.Network" width={100} height={100} className="h-20 sm:h-24 w-auto p-1" />
+              <span className="text-white text-[6px] sm:text-[8px] tracking-[0.15em]">BUSINESSMATRIX.NETWORK</span>
+            </Link>
+            <div className="hidden md:flex items-center gap-4">
+              <Link href="/directory" className="text-sm font-bold text-white/80 hover:text-white transition-colors">Directory</Link>
+              <Link href="/directory/auth/login" className="text-sm font-bold text-white/80 hover:text-white transition-colors">Sign In</Link>
+              <Link href="/directory/auth/signup" className="inline-block font-bold text-xs px-5 py-2 rounded-full transition-all hover:-translate-y-0.5" style={{ background: '#C9A84C', color: '#FFFFFF' }}>Register</Link>
+            </div>
+            <MobileNav />
+          </div>
+
           <div className="relative z-10 w-full max-w-[820px] mx-auto px-10 max-md:px-6 lg:py-12">
             <h1
               className="font-[var(--font-display)] font-extrabold leading-[1.12] tracking-tight mb-7 text-white"
@@ -473,58 +485,63 @@ export default function HomePage() {
         </section>
 
         {/* ═══ FOOTER ═══ */}
-        <footer style={{ background: "#F0F0F0", borderTop: "1px solid #DDDDDD" }}>
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-            <div className="flex items-center justify-between flex-wrap gap-4">
-              <div className="flex items-center gap-2.5">
+        <footer style={{ background: "#F0F0F0", borderTop: "4px solid #C9A84C" }}>
+          <div className="max-w-6xl mx-auto px-6 sm:px-8 py-12">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 items-start">
+              <div className="flex flex-col items-center sm:items-start gap-2">
                 <Image
                   src="/businessmatrix-logo-crop.png"
                   alt="BusinessMatrix.Network"
-                  width={32}
-                  height={32}
-                  className="rounded"
+                  width={100}
+                  height={100}
+                  className="h-20 sm:h-24 w-auto"
                 />
-                <span className="font-[var(--font-display)] font-bold text-[16px] text-[#1A1A1A]">
-                  BusinessMatrix.Network
-                </span>
+                <span className="text-slate-500 text-[7px] sm:text-[9px] tracking-[0.18em] font-semibold">BUSINESSMATRIX.NETWORK</span>
               </div>
-              <div className="text-[14px] text-[#666666] leading-[1.6] text-center">
-                Tel. +91 9156272076
-                <br />
-                Pune, Maharashtra
+              <div className="text-center sm:text-left">
+                <h4 className="text-[11px] font-black text-slate-800 uppercase tracking-[0.12em] mb-3">Contact</h4>
+                <div className="text-[14px] text-slate-500 leading-relaxed space-y-1">
+                  <p>Tel. +91 9156272076</p>
+                  <p>Pune, Maharashtra</p>
+                </div>
               </div>
-              <div className="flex gap-2.5">
-                <a
-                  href="https://www.facebook.com/profile.php?id=61590113681574"
-                  className="social-btn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                >
-                  <svg viewBox="0 0 24 24">
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.instagram.com/businessmatrix.network/"
-                  className="social-btn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <svg viewBox="0 0 24 24">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                  </svg>
-                </a>
+              <div className="text-center sm:text-left">
+                <h4 className="text-[11px] font-black text-slate-800 uppercase tracking-[0.12em] mb-3">Follow Us</h4>
+                <div className="flex gap-3 justify-center sm:justify-start">
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61590113681574"
+                    className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+                    style={{ background: "#3D5A7A", color: "#fff" }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                  >
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.instagram.com/businessmatrix.network/"
+                    className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
+                    style={{ background: "#3D5A7A", color: "#fff" }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                  >
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
             <div
-              className="text-center text-[12px] text-[#999999] pt-4 mt-4"
+              className="text-center text-[12px] text-[#999999] pt-6 mt-8"
               style={{ borderTop: "1px solid #DDDDDD" }}
             >
-              &copy; 2035 by BusinessMatrix.Network. Created on Wix Studio.
+              &copy; 2026 by BusinessMatrix.Network
             </div>
           </div>
         </footer>
