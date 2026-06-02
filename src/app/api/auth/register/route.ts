@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   try {
-    const { name, email, password } = await req.json();
+    const { name, email, password, phone } = await req.json();
 
     if (!email || !password) {
       return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
@@ -15,12 +15,20 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "An account with this email already exists" }, { status: 409 });
     }
 
+    if (phone) {
+      const phoneOwner = await prisma.directoryUser.findFirst({ where: { phone } });
+      if (phoneOwner) {
+        return NextResponse.json({ error: "You can not use already registered phone number" }, { status: 409 });
+      }
+    }
+
     const passwordHash = await bcrypt.hash(password, 10);
 
     const user = await prisma.directoryUser.create({
       data: {
         name: name || null,
         email,
+        phone: phone || null,
         passwordHash,
         role: "USER",
         isPremium: false,

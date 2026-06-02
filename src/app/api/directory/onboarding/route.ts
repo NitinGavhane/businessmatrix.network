@@ -21,13 +21,26 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Profile already exists" }, { status: 409 });
     }
 
-    await prisma.directoryUser.update({
-      where: { id: userId },
-      data: {
-        name: data.ownerName || data.name,
-        phone: data.mobile || undefined,
-      },
-    });
+    const userUpdateData: { name?: string; phone?: string } = {};
+    if (data.ownerName || data.name) {
+      userUpdateData.name = data.ownerName || data.name;
+    }
+    if (data.mobile) {
+      const phoneOwner = await prisma.directoryUser.findFirst({
+        where: { phone: data.mobile, id: { not: userId } },
+      });
+      if (phoneOwner) {
+        return NextResponse.json({ error: "Phone number is already in use by another account" }, { status: 409 });
+      }
+      userUpdateData.phone = data.mobile;
+    }
+
+    if (Object.keys(userUpdateData).length > 0) {
+      await prisma.directoryUser.update({
+        where: { id: userId },
+        data: userUpdateData,
+      });
+    }
 
     const profile = await prisma.businessProfile.create({
       data: {
@@ -48,8 +61,11 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ success: true, profile });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Onboarding error:", error);
+    if (error?.code === "P2002") {
+      return NextResponse.json({ error: "A unique constraint was violated. Please check your phone number." }, { status: 409 });
+    }
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
