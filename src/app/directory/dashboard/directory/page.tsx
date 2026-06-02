@@ -79,7 +79,7 @@ export default function DirectoryListingPage() {
           <p className="text-slate-500">Browse suppliers and prospective clients in your network.</p>
         </div>
         {!isPremium && (
-          <div className="flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-xl">
+          <div className="flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200 rounded-xl md:hidden">
             <Crown size={16} className="text-amber-600" />
             <span className="text-xs font-bold text-amber-800">Upgrade to see all contacts</span>
           </div>
@@ -133,7 +133,7 @@ export default function DirectoryListingPage() {
                   <div className="flex items-center justify-center gap-2 text-slate-500 mb-3">
                     <Lock size={14} /> <span className="text-xs font-medium">{suppliers.length - visibleCount} more suppliers locked</span>
                   </div>
-                  <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all hover:-translate-y-0.5" style={{ background: '#C9A84C', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>Unlock All Contacts</button>
+                  <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all hover:-translate-y-0.5 md:hidden" style={{ background: '#C9A84C', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>Unlock All Contacts</button>
                 </div>
               )}
             </div>

@@ -60,6 +60,9 @@ export async function GET() {
         name: user?.name,
         companyName: user?.profile?.companyName,
         isPremium: user?.isPremium,
+        location: user?.profile?.location,
+        type: user?.profile?.type,
+        category: user?.profile?.category,
       },
     });
   } catch (error) {

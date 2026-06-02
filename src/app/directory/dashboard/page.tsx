@@ -30,6 +30,9 @@ type DashboardData = {
     name: string | null;
     companyName: string | null;
     isPremium: boolean | null;
+    location: string | null;
+    type: string | null;
+    category: string | null;
   };
 };
 
@@ -136,13 +139,24 @@ export default function DashboardPage() {
           <div className="absolute top-0 right-0 p-4 opacity-20"><Building2 size={64} /></div>
           <div className="relative z-10 flex flex-col h-full">
             <h3 className="text-sm font-bold text-white/80 mb-2">{data?.user?.companyName || "Your Network"}</h3>
+            <div className="flex flex-wrap gap-2 mb-3">
+              {data?.user?.type && (
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/15 text-white/80">{data.user.type}</span>
+              )}
+              {data?.user?.category && (
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/15 text-white/80">{data.user.category}</span>
+              )}
+            </div>
+            {data?.user?.location && (
+              <p className="text-xs text-white/60 leading-relaxed mb-3">{data.user.location}</p>
+            )}
             {data?.user?.isPremium ? (
               <p className="text-xs text-white/70 leading-relaxed mb-4">Premium access active. Connect directly with your matches.</p>
             ) : (
-              <>
+              <div className="md:hidden">
                 <p className="text-xs text-white/70 leading-relaxed mb-4">Upgrade to connect directly with matches and start trading.</p>
                 <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="mt-auto self-start px-4 py-2 rounded-lg text-xs font-bold transition-all" style={{ background: '#C9A84C', color: '#FFFFFF' }}>Upgrade to Premium</button>
-              </>
+              </div>
             )}
           </div>
         </div>

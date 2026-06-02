@@ -5,7 +5,7 @@ import { Lock } from "lucide-react";
 export default function MessagesPage() {
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="text-center py-20">
+      <div className="text-center py-20 md:hidden">
         <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
           <Lock size={28} className="text-slate-400" />
         </div>

@@ -133,7 +133,7 @@ export default function MatchesPage() {
         ))}
 
         {isPremium === false && (
-          <div className="bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-6 sm:p-8" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
+          <div className="bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-6 sm:p-8 md:hidden" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
             <div className="relative z-10">
               <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-xl mx-auto mb-6" style={{ background: '#C9A84C' }}>
                 <Zap size={32} />
