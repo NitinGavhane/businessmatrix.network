@@ -123,9 +123,9 @@ export default function MatchesPage() {
             <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-xl mx-auto mb-6" style={{ background: '#C9A84C' }}>
               <Zap size={32} />
             </div>
-            <h3 className="font-black text-white text-xl mb-3">Unlock More Matches</h3>
+            <h3 className="font-black text-white text-xl mb-3">Unlock More Profiles</h3>
             <p className="text-xs text-white/70 leading-relaxed mb-6">
-              Upgrade to Premium to see all your AI matches and get direct chat access.
+              Upgrade to Premium to see more profiles and connect with potential partners.
             </p>
             <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-3.5 rounded-xl text-sm font-black transition-all hover:-translate-y-0.5" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>Upgrade to Premium</button>
           </div>
