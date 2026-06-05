@@ -120,7 +120,6 @@ export default function DashboardPage() {
               <h3 className="text-sm font-bold text-slate-700">Profile Views</h3>
             </div>
             <div className="text-3xl font-black text-slate-900">{data?.profileViews || 0}</div>
-            <p className="text-xs font-bold mt-1" style={{ color: 'var(--green)' }}>Active in network</p>
           </div>
 
           <div className="card-premium p-5 flex flex-col animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
@@ -131,7 +130,6 @@ export default function DashboardPage() {
               <h3 className="text-sm font-bold text-slate-700">New Matches</h3>
             </div>
             <div className="text-3xl font-black text-slate-900">{data?.newMatches || 0}</div>
-            <p className="text-xs text-slate-400 font-medium mt-1">Ready to connect</p>
           </div>
         </div>
 
@@ -167,7 +165,7 @@ export default function DashboardPage() {
           <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-3">
               <ShoppingCart size={22} style={{ color: 'var(--brand-primary)' }} />
-              <h2 className="text-sm sm:text-lg font-black text-slate-900">Actively Buying</h2>
+              <h2 className="text-sm sm:text-lg font-black text-slate-900">I Buy</h2>
             </div>
           </div>
           <div className="p-5">
@@ -210,7 +208,7 @@ export default function DashboardPage() {
           <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
             <div className="flex items-center gap-3">
               <Package size={22} style={{ color: 'var(--green)' }} />
-              <h2 className="text-sm sm:text-lg font-black text-slate-900">Actively Selling</h2>
+              <h2 className="text-sm sm:text-lg font-black text-slate-900">I Sell</h2>
             </div>
           </div>
           <div className="p-5">

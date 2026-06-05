@@ -37,7 +37,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-64 bg-white border-r hidden md:flex flex-col fixed top-0 bottom-0 left-0 z-40" style={{ borderColor: 'var(--border)' }}>
         <div>
           <Link href="/directory/admin" className="flex items-center justify-center p-2">
-            <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={160} height={48} className="h-56 w-auto" />
+            <Image src="/businessmatrix-logo-original (1).png" alt="BusinessMatrix.Network" width={160} height={48} className="h-44 w-auto" />
           </Link>
           <div className="px-6 pb-6">
           <nav className="space-y-1.5">
@@ -63,7 +63,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
       <div className="md:hidden fixed top-0 left-0 right-0 z-50 bg-white flex items-center justify-center px-4" style={{ height: 100 }}>
         <Link href="/directory/admin">
-          <Image src="/businessmatrix-logo.png" alt="BusinessMatrix.Network" width={440} height={140} className="h-40 w-auto" />
+          <Image src="/businessmatrix-logo-original (1).png" alt="BusinessMatrix.Network" width={440} height={140} className="h-28 w-auto" />
         </Link>
       </div>
 

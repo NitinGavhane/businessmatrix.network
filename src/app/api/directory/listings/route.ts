@@ -10,7 +10,18 @@ export async function GET() {
             id: true,
             name: true,
             email: true,
+            phone: true,
             isPremium: true,
+          },
+        },
+        requirements: {
+          where: { isActive: true },
+          select: {
+            id: true,
+            type: true,
+            category: true,
+            description: true,
+            tags: true,
           },
         },
       },
@@ -28,6 +39,15 @@ export async function GET() {
       yearsActive: p.yearsActive || 3,
       tags: p.keyMarkets?.length ? p.keyMarkets : [p.category || "General"],
       color: getColor(p.type),
+      email: p.user?.email || null,
+      phone: p.user?.phone || null,
+      requirements: p.requirements?.map((r) => ({
+        id: r.id,
+        type: r.type,
+        category: r.category,
+        description: r.description,
+        tags: r.tags,
+      })) || [],
     }));
 
     return NextResponse.json({ listings });
