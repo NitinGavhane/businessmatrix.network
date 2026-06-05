@@ -69,7 +69,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <div className="absolute top-0 right-0 p-3 opacity-10"><Crown size={48} /></div>
               <ShieldCheck size={20} className="mb-2" style={{ color: '#C9A84C' }} />
               <h3 className="text-sm font-black mb-1">Upgrade to Premium</h3>
-              <p className="text-[10px] text-white/70 leading-relaxed mb-3">Unlock direct chat and AI matchmaking.</p>
+              <p className="text-[10px] text-white/70 leading-relaxed mb-3">Unlock More Profiles</p>
               <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5" style={{ background: '#C9A84C', color: '#FFFFFF' }}>
                 <Zap size={12} /> Upgrade Now
               </button>

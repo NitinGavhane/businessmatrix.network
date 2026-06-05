@@ -86,6 +86,8 @@ export async function POST(req: Request) {
 
       score = Math.min(score, 99);
 
+      const matchType = giveMatch && askMatch ? "both" : giveMatch ? "buyer" : askMatch ? "seller" : "none";
+
       return {
         id: profile.id,
         companyName: profile.companyName,
@@ -95,6 +97,7 @@ export async function POST(req: Request) {
         askDescription: profile.requirements.find((r) => r.type === "ASK")?.description || "",
         giveDescription: profile.requirements.find((r) => r.type === "GIVE")?.description || "",
         reasoning: reasons.length > 0 ? reasons.join(". ") + "." : "Potential synergy detected.",
+        matchType,
       };
     });
 

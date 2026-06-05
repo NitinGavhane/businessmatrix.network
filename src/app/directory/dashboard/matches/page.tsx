@@ -13,6 +13,7 @@ type MatchCard = {
   askDescription: string;
   giveDescription: string;
   reasoning: string;
+  matchType: "buyer" | "seller" | "both" | "none";
 };
 
 export default function MatchesPage() {
@@ -77,75 +78,115 @@ export default function MatchesPage() {
       </div>
 
       {matches.length > 0 && (
-        <div className="flex gap-2 flex-wrap">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Sorted by match score:</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-6">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2 h-2 rounded-full" style={{ background: 'var(--brand-primary)' }} />
+              <h2 className="text-base font-black text-slate-900">Prospective Sellers</h2>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">
+                {matches.filter(m => m.matchType === "seller" || m.matchType === "both" || m.matchType === "none").length}
+              </span>
+            </div>
+            <div className="space-y-4">
+              {matches.filter(m => m.matchType === "seller" || m.matchType === "both" || m.matchType === "none").map((match) => (
+                <MatchCard key={match.id} match={match} type="seller" />
+              ))}
+              {matches.filter(m => m.matchType === "seller" || m.matchType === "both" || m.matchType === "none").length === 0 && (
+                <p className="text-sm text-slate-400 text-center py-8">No seller matches found</p>
+              )}
+            </div>
+          </div>
+
+          <div className="lg:col-span-6">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="w-2 h-2 rounded-full" style={{ background: 'var(--green)' }} />
+              <h2 className="text-base font-black text-slate-900">Prospective Buyers</h2>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">
+                {matches.filter(m => m.matchType === "buyer" || m.matchType === "both" || m.matchType === "none").length}
+              </span>
+            </div>
+            <div className="space-y-4">
+              {matches.filter(m => m.matchType === "buyer" || m.matchType === "both" || m.matchType === "none").map((match) => (
+                <MatchCard key={match.id} match={match} type="buyer" />
+              ))}
+              {matches.filter(m => m.matchType === "buyer" || m.matchType === "both" || m.matchType === "none").length === 0 && (
+                <p className="text-sm text-slate-400 text-center py-8">No buyer matches found</p>
+              )}
+            </div>
+          </div>
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {matches.map((match) => (
-          <div key={match.id} className="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/30 overflow-hidden flex flex-col group relative">
-            <div className="absolute top-0 right-0 p-4 z-10">
-              <div className="bg-violet-600 text-white text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full shadow-lg">{match.score}% Match</div>
+      {isPremium === false && (
+        <div className="bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-6 sm:p-8 md:hidden" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
+          <div className="relative z-10">
+            <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-xl mx-auto mb-6" style={{ background: '#C9A84C' }}>
+              <Zap size={32} />
             </div>
-
-            <div className="h-24 bg-gradient-to-br from-slate-900 to-slate-800 relative">
-              <div className="absolute -bottom-6 left-6 w-14 h-14 bg-white rounded-2xl p-1 shadow-md">
-                <div className="w-full h-full rounded-xl flex items-center justify-center text-white font-black" style={{ background: '#1A6FD4' }}>
-                  {match.companyName.split(' ').map((w) => w[0]).join('').slice(0, 2)}
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 sm:p-6 pt-8 sm:pt-10 flex-1 flex flex-col">
-              <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-black text-slate-900 text-lg">{match.companyName}</h3>
-                <CheckCircle2 size={14} className="text-emerald-500" />
-              </div>
-              <p className="text-[11px] text-slate-400 font-bold uppercase tracking-widest mb-4 flex items-center gap-1">
-                <MapPin size={12} /> {match.location}
-              </p>
-
-              {match.askDescription && (
-                <div className="mb-4 bg-slate-50 rounded-xl p-4 border border-slate-100">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">What They Need</p>
-                  <p className="text-xs text-slate-700 font-medium leading-relaxed">{match.askDescription}</p>
-                </div>
-              )}
-
-              {match.giveDescription && (
-                <div className="mb-4 bg-slate-50 rounded-xl p-4 border border-slate-100">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">What They Offer</p>
-                  <p className="text-xs text-slate-700 font-medium leading-relaxed">{match.giveDescription}</p>
-                </div>
-              )}
-
-              <div className="mb-4">
-                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Why It's a Match</p>
-                <p className="text-xs text-violet-600 font-bold bg-violet-50 p-2.5 rounded-lg border border-violet-100">{match.reasoning}</p>
-              </div>
-
-              <a href="https://nas.com/acinnovationsandventures/events/1-to-1" target="_blank" rel="noopener noreferrer" className="mt-auto w-full py-3 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5" style={{ background: '#1A6FD4' }}>
-                <Handshake size={14} /> Connect
-              </a>
-            </div>
+            <h3 className="font-black text-white text-xl mb-3">Unlock More Matches</h3>
+            <p className="text-xs text-white/70 leading-relaxed mb-6">
+              Upgrade to Premium to see all your AI matches and get direct chat access.
+            </p>
+            <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-3.5 rounded-xl text-sm font-black transition-all hover:-translate-y-0.5" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>Upgrade to Premium</button>
           </div>
-        ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
-        {isPremium === false && (
-          <div className="bg-slate-900 rounded-2xl sm:rounded-3xl border border-slate-800 shadow-xl overflow-hidden flex flex-col relative text-center items-center justify-center p-6 sm:p-8 md:hidden" style={{ background: 'linear-gradient(160deg, #3D5A7A 0%, #2E4A6A 100%)' }}>
-            <div className="relative z-10">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-xl mx-auto mb-6" style={{ background: '#C9A84C' }}>
-                <Zap size={32} />
-              </div>
-              <h3 className="font-black text-white text-xl mb-3">Unlock More Matches</h3>
-              <p className="text-xs text-white/70 leading-relaxed mb-6">
-                Upgrade to Premium to see all your AI matches and get direct chat access.
-              </p>
-              <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-3.5 rounded-xl text-sm font-black transition-all hover:-translate-y-0.5" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>Upgrade to Premium</button>
-            </div>
+function MatchCard({ match, type }: { match: MatchCard; type: "seller" | "buyer" }) {
+  const isSeller = type === "seller";
+
+  return (
+    <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/30 overflow-hidden flex flex-col group relative">
+      <div className="absolute top-0 right-0 p-4 z-10">
+        <div className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full shadow-lg text-white ${isSeller ? 'bg-violet-600' : 'bg-emerald-600'}`}>
+          {match.score}% Match
+        </div>
+      </div>
+
+      <div className="h-20 bg-gradient-to-br from-slate-900 to-slate-800 relative">
+        <div className="absolute -bottom-5 left-5 w-12 h-12 bg-white rounded-2xl p-1 shadow-md">
+          <div className="w-full h-full rounded-xl flex items-center justify-center text-white font-black" style={{ background: isSeller ? 'var(--brand-secondary)' : 'var(--green)' }}>
+            {match.companyName.split(' ').map((w) => w[0]).join('').slice(0, 2)}
           </div>
+        </div>
+      </div>
+
+      <div className="p-4 sm:p-5 pt-7 sm:pt-8 flex-1 flex flex-col">
+        <div className="flex items-center gap-2 mb-1">
+          <h3 className="font-black text-slate-900 text-base">{match.companyName}</h3>
+          <CheckCircle2 size={12} className="text-emerald-500" />
+        </div>
+        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-3 flex items-center gap-1">
+          <MapPin size={10} /> {match.location}
+        </p>
+
+        {isSeller ? (
+          match.askDescription && (
+            <div className="mb-3 bg-violet-50 rounded-xl p-3 border border-violet-100">
+              <p className="text-[10px] font-black text-violet-500 uppercase tracking-widest mb-1">What They Need</p>
+              <p className="text-xs text-slate-700 font-medium leading-relaxed">{match.askDescription}</p>
+            </div>
+          )
+        ) : (
+          match.giveDescription && (
+            <div className="mb-3 bg-emerald-50 rounded-xl p-3 border border-emerald-100">
+              <p className="text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-1">What They Offer</p>
+              <p className="text-xs text-slate-700 font-medium leading-relaxed">{match.giveDescription}</p>
+            </div>
+          )
         )}
+
+        <div className="mb-3">
+          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Why It's a Match</p>
+          <p className="text-xs text-violet-600 font-bold bg-violet-50 p-2.5 rounded-lg border border-violet-100">{match.reasoning}</p>
+        </div>
+
+        <a href="https://nas.com/acinnovationsandventures/events/1-to-1" target="_blank" rel="noopener noreferrer" className="mt-auto w-full py-2.5 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5" style={{ background: isSeller ? 'var(--brand-secondary)' : 'var(--green)' }}>
+          <Handshake size={14} /> Connect
+        </a>
       </div>
     </div>
   );

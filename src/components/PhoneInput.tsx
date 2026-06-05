@@ -47,11 +47,42 @@ const countries = [
   { flag: "🇮🇱", code: "IL", dial: "+972", name: "Israel" },
 ];
 
-export default function PhoneInput() {
+type PhoneInputProps = {
+  value?: string;
+  onChange?: (value: string) => void;
+  id?: string;
+  name?: string;
+  placeholder?: string;
+};
+
+export default function PhoneInput({
+  value: externalValue,
+  onChange,
+  id = "ph",
+  name = "phone",
+  placeholder = "Phone",
+}: PhoneInputProps) {
+  const isControlled = externalValue !== undefined;
+
+  const sortedCountries = useMemo(
+    () => [...countries].sort((a, b) => b.dial.length - a.dial.length),
+    []
+  );
+
+  const parseValue = (val: string) => {
+    const c = sortedCountries.find((c) => val.startsWith(c.dial)) || countries[0];
+    return { country: c, number: val.slice(c.dial.length) };
+  };
+
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState(countries[0]);
-  const [phone, setPhone] = useState("");
+
+  const [internalSelected, setInternalSelected] = useState(countries[0]);
+  const [internalPhone, setInternalPhone] = useState("");
+
+  const selected = isControlled ? parseValue(externalValue).country : internalSelected;
+  const phoneNumber = isControlled ? parseValue(externalValue).number : internalPhone;
+
   const ref = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -84,10 +115,23 @@ export default function PhoneInput() {
     [search]
   );
 
-  function select(country: (typeof countries)[number]) {
-    setSelected(country);
+  function selectCountry(country: (typeof countries)[number]) {
+    if (isControlled) {
+      setInternalSelected(country);
+      onChange?.(country.dial + phoneNumber);
+    } else {
+      setInternalSelected(country);
+    }
     setOpen(false);
     setSearch("");
+  }
+
+  function handlePhoneChange(val: string) {
+    if (isControlled) {
+      onChange?.(selected.dial + val);
+    } else {
+      setInternalPhone(val);
+    }
   }
 
   const [focused, setFocused] = useState(false);
@@ -95,16 +139,22 @@ export default function PhoneInput() {
   return (
     <div className="relative" ref={ref}>
       <div
-        className={`flex items-stretch bg-white border rounded-[4px] transition-[border-color,box-shadow] duration-200 ${
+        className={`flex items-stretch w-full transition-all duration-300 ${
           focused
-            ? "border-[#1A6FD4] shadow-[0_0_0_3px_rgba(26,111,212,0.12)]"
-            : "border-[#CCCCCC]"
+            ? "bg-white border-[var(--brand-primary)] shadow-[0_0_0_4px_rgba(64,96,144,0.08)] -translate-y-px"
+            : "bg-[rgba(248,250,252,0.5)] border-[var(--border)]"
         }`}
+        style={{
+          borderWidth: 1.5,
+          borderStyle: "solid",
+          borderRadius: "var(--radius-sm)",
+          outline: "none",
+        }}
       >
         <button
           type="button"
           onClick={() => setOpen(!open)}
-          className="flex items-center gap-1 pl-3 pr-2 text-[14px] text-[#333333] border-r border-[#CCCCCC] cursor-pointer bg-white shrink-0"
+          className="flex items-center gap-1 pl-3 pr-2 text-[15px] font-medium text-[var(--text-primary)] cursor-pointer bg-transparent shrink-0 border-r border-[var(--border)]"
           style={{ minWidth: 72 }}
         >
           <span className="text-base leading-none">{selected.flag}</span>
@@ -114,7 +164,7 @@ export default function PhoneInput() {
             style={{
               width: 10,
               height: 10,
-              stroke: "#666",
+              stroke: "var(--text-muted)",
               fill: "none",
               strokeWidth: 2,
               transform: open ? "rotate(180deg)" : undefined,
@@ -127,36 +177,37 @@ export default function PhoneInput() {
         <input
           ref={inputRef}
           type="tel"
-          id="ph"
-          name="phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
+          id={id}
+          name={name}
+          value={phoneNumber}
+          onChange={(e) => handlePhoneChange(e.target.value)}
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
-          placeholder="Phone"
-          className="w-full bg-transparent py-3 pr-3.5 text-[15px] text-[#333333] outline-none placeholder:text-[#AAAAAA]"
+          placeholder={placeholder}
+          className="w-full bg-transparent py-3 pr-3.5 text-[15px] font-medium text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)]"
           style={{ paddingLeft: 10 }}
         />
       </div>
 
       {open && (
         <div
-          className="absolute left-0 z-50 mt-1 bg-white border border-[#CCCCCC] rounded-[6px] shadow-lg"
+          className="absolute left-0 z-50 mt-1 bg-white border border-[var(--border)] rounded-[6px] shadow-lg"
           style={{ width: 280, maxHeight: 300 }}
         >
-          <div className="p-2 border-b border-[#E5E5E5]">
+          <div className="p-2 border-b" style={{ borderColor: 'var(--border)' }}>
             <input
               ref={searchRef}
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search country..."
-              className="w-full border border-[#CCCCCC] rounded-[4px] px-2.5 py-1.5 text-[13px] text-[#333333] outline-none focus:border-[#1A6FD4] placeholder:text-[#AAAAAA]"
+              className="w-full border rounded-[4px] px-2.5 py-1.5 text-[13px] text-[var(--text-primary)] outline-none focus:border-[var(--brand-primary)] placeholder:text-[var(--text-muted)]"
+              style={{ borderColor: 'var(--border)' }}
             />
           </div>
           <div className="overflow-y-auto" style={{ maxHeight: 252 }}>
             {filtered.length === 0 ? (
-              <div className="px-3 py-4 text-[13px] text-[#999999] text-center">
+              <div className="px-3 py-4 text-[13px] text-[var(--text-muted)] text-center">
                 No countries found
               </div>
             ) : (
@@ -164,16 +215,16 @@ export default function PhoneInput() {
                 <button
                   key={country.code}
                   type="button"
-                  onClick={() => select(country)}
+                  onClick={() => selectCountry(country)}
                   className={`w-full flex items-center gap-2.5 px-3 py-2 text-left text-[14px] transition-colors ${
                     selected.code === country.code
-                      ? "bg-[#1A6FD4]/10 text-[#1A6FD4] font-medium"
-                      : "text-[#333333] hover:bg-[#F5F5F5]"
+                      ? "bg-[rgba(64,96,144,0.1)] text-[var(--brand-primary)] font-medium"
+                      : "text-[var(--text-primary)] hover:bg-[rgba(0,0,0,0.03)]"
                   }`}
                 >
                   <span className="text-base leading-none">{country.flag}</span>
                   <span className="flex-1">{country.name}</span>
-                  <span className="text-[13px] text-[#999999]">{country.dial}</span>
+                  <span className="text-[13px] text-[var(--text-muted)]">{country.dial}</span>
                 </button>
               ))
             )}

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Save, User, Building2, Lock } from "lucide-react";
+import PhoneInput from "@/components/PhoneInput";
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState<"account" | "business" | "password">("account");
@@ -88,7 +89,7 @@ export default function ProfilePage() {
             </div>
             <div>
               <label className="label-premium">Phone</label>
-              <input value={userData.phone || ""} onChange={(e) => setUserData({ ...userData, phone: e.target.value })} className="input-premium" />
+              <PhoneInput value={userData.phone || ""} onChange={(val) => setUserData({ ...userData, phone: val })} />
             </div>
           </div>
         )}
