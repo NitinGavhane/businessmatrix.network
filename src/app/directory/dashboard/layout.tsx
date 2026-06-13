@@ -70,7 +70,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <ShieldCheck size={20} className="mb-2" style={{ color: '#C9A84C' }} />
               <h3 className="text-sm font-black mb-1">Upgrade to Premium</h3>
               <p className="text-[10px] text-white/70 leading-relaxed mb-3">Unlock More Profiles</p>
-              <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5" style={{ background: '#C9A84C', color: '#FFFFFF' }}>
+              <button onClick={() => window.open('https://nas.com/acinnovationsandventures/physical-products/premium-membership', '_blank')} className="w-full py-2 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5" style={{ background: '#C9A84C', color: '#FFFFFF' }}>
                 <Zap size={12} /> Upgrade Now
               </button>
             </div>

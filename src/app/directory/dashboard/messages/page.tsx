@@ -13,7 +13,7 @@ export default function MessagesPage() {
         <p className="text-slate-500 text-sm max-w-md mx-auto mb-8">
           Upgrade to Premium to unlock direct messaging with your matches and partners.
         </p>
-        <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 rounded-xl text-sm font-black transition-all">
+        <button onClick={() => window.open('https://nas.com/acinnovationsandventures/physical-products/premium-membership', '_blank')} className="px-6 py-3 bg-amber-500 hover:bg-amber-400 text-slate-900 rounded-xl text-sm font-black transition-all">
           Upgrade to Premium
         </button>
       </div>

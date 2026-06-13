@@ -127,7 +127,7 @@ export default function MatchesPage() {
             <p className="text-xs text-white/70 leading-relaxed mb-6">
               Upgrade to Premium to see more profiles and connect with potential partners.
             </p>
-            <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="w-full py-3.5 rounded-xl text-sm font-black transition-all hover:-translate-y-0.5" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>Upgrade to Premium</button>
+            <button onClick={() => window.open('https://nas.com/acinnovationsandventures/physical-products/premium-membership', '_blank')} className="w-full py-3.5 rounded-xl text-sm font-black transition-all hover:-translate-y-0.5" style={{ background: '#C9A84C', color: '#FFFFFF', boxShadow: '0 4px 14px rgba(0,0,0,0.18)' }}>Upgrade to Premium</button>
           </div>
         </div>
       )}
@@ -184,7 +184,7 @@ function MatchCard({ match, type }: { match: MatchCard; type: "seller" | "buyer"
           <p className="text-xs text-violet-600 font-bold bg-violet-50 p-2.5 rounded-lg border border-violet-100">{match.reasoning}</p>
         </div>
 
-        <a href="https://nas.com/acinnovationsandventures/events/1-to-1" target="_blank" rel="noopener noreferrer" className="mt-auto w-full py-2.5 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5" style={{ background: isSeller ? 'var(--brand-secondary)' : 'var(--green)' }}>
+        <a href="https://nas.com/acinnovationsandventures/physical-products/premium-membership" target="_blank" rel="noopener noreferrer" className="mt-auto w-full py-2.5 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5" style={{ background: isSeller ? 'var(--brand-secondary)' : 'var(--green)' }}>
           <Handshake size={14} /> Connect
         </a>
       </div>

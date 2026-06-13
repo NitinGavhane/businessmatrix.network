@@ -153,7 +153,7 @@ export default function DashboardPage() {
             ) : (
               <div className="md:hidden">
                 <p className="text-xs text-white/70 leading-relaxed mb-4">Unlock More Profiles</p>
-                <button onClick={() => window.open('https://nas.com/acinnovationsandventures/events/1-to-1', '_blank')} className="mt-auto self-start px-4 py-2 rounded-lg text-xs font-bold transition-all" style={{ background: '#C9A84C', color: '#FFFFFF' }}>Upgrade to Premium</button>
+                <button onClick={() => window.open('https://nas.com/acinnovationsandventures/physical-products/premium-membership', '_blank')} className="mt-auto self-start px-4 py-2 rounded-lg text-xs font-bold transition-all" style={{ background: '#C9A84C', color: '#FFFFFF' }}>Upgrade to Premium</button>
               </div>
             )}
           </div>
